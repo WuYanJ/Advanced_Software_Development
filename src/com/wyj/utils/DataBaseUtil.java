@@ -4,14 +4,16 @@ package com.wyj.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
+/*
+* 操作jdbc的工具类，其中封装了一些工具方法
+* */
 public class DataBaseUtil {
-
-    public static Connection getConn() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException, IOException {
+    // 工具方法：获取connection
+    // 通过读取配置文件，从数据库服务器获取一个连接
+    public static Connection getConn() throws ClassNotFoundException, SQLException, IOException {
         String driverClass = null;
         String url = null;
         String user = null;
@@ -34,11 +36,39 @@ public class DataBaseUtil {
         return conn;
     }
 
-    //关闭数据库
+    //关闭数据库连接
     public static void closeConn(Connection conn) {
         if (conn != null) {
             try {
                 conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // 关闭数据库资源
+    public static void releaseDB(ResultSet resultSet, Statement statement,
+                                 Connection connection) throws SQLException {
+        if(resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(connection != null) {
+            try {
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

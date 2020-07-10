@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -18,6 +18,8 @@
 
     <title>Personal Info</title>
 
+    <%--  Font Awesome  --%>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,6 +39,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -54,133 +60,132 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="homepage.jsp">Home</a></li>
+                <li><a href="about.jsp">About</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
 <div class="container">
+    <div class="container" id="columns"><!-- breadcrumb -->
+        <ul class="breadcrumb">
+            <a href="homepage.jsp" title="Return to Homepage">Home</a>
+            <span class="navigation-pipe"> > </span>
+            <a href="personalInfo.jsp" title="Return to Homepage">Personal</a>
+            <span class="navigation-pipe"> > </span>
+            <span class="navigation_page">Maecenas consequat mauris</span>
+        </ul><!-- ./breadcrumb --><!-- row -->
 
-    <div class="primary-box row">
-        <div class="pb-left-column col-xs-12 col-sm-6"><!-- product-imge-->
-            <div class="product-image">
-                <div class="product-full"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        <div class="row"><!-- Left colunm -->
+            <div class="column col-xs-12 col-sm-3" id="left_column"><!-- block category -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
                 </div>
-                <div class="product-img-thumb" id="gallery_01">
-                    <ul class="owl-carousel owl-theme owl-loaded" data-items="3" data-nav="true" data-dots="false"
-                        data-margin="20" data-loop="false">
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage"
-                                 style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 720px;">
-                                <div class="owl-item active" style="width: 100px; margin-right: 20px;">
-                                    <li>
-                                        <a href="#" data-image="assets/data/product-s3-420x512.jpg"
-                                           data-zoom-image="assets/data/product-s3-850x1036.jpg">
-                                        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
+            </div><!-- ./left colunm --><!-- Center colunm-->
+
+
+            <%--            商品详情！就是这个div了--%>
+            <div class="center_column col-xs-12 col-sm-9" id="center_column"><!-- Product -->
+                <div id="product">
+                    <div class="primary-box row">
+                        <div class="pb-left-column col-xs-12 col-sm-6"><!-- product-imge-->
+                            <div class="product-image">
+                                <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
+                                <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
+                                <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
+                                <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
+                                <img src="static/image/travel-images/large/222222.jpg" style="width: 100%;height: auto">
+                            </div><!-- product-imge-->
+                        </div>
+
+                        <%
+//                            String imageUrl = request.getParameter("imageUrl");
+                            String photographer = "wuyanjie";
+                            String title = "Maecenas consequat mauris";
+                            String topic = "Ocean";
+                            String description = "So Beautiful. Hope you can enjoy.";
+                            int favorAmount = 15;
+                            String country = "Japan";
+                            String city = "Tokyo";
+                            Date releaseDate = new Date();
+                        %>
+
+                        <div class="pb-right-column col-xs-12 col-sm-6">
+                            <h1 class="product-name"><%= title %></h1>
+                            <div class="product-comments">
+                                <div class="product-star">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
                                 </div>
-                                <div class="owl-item active" style="width: 100px; margin-right: 20px;">
-                                    <li><a href="#" data-image="assets/data/product-s2-420x512.jpg"
-                                           data-zoom-image="assets/data/product-s2-850x1036.jpg">
-                                        <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
-                                </div>
-                                <div class="owl-item active" style="width: 100px; margin-right: 20px;">
-                                    <li>
-                                        <a href="#" data-image="assets/data/product-420x512.jpg"
-                                           data-zoom-image="assets/data/product-850x1036.jpg">
-                                            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
-                                </div>
-                                <div class="owl-item" style="width: 100px; margin-right: 20px;">
-                                    <li>
-                                        <a href="#" data-image="assets/data/product-s4-420x512.jpg"
-                                           data-zoom-image="assets/data/product-s4-850x1036.jpg">
-                                            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
-                                </div>
-                                <div class="owl-item" style="width: 100px; margin-right: 20px;">
-                                    <li>
-                                        <a href="#" data-image="assets/data/product-s5-420x512.jpg"
-                                           data-zoom-image="assets/data/product-s5-850x1036.jpg">
-                                            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
-                                </div>
-                                <div class="owl-item" style="width: 100px; margin-right: 20px;">
-                                    <li><a href="#" data-image="assets/data/product-s6-420x512.jpg"
-                                           data-zoom-image="assets/data/product-s6-850x1036.jpg"><img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-                                    </a>
-                                    </li>
+                                <div class="comments-advices">
+                                    <a href="#" class="a-block"><i class="fa fa-pencil"></i>write a review</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="owl-controls">
-                            <div class="owl-nav">
-                                <div class="owl-prev" style=""><i class="fa fa-angle-left"></i></div>
-                                <div class="owl-next" style=""><i class="fa fa-angle-right"></i></div>
+                            <div>
+                                <p>Photographer: <%= photographer %></p>
+                                <p>Topic: <%= topic %></p>
+                                <p>Description: <%= description %></p>
+                                <p>Favor: <%= favorAmount %></p>
+                                <p>Country: <%= country %></p>
+                                <p>City: <%= city %></p>
+                                <p>Date: <%= releaseDate %></p>
                             </div>
-                            <div class="owl-dots" style="display: none;"></div>
+                            <div class="form-share">
+                                <div class="sendtofriend-print">
+                                    <a class="a-block" href="javascript:print();"><i class="fa fa-print"></i>Print This Page</a>
+                                    <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>Send to a friend</a>
+                                </div>
+                                <button type="button" class="btn btn-lg btn-success"><i class="fa fa-heart-o"></i>Add to Collection</button>
+                            </div>
                         </div>
-                    </ul>
-                </div>
-            </div><!-- product-imge--></div>
-        <div class="pb-right-column col-xs-12 col-sm-6"><h1 class="product-name">Maecenas consequat mauris</h1>
-            <div class="product-comments">
-                <div class="product-star"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                        class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
-                <div class="comments-advices"><a href="#">Based on 3 ratings</a><a href="#"><i class="fa fa-pencil"></i>write
-                    a review</a></div>
-            </div>
-            <div class="product-price-group"><span class="price">$38.95</span><span class="old-price">$52.00</span><span
-                    class="discount">-30%</span></div>
-            <div class="info-orther"><p>Item Code: #453217907</p>
-                <p>Availability: <span class="in-stock">In stock</span></p>
-                <p>Condition: New</p></div>
-            <div class="product-desc"> Vestibulum eu odio. Suspendisse potenti. Morbi mollis tellus ac sapien. Praesent
-                egestas tristique nibh. Nullam dictum felis eu pede mollis pretium.Fusce egestas elit eget lorem.
-            </div>
-                <div class="attributes">
-                    <div class="attribute-label">Qty:</div>
-                    <div class="attribute-list product-qty">
-                        <div class="qty"><input id="option-product-qty" type="text" value="1"></div>
-                        <div class="btn-plus"><a href="#" class="btn-plus-up"><i class="fa fa-caret-up"></i></a><a
-                                href="#" class="btn-plus-down"><i class="fa fa-caret-down"></i></a></div>
+                    </div><!-- tab product -->
+
+                    <div class="tabbable" id="tabs-80803">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#panel-284036" data-toggle="tab">City1</a>
+                            </li>
+                            <li>
+                                <a href="#panel-704287" data-toggle="tab">Continent2</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="panel-284036">
+                                <p>
+                                    City Information. Beautiful City.City Information. Beautiful City.City Information.
+                                    Beautiful City.
+                                    City Information. Beautiful City.City Information. Beautiful City.City Information.
+                                    Beautiful City.
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="panel-704287">
+                                <p>
+                                    Continent Information. Big Continent.Continent Information. Big Continent.Continent
+                                    Information. Big Continent.
+                                    Continent Information. Big Continent.Continent Information. Big Continent.Continent
+                                    Information. Big Continent.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="attributes">
-                    <div class="attribute-label">Size:</div>
-                    <div class="attribute-list"><select>
-                        <option value="1">X</option>
-                        <option value="2">XL</option>
-                        <option value="3">XXL</option>
-                    </select><a id="size_chart" class="fancybox" href="static/image/favicon.ico">Size Chart</a></div>
-                </div>
             </div>
-            <div class="form-action">
-                <div class="button-group"><a class="btn-add-cart" href="#">Add to cart</a></div>
-                <div class="button-group"><a class="wishlist" href="#"><i class="fa fa-heart-o"></i><br>Wishlist</a><a
-                        class="compare" href="#"><i class="fa fa-signal"></i><br>Compare</a></div>
-            </div>
-            <div class="form-share">
-                <div class="sendtofriend-print"><a href="javascript:print();"><i class="fa fa-print"></i>Print</a><a
-                        href="#"><i class="fa fa-envelope-o fa-fw"></i>Send to a friend</a></div>
-                <div class="network-share"></div>
-            </div>
+            <footer>
+                <p>&copy; 2020 Company, Inc.</p>
+            </footer>
         </div>
     </div>
-
-
-    <footer>
-        <p>&copy; 2020 Company, Inc.</p>
-    </footer>
 </div>
 
 
@@ -195,3 +200,20 @@
 <script src="static/js/personalInfo.js"></script>
 </body>
 </html>
+<style>
+    a {
+        TEXT-DECORATION: none;
+        color: #009966;
+    }
+
+    a:hover {
+        TEXT-DECORATION: #99CC00;
+    }
+    p, a.a-block {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
+</style>
