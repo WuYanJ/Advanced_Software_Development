@@ -11,13 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/utils/DataBaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/utils/DataBaseUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/utils/JDBCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/utils/JDBCTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/DataBaseUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/DataBaseUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/JDBCTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/JDBCTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -373,7 +369,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594099681254</updated>
       <workItem from="1594099683301" duration="3623000" />
-      <workItem from="1594109354655" duration="71910000" />
+      <workItem from="1594109354655" duration="75549000" />
     </task>
     <servers />
   </component>
