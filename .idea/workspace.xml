@@ -10,10 +10,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAOTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Model/TravelImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Model/TravelUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Test/BeanUtilsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Test/JDBCTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Utils/ReflectionUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-beanutils-1.9.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-logging-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/cookie.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaWeb2020Summer_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/JavaWeb2020Summer_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaWeb2020Summer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb2020Summer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/servlet/MyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/MyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/servlet/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/RegisterServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/utils/DataBaseUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Utils/DataBaseUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/utils/JDBCTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/LoginServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/LoginServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/MyServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/MyServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/RegisterServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/RegisterServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/DataBaseUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/utils/JDBCTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/jdbc.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/jdbc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/about.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/contact.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/message.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/web.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +102,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/WEB-INF/lib" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -79,22 +112,22 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.16366613" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web" />
-      <recent name="$PROJECT_DIR$/src/com/wyj/utils" />
-      <recent name="$PROJECT_DIR$/web/static/image" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
-      <recent name="$PROJECT_DIR$/web/static" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/web/static/js" />
+      <recent name="$PROJECT_DIR$/web/static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/src/com/wyj/utils" />
+      <recent name="$PROJECT_DIR$/web/static/image" />
       <recent name="$PROJECT_DIR$/web/static" />
     </key>
   </component>
@@ -111,81 +144,81 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.37">
-    <configuration name="JDBCTest.testDBUtil" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BeanUtilsTest.testSetProperty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.utils.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.utils.JDBCTest" />
-      <option name="METHOD_NAME" value="testDBUtil" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.BeanUtilsTest" />
+      <option name="METHOD_NAME" value="testSetProperty" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCTest.testDriver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTest.testGetForList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.utils.*" />
+          <option name="PATTERN" value="com.wyj.DAO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.utils.JDBCTest" />
-      <option name="METHOD_NAME" value="testDriver" />
+      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
+      <option name="METHOD_NAME" value="testGetForList" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCTest.testGetConnection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTest.testGetForValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.utils.*" />
+          <option name="PATTERN" value="com.wyj.DAO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.utils.JDBCTest" />
-      <option name="METHOD_NAME" value="testGetConnection" />
+      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
+      <option name="METHOD_NAME" value="testGetForValue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCTest.testInsertBlob" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.utils.*" />
+          <option name="PATTERN" value="com.wyj.DAO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.utils.JDBCTest" />
-      <option name="METHOD_NAME" value="testInsertBlob" />
+      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
+      <option name="METHOD_NAME" value="testUpdate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCTest.testStatement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JDBCTest.testResultSetMetaData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.utils.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.utils.JDBCTest" />
-      <option name="METHOD_NAME" value="testStatement" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
+      <option name="METHOD_NAME" value="testResultSetMetaData" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -340,21 +373,21 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.JDBCTest.testResultSetMetaData" />
+      <item itemvalue="JUnit.DAOTest.testUpdate" />
+      <item itemvalue="JUnit.BeanUtilsTest.testSetProperty" />
+      <item itemvalue="JUnit.DAOTest.testGetForList" />
+      <item itemvalue="JUnit.DAOTest.testGetForValue" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
-      <item itemvalue="JUnit.JDBCTest.testDriver" />
-      <item itemvalue="JUnit.JDBCTest.testDBUtil" />
-      <item itemvalue="JUnit.JDBCTest.testStatement" />
-      <item itemvalue="JUnit.JDBCTest.testInsertBlob" />
-      <item itemvalue="JUnit.JDBCTest.testGetConnection" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.JDBCTest.testGetConnection" />
-        <item itemvalue="JUnit.JDBCTest.testInsertBlob" />
-        <item itemvalue="JUnit.JDBCTest.testStatement" />
-        <item itemvalue="JUnit.JDBCTest.testDBUtil" />
-        <item itemvalue="JUnit.JDBCTest.testDriver" />
+        <item itemvalue="JUnit.DAOTest.testGetForValue" />
+        <item itemvalue="JUnit.DAOTest.testGetForList" />
+        <item itemvalue="JUnit.BeanUtilsTest.testSetProperty" />
+        <item itemvalue="JUnit.DAOTest.testUpdate" />
+        <item itemvalue="JUnit.JDBCTest.testResultSetMetaData" />
       </list>
     </recent_temporary>
   </component>
@@ -370,6 +403,8 @@
       <updated>1594099681254</updated>
       <workItem from="1594099683301" duration="3623000" />
       <workItem from="1594109354655" duration="75549000" />
+      <workItem from="1594433111630" duration="25028000" />
+      <workItem from="1594486610228" duration="1480000" />
     </task>
     <servers />
   </component>
@@ -381,7 +416,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
