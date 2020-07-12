@@ -68,7 +68,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">Link</a>
+                    <a href="myBookmarks.jsp"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
@@ -105,7 +105,7 @@
         <div class="row"><!-- Left colunm -->
             <div class="column col-xs-12 col-sm-3" id="left_column"><!-- block category -->
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">
+                    <a href="#" class="list-group-item active" style="background-color: #669933">
                         Cras justo odio
                     </a>
                     <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
@@ -136,7 +136,7 @@
                             String photographer = "wuyanjie";
                             String title = "Maecenas consequat mauris";
                             String topic = "Ocean";
-                            String description = "So Beautiful. Hope you can enjoy.";
+                            String description = "BaBaBa BaBaNANA.BaBaBa BaBaNANA.BaBaBa BaBaNANA~";
                             int favorAmount = 15;
                             String country = "Japan";
                             String city = "Tokyo";
@@ -171,7 +171,8 @@
                                     </p>
                                     <p>Topic: <%= topic %>
                                     </p>
-                                    <p>Description: <%= description %>
+                                    <p>Description:</p>
+                                    <p> <%= description %>
                                     </p>
                                     <p>Favor: <%= favorAmount %>
                                     </p>

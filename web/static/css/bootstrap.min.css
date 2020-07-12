@@ -5737,8 +5737,8 @@ button.list-group-item {
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
     z-index: 2;
     color: #fff;
-    background-color: #337ab7;
-    border-color: #337ab7
+    background-color: #99CC33;
+    border-color: #fff;
 }
 
 .list-group-item.active .list-group-item-heading, .list-group-item.active .list-group-item-heading > .small, .list-group-item.active .list-group-item-heading > small, .list-group-item.active:focus .list-group-item-heading, .list-group-item.active:focus .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading > small, .list-group-item.active:hover .list-group-item-heading, .list-group-item.active:hover .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading > small {
@@ -5750,12 +5750,12 @@ button.list-group-item {
 }
 
 .list-group-item-success {
-    color: #3c763d;
+    color: #99CC33;
     background-color: #dff0d8
 }
 
 a.list-group-item-success, button.list-group-item-success {
-    color: #3c763d
+    color: #99CC33
 }
 
 a.list-group-item-success .list-group-item-heading, button.list-group-item-success .list-group-item-heading {
@@ -5763,14 +5763,14 @@ a.list-group-item-success .list-group-item-heading, button.list-group-item-succe
 }
 
 a.list-group-item-success:focus, a.list-group-item-success:hover, button.list-group-item-success:focus, button.list-group-item-success:hover {
-    color: #3c763d;
+    color: #fff;
     background-color: #d0e9c6
 }
 
 a.list-group-item-success.active, a.list-group-item-success.active:focus, a.list-group-item-success.active:hover, button.list-group-item-success.active, button.list-group-item-success.active:focus, button.list-group-item-success.active:hover {
     color: #fff;
-    background-color: #3c763d;
-    border-color: #3c763d
+    background-color: #fff;
+    border-color: #fff
 }
 
 .list-group-item-info {

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -18,6 +19,9 @@
 
     <title>Personal Info</title>
 
+
+    <%--  Font Awesome  --%>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
@@ -59,7 +63,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="#">Link</a>
+            <a href="myBookmarks.jsp"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -101,11 +105,18 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <%
-            String username = request.getParameter("username");
-//            String password = request.getParameter("password");
+            // 这一行最后需要删掉，username应该在login或register的时候就存在session中
+            session.setAttribute("username", "SpongeBob");
+            String username = (String) session.getAttribute("username");
+
+            // 用UID查询数据库,获取"我上传的图片"的imageURL的集合
+            List<String> uploadedImageURLs = new ArrayList<>();
+            // 接下来几行后面都要删掉的，现在调试用
+
           %>
           <div class="jumbotron">
-            <h1>Hello, <%= username %>!</h1>
+            <h1 style="color:#006633;">Hello, <span style="color:#99CC00;"><%= username %>!</span></h1>
+
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title"><%= username %>'s Personal Information</h3>
@@ -117,7 +128,7 @@
                 </ul>
               </div>
             </div>
-            <p>This is personal information page. This page contains basic information and User's photo collection.</p>
+            <p>This is personal information page. This page contains basic information and User's Photo Uploads.</p>
           </div>
 
 
@@ -161,69 +172,67 @@
             </div>
           </div>
           <br>
-          <hr class="featurette-divider">
-          <br>
+<%--          <hr class="featurette-divider">--%>
+<%--          <br>--%>
+
           <!-- /END THE FEATURETTES -->
 
-          <h1>My Collection</h1>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />
-                <div class="caption">
-                  <h3>
-                    Thumbnail label
-                  </h3>
-                  <p>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  </p>
-                  <p>
-                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img alt="300x200" src="static/image/travel-images/large/222223.jpg" />
-                <div class="caption">
-                  <h3>
-                    Thumbnail label
-                  </h3>
-                  <p>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  </p>
-                  <p>
-                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="thumbnail">
-                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />
-                <div class="caption">
-                  <h3>
-                    Thumbnail label
-                  </h3>
-                  <p>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  </p>
-                  <p>
-                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+<%--          <h1>My Collection</h1>--%>
+<%--          <div class="row">--%>
+<%--            <div class="col-md-4">--%>
+<%--              <div class="thumbnail">--%>
+<%--                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />--%>
+<%--                <div class="caption">--%>
+<%--                  <h3>--%>
+<%--                    Thumbnail label--%>
+<%--                  </h3>--%>
+<%--                  <p>--%>
+<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
+<%--                  </p>--%>
+<%--                  <p>--%>
+<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
+<%--                  </p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-4">--%>
+<%--              <div class="thumbnail">--%>
+<%--                <img alt="300x200" src="static/image/travel-images/large/222223.jpg" />--%>
+<%--                <div class="caption">--%>
+<%--                  <h3>--%>
+<%--                    Thumbnail label--%>
+<%--                  </h3>--%>
+<%--                  <p>--%>
+<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
+<%--                  </p>--%>
+<%--                  <p>--%>
+<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
+<%--                  </p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-4">--%>
+<%--              <div class="thumbnail">--%>
+<%--                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />--%>
+<%--                <div class="caption">--%>
+<%--                  <h3>--%>
+<%--                    Thumbnail label--%>
+<%--                  </h3>--%>
+<%--                  <p>--%>
+<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
+<%--                  </p>--%>
+<%--                  <p>--%>
+<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
+<%--                  </p>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group">
             <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>

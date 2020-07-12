@@ -55,7 +55,7 @@
                     <form class="navbar-form navbar-left" role="search">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">筛选1
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选1
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -73,7 +73,7 @@
                                 </ul>
                             </div>
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">筛选2
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选2
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -92,11 +92,11 @@
                             </div>
                         </div><!-- /btn-group -->
                         <input type="text" class="form-control">
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#">Link</a>
+                            <a href="personalInfo.jsp">Personal Info</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
