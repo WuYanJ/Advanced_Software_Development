@@ -21,7 +21,7 @@ public class DataBaseUtils {
 
         // 读取jdbc.properties文件
         InputStream in =
-                DataBaseUtils.class.getClassLoader().getResourceAsStream("jdbc.properties");
+                DataBaseUtils.class.getClassLoader().getResourceAsStream("com/wyj/Utils/jdbc.properties");
         Properties properties = new Properties();
         properties.load(in);
         driverClass = properties.getProperty("driver");

@@ -1,17 +1,13 @@
 package com.wyj.Servlet;
 
-
 import com.wyj.DAO.TravelUserDao;
 import com.wyj.Model.TravelUser;
-import com.wyj.Model.User;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -30,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         // 从request获取用户登陆信息
         String usernameORemail = request.getParameter("usernameORemail");
         String password = request.getParameter("password");
+//        System.out.println("username:"+usernameORemail+"; password="+password);
         try {
             TravelUser travelUser = travelUserDao.login(usernameORemail, password);
             if (travelUser != null) {
@@ -42,6 +39,5 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -32,8 +32,7 @@
 <body>
 <div class="navbar-wrapper">
     <div class="container">
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -45,7 +44,7 @@
                     </button>
                     <a class="navbar-brand" href="#">Daddy Travel Agency</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="about.jsp">About</a></li>
@@ -73,27 +72,27 @@
                                     </li>
                                 </ul>
                             </div>
-                          <div class="input-group-btn">
-                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">筛选2
-                                <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu">
-                                <li>
-                                  <a href="#">热度</a>
-                                </li>
-                                <li>
-                                  <a href="#">时间</a>
-                                </li>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">筛选2
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">热度</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">时间</a>
+                                    </li>
 
-                                <li class="divider"></li>
-                                <li>
-                                  <a href="#">不选择</a>
-                                </li>
-                              </ul>
-                          </div>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">不选择</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div><!-- /btn-group -->
-                      <input type="text" class="form-control">
-                      <button type="submit" class="btn btn-default">Submit</button>
+                        <input type="text" class="form-control">
+                        <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
@@ -117,9 +116,9 @@
                             </ul>
                         </li>
                     </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-        </nav>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
     </div>
 </div>
 

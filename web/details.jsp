@@ -1,4 +1,6 @@
-<%@ page import="java.util.Date" %><%--
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -39,7 +41,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link href="static/css/homepage.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -63,6 +65,28 @@
                 <li class="active"><a href="homepage.jsp">Home</a></li>
                 <li><a href="about.jsp">About</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">Link</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                            class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -107,7 +131,8 @@
                         </div>
 
                         <%
-//                            String imageUrl = request.getParameter("imageUrl");
+                            String imageURL = request.getParameter("imageURL");
+//                            String imageURL = "222222.jpg";
                             String photographer = "wuyanjie";
                             String title = "Maecenas consequat mauris";
                             String topic = "Ocean";
@@ -116,38 +141,60 @@
                             String country = "Japan";
                             String city = "Tokyo";
                             Date releaseDate = new Date();
+                            List<String> bookmarkList = (List<String>)session.getAttribute("bookmarkList");
+                            if(bookmarkList == null) {
+                                bookmarkList = new ArrayList<>();
+                            }
+                            boolean alreadyBookmarked = bookmarkList.contains(imageURL);
+                            String bookmarkButton = alreadyBookmarked ? "Cancel This Bookmark" : "Add to Bookmarks";
+
                         %>
 
                         <div class="pb-right-column col-xs-12 col-sm-6">
-                            <h1 class="product-name"><%= title %></h1>
-                            <div class="product-comments">
-                                <div class="product-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
+                            <form action="<%= request.getContextPath() %>/processBookmark?imageURL=<%= imageURL %>&bookmarked=<%= alreadyBookmarked %>" method="post">
+                                <h1 class="product-name"><%= title %>
+                                </h1>
+                                <div class="product-comments">
+                                    <div class="product-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="comments-advices">
+                                        <a href="#" class="a-block"><i class="fa fa-pencil"></i>write a review</a>
+                                    </div>
                                 </div>
-                                <div class="comments-advices">
-                                    <a href="#" class="a-block"><i class="fa fa-pencil"></i>write a review</a>
+                                <div>
+                                    <p>Photographer: <%= photographer %>
+                                    </p>
+                                    <p>Topic: <%= topic %>
+                                    </p>
+                                    <p>Description: <%= description %>
+                                    </p>
+                                    <p>Favor: <%= favorAmount %>
+                                    </p>
+                                    <p>Country: <%= country %>
+                                    </p>
+                                    <p>City: <%= city %>
+                                    </p>
+                                    <p>Date: <%= releaseDate %>
+                                    </p>
                                 </div>
-                            </div>
-                            <div>
-                                <p>Photographer: <%= photographer %></p>
-                                <p>Topic: <%= topic %></p>
-                                <p>Description: <%= description %></p>
-                                <p>Favor: <%= favorAmount %></p>
-                                <p>Country: <%= country %></p>
-                                <p>City: <%= city %></p>
-                                <p>Date: <%= releaseDate %></p>
-                            </div>
-                            <div class="form-share">
-                                <div class="sendtofriend-print">
-                                    <a class="a-block" href="javascript:print();"><i class="fa fa-print"></i>Print This Page</a>
-                                    <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>Send to a friend</a>
+                                <div class="form-share">
+                                    <div class="sendtofriend-print">
+                                        <a class="a-block" href="javascript:print();"><i class="fa fa-print"></i>
+                                            Print This Page</a>
+                                        <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>
+                                            Send to a friend</a>
+                                    </div>
+                                    <button onclick="processBookmark(<%=imageURL%>)" type="submit" class="btn btn-lg btn-success">
+                                        <i class="<%= alreadyBookmarked? "fa fa-heart":"fa fa-heart-o" %>"></i>
+                                        <%= bookmarkButton %>
+                                    </button>
                                 </div>
-                                <button type="button" class="btn btn-lg btn-success"><i class="fa fa-heart-o"></i>Add to Collection</button>
-                            </div>
+                            </form>
                         </div>
                     </div><!-- tab product -->
 
@@ -209,6 +256,7 @@
     a:hover {
         TEXT-DECORATION: #99CC00;
     }
+
     p, a.a-block {
         display: block;
         margin-block-start: 1em;
@@ -217,3 +265,8 @@
         margin-inline-end: 0px;
     }
 </style>
+<script>
+    function processBookmark(imageURL) {
+
+    }
+</script>

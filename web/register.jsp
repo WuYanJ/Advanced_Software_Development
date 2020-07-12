@@ -1,4 +1,4 @@
-<%@ page import="com.wyj.Model.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -43,7 +43,6 @@
 <div class="container">
 <form action="RegisterServlet" method="post" class="form-signin">
     <h2 class="form-signin-heading">Please sign up</h2>
-
     <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
     <br>
     <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

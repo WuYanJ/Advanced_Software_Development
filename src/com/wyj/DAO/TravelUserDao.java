@@ -12,45 +12,47 @@ import java.sql.SQLException;
 
 public class TravelUserDao {
 //    查询数据库，判断用户名是否已经被注册
-    public boolean userExist(String username) throws ClassNotFoundException, SQLException, InstantiationException, IOException, IllegalAccessException {
-        Connection conn = DataBaseUtils.getConn();
-        String sql = "SELECT * FROM tb_user WHERE username = ?";
+    public boolean travelUserExist(String username) throws ClassNotFoundException, SQLException, IOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = "SELECT * FROM travels.traveluser WHERE username = ?";
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            connection = DataBaseUtils.getConn();
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             //执行查询，获取结果集
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (!resultSet.next()) {
-                return true;
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                return false;
             }
-            //释放资源
-            resultSet.close();
-            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DataBaseUtils.closeConn(conn);
+            DataBaseUtils.releaseDB(resultSet, preparedStatement, connection);
         }
         return true;
     }
 
     //将用户存入数据库
-    public void saveUser(User user) throws ClassNotFoundException, SQLException, InstantiationException, IOException, IllegalAccessException {
-        Connection conn = DataBaseUtils.getConn();
-        String sql = "INSERT INTO tb_user(username,password" +
-                ",question,answer,email) values(?,?,?,?,?,?)";
+    public void saveTravelUser(TravelUser travelUser) throws ClassNotFoundException, SQLException, IOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        String sql = "INSERT INTO travels.traveluser(email, username, pass" +
+                ", dateJoined) values(?,?,?,?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getQuestion());
-            ps.setString(4, user.getAnswer());
-            ps.setString(5, user.getEmail());
+            connection = DataBaseUtils.getConn();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setObject(1, travelUser.getEmail());
+            preparedStatement.setObject(2, travelUser.getUsername());
+            preparedStatement.setObject(3, travelUser.getPassword());
+            preparedStatement.setObject(4, travelUser.getDateJoined());
             //执行更新操作
-            ps.executeUpdate();
-            ps.close();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DataBaseUtils.releaseDB(null, preparedStatement, connection);
         }
     }
 
