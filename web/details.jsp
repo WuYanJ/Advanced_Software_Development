@@ -141,13 +141,14 @@
                             String country = "Japan";
                             String city = "Tokyo";
                             Date releaseDate = new Date();
+
+
                             List<String> bookmarkList = (List<String>)session.getAttribute("bookmarkList");
                             if(bookmarkList == null) {
                                 bookmarkList = new ArrayList<>();
                             }
                             boolean alreadyBookmarked = bookmarkList.contains(imageURL);
                             String bookmarkButton = alreadyBookmarked ? "Cancel This Bookmark" : "Add to Bookmarks";
-
                         %>
 
                         <div class="pb-right-column col-xs-12 col-sm-6">
@@ -190,7 +191,7 @@
                                         <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>
                                             Send to a friend</a>
                                     </div>
-                                    <button onclick="processBookmark(<%=imageURL%>)" type="submit" class="btn btn-lg btn-success">
+                                    <button type="submit" class="btn btn-lg btn-success">
                                         <i class="<%= alreadyBookmarked? "fa fa-heart":"fa fa-heart-o" %>"></i>
                                         <%= bookmarkButton %>
                                     </button>

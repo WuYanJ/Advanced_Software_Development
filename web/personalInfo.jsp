@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.wyj.Model.TravelImage" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -112,7 +113,12 @@
             // 用UID查询数据库,获取"我上传的图片"的imageURL的集合
             List<String> uploadedImageURLs = new ArrayList<>();
             // 接下来几行后面都要删掉的，现在调试用
-
+            uploadedImageURLs.add("222222.jpg");
+            uploadedImageURLs.add("9496787858.jpg");
+            uploadedImageURLs.add("8710247776.jpg");
+            uploadedImageURLs.add("9504606628.jpg");
+            // 用来遍历，给一个个照片信息赋值的照片对象
+            List<TravelImage> uploadedImages = new ArrayList<>();
           %>
           <div class="jumbotron">
             <h1 style="color:#006633;">Hello, <span style="color:#99CC00;"><%= username %>!</span></h1>
@@ -135,43 +141,30 @@
           <hr class="featurette-divider">
             <blockquote>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                Better Late Than Never.
               </p> <small>Someone famous <cite>Source Title</cite></small>
             </blockquote>
+
+          <%
+            // for(TravelImage uploadedImage : uploadedImages) {
+            for(String imageURL : uploadedImageURLs) {
+              System.out.println(uploadedImageURLs.indexOf(imageURL)%2);
+              String class1 = uploadedImageURLs.indexOf(imageURL)%2==0?"col-md-7":"col-md-7 col-md-push-5";
+              String class2 = uploadedImageURLs.indexOf(imageURL)%2==0?"col-md-5":"col-md-5 col-md-pull-7";
+              %>
           <div class="row featurette">
-            <div class="col-md-7">
+            <div class=<%= class1 %>>
               <h2 class="featurette-heading" style="color: #3c763d">First featurette heading. <span style="color: #99CC00">It'll blow your mind.</span></h2>
               <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             </div>
-            <div class="col-md-5">
+            <div class=<%= class2 %>>
               <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
             </div>
           </div>
-
           <hr class="featurette-divider">
-
-          <div class="row featurette">
-            <div class="col-md-7 col-md-push-5">
-              <h2 class="featurette-heading" style="color: #3c763d">Oh yeah, it's that good. <span style="color: #99CC00">See for yourself.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-            <div class="col-md-5 col-md-pull-7">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-            </div>
-          </div>
-
-          <hr class="featurette-divider">
-
-          <div class="row featurette">
-            <div class="col-md-7">
-              <h2 class="featurette-heading" style="color: #3c763d">And lastly, this one. <span style="color: #99CC00">Checkmate.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-            </div>
-            <div class="col-md-5">
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-            </div>
-          </div>
-          <br>
+          <%
+            }
+          %>
 <%--          <hr class="featurette-divider">--%>
 <%--          <br>--%>
 
