@@ -1,5 +1,9 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.wyj.Utils.DataBaseUtils" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/12
@@ -132,11 +136,11 @@
                     Better Late Than Never.
                 </p> <small>Someone famous <cite>Source Title</cite></small>
             </blockquote>
+
             <h1>Bookmarks</h1>
             <%
                 if (bookmarkList != null && !bookmarkList.isEmpty()) {
                     for (String bookmark : bookmarkList) {
-                        System.out.println(bookmark);
             %>
             <div class="col-md-4" style="height: 34em">
                 <div class="thumbnail">
@@ -161,19 +165,54 @@
                 }
             %>
         </div><!--/.col-xs-12.col-sm-9-->
-
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <div class="list-group">
-                <a href="personalInfo.jsp" class="list-group-item active"
-                   style="background-color: #CCCCcc;border-color: #CCCCcc">Link</a>
-                <a href="personalInfo.jsp" class="list-group-item">Link</a>
-                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>
-                <a href="personalInfo.jsp" class="list-group-item">Link</a>
-                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>
-                <a href="personalInfo.jsp" class="list-group-item">Link</a>
+        <%
+            // 获取所有cookie
+            Cookie[] cookies = request.getCookies();
+            // 选择符合条件的显示
+            if(cookies.length > 0){
+                for(Cookie c : cookies){
+                    String cName = c.getName();
+                    System.out.println("1");
+                    // 符合条件的
+                    if(cName.startsWith("LEO_IMAGE_")){
+                        System.out.println("2");
+                        String cValue = c.getValue();
+                        String cTitle = null;
+                        String cContent = null;
+                        String sql = "SELECT title, content FROM travels.travelimage WHERE path='" + cValue + "'";
+                        System.out.println(sql);
+                        ResultSet resultSet = DataBaseUtils.getConn().createStatement().executeQuery(sql);
+                        if(resultSet.next()) {
+                            System.out.println("3");
+                            cTitle = resultSet.getString(1);
+                            cContent = resultSet.getString(2);
+                        }
+                        %>
+                <a href="details.jsp?imageURL=<%= cValue %>" class="list-group-item">
+                    <%= cTitle %><span style="color: #99CC00">&nbsp;&nbsp;<%= cContent %></span>
+                </a>
+                <%
+                    }
+                }
+            }
+        %>
             </div>
-        </div><!--/.sidebar-offcanvas-->
-    </div><!--/row-->
+        </div>
+    </div>
+<%--        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">--%>
+<%--            <div class="list-group">--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item active"--%>
+<%--                   style="background-color: #CCCCcc;border-color: #CCCCcc">Link</a>--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>--%>
+<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
+<%--            </div>--%>
+<%--        </div><!--/.sidebar-offcanvas-->--%>
+    <!--/row-->
     <hr>
     <footer>
         <p>&copy; 2020 Company, Inc.</p>

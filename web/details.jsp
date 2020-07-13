@@ -151,6 +151,45 @@
                             String bookmarkButton = alreadyBookmarked ? "Cancel This Bookmark" : "Add to Bookmarks";
                         %>
 
+                        <%
+                            // 确定要被删除的cookie
+                            // >=5?
+                            Cookie[] cookies = request.getCookies();
+                            // 将来会要第一个cookie，因此放进List（所有LEO_IMAGE_开头的cookie）
+                            List<Cookie> imageCookieList = new ArrayList<>();
+
+                            // 用来保存和details.jsp传入的imageURL匹配的cookie
+                            Cookie tempCookie = null;
+                            if(cookies != null && cookies.length > 0){
+                                for(Cookie c : cookies){
+                                    String cName = c.getName();
+                                    if(cName.startsWith("LEO_IMAGE_")){
+                                        imageCookieList.add(c);
+
+                                        // 与新加的imageURL相同的，且在原来cookieList中的cookie
+                                        // 这是要删掉的第一个候选人
+                                        // 不管长度是否>=5，如果有重复的cookie，都是要删除的
+                                        if(c.getValue().equals(imageURL)){
+                                            tempCookie = c;
+                                        }
+                                    }
+                                }
+                                // 以上已经将所有imageCookie都找出来了，如果>=5；且第一个候选人不存在
+                                if(imageCookieList.size() >= 5 && tempCookie == null){
+                                    // 唯一候选人就是最前面的cookie
+                                    tempCookie = imageCookieList.get(0);
+                                }
+                                // 如果新cookie既不在原来的bookCookieList中，bookCookieList又长度小于5，tempCookie==null
+                                if(tempCookie != null) {
+                                    // 0表示删除cookie
+                                    tempCookie.setMaxAge(0);
+                                    response.addCookie(tempCookie);
+                                }
+                            }
+                            // 把传入的image作为一个新的cookie传回
+                            Cookie cookie = new Cookie("LEO_IMAGE_"+imageURL, imageURL);
+                            response.addCookie(cookie);
+                        %>
                         <div class="pb-right-column col-xs-12 col-sm-6">
                             <form action="<%= request.getContextPath() %>/processBookmark?imageURL=<%= imageURL %>&bookmarked=<%= alreadyBookmarked %>" method="post">
                                 <h1 class="product-name"><%= title %>
