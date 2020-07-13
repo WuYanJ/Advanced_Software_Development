@@ -10,9 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Model/TravelImageNFavor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +45,8 @@
       <list>
         <option value="HTML File" />
         <option value="jsf" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -112,23 +113,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.37">
-    <configuration name="BeanUtilsTest.testSetProperty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JavaWeb2020Summer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.wyj.Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.Test" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.BeanUtilsTest" />
-      <option name="METHOD_NAME" value="testSetProperty" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TravelImageDao.testGetMine">
     <configuration name="DAOTest.testGetForList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
@@ -161,7 +146,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TravelImageDao.testGetImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
@@ -170,24 +155,40 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.wyj.DAO" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
-      <option name="METHOD_NAME" value="testUpdate" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
+      <option name="METHOD_NAME" value="testGetImage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JDBCTest.testResultSetMetaData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TravelImageDao.testGetMine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.Test.*" />
+          <option name="PATTERN" value="com.wyj.DAO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.Test" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
-      <option name="METHOD_NAME" value="testResultSetMetaData" />
+      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
+      <option name="METHOD_NAME" value="testGetMine" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TravelImageDao.testHottest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JavaWeb2020Summer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wyj.DAO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
+      <option name="METHOD_NAME" value="testHottest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -347,22 +348,22 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.JDBCTest.testResultSetMetaData" />
-      <item itemvalue="JUnit.DAOTest.testUpdate" />
-      <item itemvalue="JUnit.BeanUtilsTest.testSetProperty" />
       <item itemvalue="JUnit.DAOTest.testGetForList" />
       <item itemvalue="JUnit.DAOTest.testGetForValue" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
       <item itemvalue="JAR Application.commons-beanutils-1.9.4.jar" />
+      <item itemvalue="JUnit.TravelImageDao.testHottest" />
+      <item itemvalue="JUnit.TravelImageDao.testGetImage" />
+      <item itemvalue="JUnit.TravelImageDao.testGetMine" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TravelImageDao.testGetMine" />
+        <item itemvalue="JUnit.TravelImageDao.testGetImage" />
+        <item itemvalue="JUnit.TravelImageDao.testHottest" />
         <item itemvalue="JUnit.DAOTest.testGetForValue" />
         <item itemvalue="JUnit.DAOTest.testGetForList" />
-        <item itemvalue="JUnit.BeanUtilsTest.testSetProperty" />
-        <item itemvalue="JUnit.DAOTest.testUpdate" />
-        <item itemvalue="JUnit.JDBCTest.testResultSetMetaData" />
       </list>
     </recent_temporary>
   </component>
@@ -379,7 +380,7 @@
       <workItem from="1594099683301" duration="3623000" />
       <workItem from="1594109354655" duration="75549000" />
       <workItem from="1594433111630" duration="25028000" />
-      <workItem from="1594486610228" duration="29182000" />
+      <workItem from="1594486610228" duration="33361000" />
     </task>
     <servers />
   </component>
