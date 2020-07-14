@@ -12,16 +12,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TravelImageDao extends DAO{
-    // 已测试
-    public List<String> getHottestImage(int amount) throws SQLException, IOException, ClassNotFoundException {
+    // 已测试(map<path, favorAmount>)，从数据库获得favorAmount最高的几张图片的<url, favorAmount>对
+    public Map<String, Integer> getHottestImage(int amount) throws SQLException, IOException, ClassNotFoundException {
         Connection connection = null;
         Statement statement = null;
         String path = null;
         ResultSet resultSet = null;
-        List<String> hottestURLs = new ArrayList<>();
+        Map<String, Integer> hottestImageFavorMap = new HashMap<>();
         String sql = "SELECT imageID, favorAmount FROM travels.travelimageFavorAmount order by favorAmount desc limit " + amount;
         List<TravelImageNFavor> travelImageNFavorList = getForList(TravelImageNFavor.class, sql);
         for(TravelImageNFavor travelImageNFavor: travelImageNFavorList) {
@@ -32,9 +34,9 @@ public class TravelImageDao extends DAO{
             if(resultSet.next()) {
                 path = resultSet.getString(1);
             }
-            hottestURLs.add(path);
+            hottestImageFavorMap.put(path, travelImageNFavor.getFavorAmount());
         }
-        return hottestURLs;
+        return hottestImageFavorMap;
     }
 
     public List<TravelImage> getLatestImage(int amount) {
@@ -42,15 +44,15 @@ public class TravelImageDao extends DAO{
     }
 
     // 已测试
-    private TravelImage getImage(String path) throws SQLException {
+    public TravelImage getImage(String path) throws SQLException {
         String sql = "SELECT ImageID imageID, Title title, Description description," +
                 "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
-                "UID, PATH path, Content content FROM travels.travelimage WHERE path=" + path;
+                "UID, PATH path, Content content FROM travels.travelimage WHERE path='" + path + "'";
         return get(TravelImage.class, sql);
     }
 
     // 已测试
-    List<TravelImage> getMyImages(String username) throws SQLException {
+    public List<TravelImage> getMyImages(String username) throws SQLException {
         String sql = "SELECT UID, email, username, state FROM travels.traveluser WHERE username=" + username;
         // 先在traveluser表中用username找到UID
         TravelUser myself = get(TravelUser.class, sql);

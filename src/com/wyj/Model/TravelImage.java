@@ -65,6 +65,9 @@ public class TravelImage {
     }
 
     public String getDescription() {
+        if (description == null) {
+            return "NO DESCRIPTION.";
+        }
         return description;
     }
 

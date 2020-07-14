@@ -1,6 +1,8 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="com.wyj.DAO.TravelImageDao" %>
+<%@ page import="com.wyj.Model.TravelImage" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -115,7 +117,25 @@
                 </div>
             </div><!-- ./left colunm --><!-- Center colunm-->
 
+            <%
+                String imageURL = request.getParameter("imageURL");
+                String photographer = null;
+                String title = null;
+                String topic = null;
+                String description = null;
+                int favorAmount = 0;
+                String country = null;
+                String city = null;
+                Date releaseDate = new Date();
 
+
+                List<String> bookmarkList = (List<String>) session.getAttribute("bookmarkList");
+                if (bookmarkList == null) {
+                    bookmarkList = new ArrayList<>();
+                }
+                boolean alreadyBookmarked = bookmarkList.contains(imageURL);
+                String bookmarkButton = alreadyBookmarked ? "Cancel This Bookmark" : "Add to Bookmarks";
+            %>
             <%--            商品详情！就是这个div了--%>
             <div class="center_column col-xs-12 col-sm-9" id="center_column"><!-- Product -->
                 <div id="product">
@@ -126,31 +146,9 @@
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
-                                <img src="static/image/travel-images/large/222222.jpg" style="width: 100%;height: auto">
+                                <img src="static/image/travel-images/large/<%= imageURL %>" style="width: 100%;height: auto">
                             </div><!-- product-imge-->
                         </div>
-
-                        <%
-                            String imageURL = request.getParameter("imageURL");
-//                            String imageURL = "222222.jpg";
-                            String photographer = "wuyanjie";
-                            String title = "Maecenas consequat mauris";
-                            String topic = "Ocean";
-                            String description = "BaBaBa BaBaNANA.BaBaBa BaBaNANA.BaBaBa BaBaNANA~";
-                            int favorAmount = 15;
-                            String country = "Japan";
-                            String city = "Tokyo";
-                            Date releaseDate = new Date();
-
-
-                            List<String> bookmarkList = (List<String>)session.getAttribute("bookmarkList");
-                            if(bookmarkList == null) {
-                                bookmarkList = new ArrayList<>();
-                            }
-                            boolean alreadyBookmarked = bookmarkList.contains(imageURL);
-                            String bookmarkButton = alreadyBookmarked ? "Cancel This Bookmark" : "Add to Bookmarks";
-                        %>
-
                         <%
                             // 确定要被删除的cookie
                             // >=5?
@@ -160,38 +158,47 @@
 
                             // 用来保存和details.jsp传入的imageURL匹配的cookie
                             Cookie tempCookie = null;
-                            if(cookies != null && cookies.length > 0){
-                                for(Cookie c : cookies){
+                            if (cookies != null && cookies.length > 0) {
+                                for (Cookie c : cookies) {
                                     String cName = c.getName();
-                                    if(cName.startsWith("LEO_IMAGE_")){
+                                    if (cName.startsWith("LEO_IMAGE_")) {
                                         imageCookieList.add(c);
 
                                         // 与新加的imageURL相同的，且在原来cookieList中的cookie
                                         // 这是要删掉的第一个候选人
                                         // 不管长度是否>=5，如果有重复的cookie，都是要删除的
-                                        if(c.getValue().equals(imageURL)){
+                                        if (c.getValue().equals(imageURL)) {
                                             tempCookie = c;
                                         }
                                     }
                                 }
                                 // 以上已经将所有imageCookie都找出来了，如果>=5；且第一个候选人不存在
-                                if(imageCookieList.size() >= 5 && tempCookie == null){
+                                if (imageCookieList.size() >= 5 && tempCookie == null) {
                                     // 唯一候选人就是最前面的cookie
                                     tempCookie = imageCookieList.get(0);
                                 }
                                 // 如果新cookie既不在原来的bookCookieList中，bookCookieList又长度小于5，tempCookie==null
-                                if(tempCookie != null) {
+                                if (tempCookie != null) {
                                     // 0表示删除cookie
                                     tempCookie.setMaxAge(0);
                                     response.addCookie(tempCookie);
                                 }
                             }
                             // 把传入的image作为一个新的cookie传回
-                            Cookie cookie = new Cookie("LEO_IMAGE_"+imageURL, imageURL);
+                            Cookie cookie = new Cookie("LEO_IMAGE_" + imageURL, imageURL);
                             response.addCookie(cookie);
                         %>
+
+                        <%
+                            TravelImageDao travelImageDao = new TravelImageDao();
+                            TravelImage currentImage = travelImageDao.getImage(imageURL);
+                            description = currentImage.getDescription();
+                            country = currentImage.getCountry_regionCode();
+                            city = currentImage.getCityCode();
+                        %>
                         <div class="pb-right-column col-xs-12 col-sm-6">
-                            <form action="<%= request.getContextPath() %>/processBookmark?imageURL=<%= imageURL %>&bookmarked=<%= alreadyBookmarked %>" method="post">
+                            <form action="<%= request.getContextPath() %>/processBookmark?imageURL=<%= imageURL %>&bookmarked=<%= alreadyBookmarked %>"
+                                  method="post">
                                 <h1 class="product-name"><%= title %>
                                 </h1>
                                 <div class="product-comments">
@@ -212,7 +219,7 @@
                                     <p>Topic: <%= topic %>
                                     </p>
                                     <p>Description:</p>
-                                    <p> <%= description %>
+                                    <p><%= description %>
                                     </p>
                                     <p>Favor: <%= favorAmount %>
                                     </p>

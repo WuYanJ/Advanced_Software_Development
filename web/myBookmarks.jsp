@@ -165,7 +165,10 @@
                 }
             %>
         </div><!--/.col-xs-12.col-sm-9-->
+        <h1></h1>
+
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <h2>Footprint</h2>
             <div class="list-group">
         <%
             // 获取所有cookie
@@ -177,21 +180,18 @@
                     System.out.println("1");
                     // 符合条件的
                     if(cName.startsWith("LEO_IMAGE_")){
-                        System.out.println("2");
                         String cValue = c.getValue();
-                        String cTitle = null;
-                        String cContent = null;
+                        String cookieImageTitle = null;
+                        String cookieImageContent = null;
                         String sql = "SELECT title, content FROM travels.travelimage WHERE path='" + cValue + "'";
-                        System.out.println(sql);
                         ResultSet resultSet = DataBaseUtils.getConn().createStatement().executeQuery(sql);
                         if(resultSet.next()) {
-                            System.out.println("3");
-                            cTitle = resultSet.getString(1);
-                            cContent = resultSet.getString(2);
+                            cookieImageTitle = resultSet.getString(1);
+                            cookieImageContent = resultSet.getString(2);
                         }
                         %>
                 <a href="details.jsp?imageURL=<%= cValue %>" class="list-group-item">
-                    <%= cTitle %><span style="color: #99CC00">&nbsp;&nbsp;<%= cContent %></span>
+                    <%= cookieImageTitle %><span style="color: #99CC00">&nbsp;&nbsp;<%= cookieImageContent %></span>
                 </a>
                 <%
                     }
