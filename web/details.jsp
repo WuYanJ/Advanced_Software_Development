@@ -119,7 +119,7 @@
 
             <%
                 String imageURL = request.getParameter("imageURL");
-                String photographer = null;
+                String photographer = "Sponge";
                 String title = null;
                 String topic = null;
                 String description = null;
