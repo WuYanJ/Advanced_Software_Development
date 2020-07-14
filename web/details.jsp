@@ -33,6 +33,8 @@
     <!-- Custom styles for this template -->
     <link href="static/css/personalInfo.css" rel="stylesheet">
 
+    <link href="static/css/style.css" rel="stylesheet">
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
     <script src="static/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -60,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Daddy Travel Agency</a>
+            <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -98,9 +100,9 @@
     <div class="container" id="columns"><!-- breadcrumb -->
         <ul class="breadcrumb">
             <a href="homepage.jsp" title="Return to Homepage">Home</a>
-            <span class="navigation-pipe"> > </span>
+            <span class="navigation-pipe"> </span>
             <a href="personalInfo.jsp" title="Return to Homepage">Personal</a>
-            <span class="navigation-pipe"> > </span>
+            <span class="navigation-pipe"> </span>
             <span class="navigation_page">Maecenas consequat mauris</span>
         </ul><!-- ./breadcrumb --><!-- row -->
 

@@ -30,6 +30,7 @@
     <!-- Custom styles for this template -->
     <link href="static/css/personalInfo.css" rel="stylesheet">
 
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
     <script src="static/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -227,5 +228,15 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="static/js/ie10-viewport-bug-workaround.js"></script>
 <script src="static/js/personalInfo.js"></script>
+<style>
+
+    .breadcrumb {
+        background: none;
+        padding: 0;
+        margin: 0;
+        padding-bottom: 17px;
+        line-height: normal;
+    }
+</style>
 </body>
 </html>

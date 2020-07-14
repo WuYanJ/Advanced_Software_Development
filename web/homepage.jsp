@@ -20,6 +20,7 @@
     <meta name="author" content="">
     <link rel="icon" href="static/image/favicon.ico">
 
+    <link href="static/css/style.css" rel="stylesheet">
     <title>Carousel Template for Bootstrap</title>
 
     <%--  Font Awesome  --%>
@@ -53,51 +54,10 @@
                         <li class="active"><a href="#">Home</a></li>
                         <li><a href="about.jsp">About</a></li>
                         <li><a href="contact.jsp">Contact</a></li>
+                        <li><a href="searchResults.jsp">Search</a> </li>
                         <li><a href="login.jsp">登陆</a></li>
                         <li><a href="register.jsp">注册</a></li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选1
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" onclick="alert('选中标题')">标题</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="alert('选中主题')">主题</a>
-                                    </li>
-
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">不选择</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="input-group-btn">
-                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选2
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">热度</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">时间</a>
-                                    </li>
-
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">不选择</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /btn-group -->
-                        <input type="text" class="form-control">
-                        <button type="submit" class="btn">Submit</button>
-                    </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="personalInfo.jsp">Personal Info</a>

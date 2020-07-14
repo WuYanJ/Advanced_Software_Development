@@ -32,6 +32,7 @@
     <!-- Custom styles for this template -->
     <link href="static/css/personalInfo.css" rel="stylesheet">
 
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="static/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="static/js/ie-emulation-modes-warning.js"></script>
@@ -63,6 +64,9 @@
           <li><a href="contact.jsp">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
+          </li>
           <li>
             <a href="myBookmarks.jsp"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
           </li>
@@ -258,3 +262,13 @@
   }
 
 </script>
+<style>
+
+  .breadcrumb {
+    background: none;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 17px;
+    line-height: normal;
+  }
+</style>
