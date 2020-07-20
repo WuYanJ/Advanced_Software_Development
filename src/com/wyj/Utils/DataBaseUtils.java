@@ -2,6 +2,9 @@ package com.wyj.Utils;
 
 
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -11,29 +14,37 @@ import java.util.Properties;
 * 操作jdbc的工具类，其中封装了一些工具方法
 * */
 public class DataBaseUtils {
+    // 连接池
+    private static DataSource dataSource = null;
+    // 数据库连接池应只被初始化一次
+    static {
+        dataSource = new ComboPooledDataSource("helloc3p0");
+    }
     // 工具方法：获取connection
     // 通过读取配置文件，从数据库服务器获取一个连接
     public static Connection getConn() throws ClassNotFoundException, SQLException, IOException {
-        String driverClass = null;
-        String url = null;
-        String user = null;
-        String password = null;
-
-        // 读取jdbc.properties文件
-        InputStream in =
-                DataBaseUtils.class.getClassLoader().getResourceAsStream("com/wyj/Utils/jdbc.properties");
-        Properties properties = new Properties();
-        properties.load(in);
-        driverClass = properties.getProperty("driver");
-        url = properties.getProperty("url");
-        user = properties.getProperty("user");
-        password = properties.getProperty("password");
-
-        // 通过DriverManager的getConnection方法获取数据库连接
-        Class.forName(driverClass);
-        Connection conn = DriverManager.getConnection(url,
-                user, password);
-        return conn;
+//        别的都不要了，只要下面这一行
+        return dataSource.getConnection();
+//        String driverClass = null;
+//        String url = null;
+//        String user = null;
+//        String password = null;
+//
+//        // 读取jdbc.properties文件
+//        InputStream in =
+//                DataBaseUtils.class.getClassLoader().getResourceAsStream("com/wyj/Utils/jdbc.properties");
+//        Properties properties = new Properties();
+//        properties.load(in);
+//        driverClass = properties.getProperty("driver");
+//        url = properties.getProperty("url");
+//        user = properties.getProperty("user");
+//        password = properties.getProperty("password");
+//
+//        // 通过DriverManager的getConnection方法获取数据库连接
+//        Class.forName(driverClass);
+//        Connection conn = DriverManager.getConnection(url,
+//                user, password);
+//        return conn;
     }
 
     //关闭数据库连接
@@ -65,7 +76,7 @@ public class DataBaseUtils {
                 e.printStackTrace();
             }
         }
-
+// 并不是真的关闭连接，而是归还到连接池中
         if(connection != null) {
             try {
                 connection.close();

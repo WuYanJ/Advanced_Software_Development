@@ -6,6 +6,7 @@ import com.wyj.Model.TravelUser;
 import com.wyj.Utils.DataBaseUtils;
 import org.junit.Test;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -36,6 +37,7 @@ public class TravelImageDao extends DAO{
             }
             hottestImageFavorMap.put(path, travelImageNFavor.getFavorAmount());
         }
+        DataBaseUtils.releaseDB(resultSet, statement, connection);
         return hottestImageFavorMap;
     }
 
@@ -51,9 +53,38 @@ public class TravelImageDao extends DAO{
         return get(TravelImage.class, sql);
     }
 
+    public String imageID2path(int imageID) throws SQLException, IOException, ClassNotFoundException {
+        Connection connection = null;
+        Statement statement = null;
+        String path = null;
+        ResultSet resultSet = null;
+        String sql = "SELECT PATH FROM travels.travelimage WHERE imageID=" + imageID;
+        connection = DataBaseUtils.getConn();
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery(sql);
+        if(resultSet.next()) {
+            path = resultSet.getString(1);
+        }
+        return path;
+    }
+    public int path2imageID(String path) throws SQLException, IOException, ClassNotFoundException {
+        Connection connection = null;
+        Statement statement = null;
+        int imageID = 0;
+        ResultSet resultSet = null;
+        String sql = "SELECT imageID FROM travels.travelimage WHERE path='" + path + "'";
+        connection = DataBaseUtils.getConn();
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery(sql);
+        if(resultSet.next()) {
+            imageID = resultSet.getInt(1);
+        }
+        return imageID;
+    }
+
     // 已测试
     public List<TravelImage> getMyImages(String username) throws SQLException {
-        String sql = "SELECT UID, email, username, state FROM travels.traveluser WHERE username=" + username;
+        String sql = "SELECT UID, email, username, state FROM travels.traveluser WHERE username='" + username + "'";
         // 先在traveluser表中用username找到UID
         TravelUser myself = get(TravelUser.class, sql);
         // 再在travelimage表中用UID找到myImageList
@@ -62,5 +93,15 @@ public class TravelImageDao extends DAO{
                 "UID, PATH path, Content content FROM travels.travelimage WHERE UID=" + myself.getUID();
         System.out.println(getForList(TravelImage.class, sql).get(0));
         return getForList(TravelImage.class, sql);
+    }
+
+    public List<Integer> getMyBookmarkedImageIds(int uid) throws SQLException, IOException, ClassNotFoundException {
+        List<Integer> myBookmarkedImageIds = new ArrayList<Integer>();
+        String sql = "SELECT imageID FROM travels.travelimagefavor WHERE uid=" + uid;
+        List<TravelImage> images = getForList(TravelImage.class, sql);
+        for(int i = 0;i < images.size(); i++){
+            myBookmarkedImageIds.add(images.get(i).getImageID());
+        }
+        return myBookmarkedImageIds;
     }
 }

@@ -42,7 +42,6 @@ public class DAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-
         try {
             // 1 得到ResultSet
             connection = DataBaseUtils.getConn();

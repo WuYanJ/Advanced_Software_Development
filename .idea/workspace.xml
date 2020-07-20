@@ -10,14 +10,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/fileUpload.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/c3p0-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dbcp.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/c3p0-0.9.5.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-dbcp2-2.7.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-pool2-2.8.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mchange-commons-java-0.2.19.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/TravelUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Model/TravelImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Model/TravelImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/ProcessBookmarkServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/ProcessBookmarkServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Test/JDBCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Test/JDBCTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Utils/DataBaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Utils/DataBaseUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAOTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAOTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelUserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelUserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Test/JDBCTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Test/JDBCTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/TravelImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/TravelImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/ProcessBookmarkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/ProcessBookmarkServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/fileUpload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/fileUpload.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/message.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/myBookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/myBookmarks.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +98,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/WEB-INF/lib" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -91,19 +113,22 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/src/com/wyj/utils" />
+      <recent name="$PROJECT_DIR$/web/static/image" />
+      <recent name="$PROJECT_DIR$/web/static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wyj.Servlet" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web/static/css" />
       <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/src/com/wyj/Utils" />
       <recent name="$PROJECT_DIR$/web/static/js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web" />
-      <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
-      <recent name="$PROJECT_DIR$/src/com/wyj/utils" />
-      <recent name="$PROJECT_DIR$/web/static/image" />
-      <recent name="$PROJECT_DIR$/web/static" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -118,8 +143,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.37">
-    <configuration name="DAOTest.testGetForList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.JDBCTest.testDBUtils">
+    <configuration name="DAOTest.testGetMyBookmarkedImageIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
@@ -129,71 +154,71 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.wyj.DAO" />
       <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
-      <option name="METHOD_NAME" value="testGetForList" />
+      <option name="METHOD_NAME" value="testGetMyBookmarkedImageIds" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOTest.testGetForValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JDBCTest.testC3P0WithConfigFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.DAO.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.DAOTest" />
-      <option name="METHOD_NAME" value="testGetForValue" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
+      <option name="METHOD_NAME" value="testC3P0WithConfigFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TravelImageDao.testGetImage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JDBCTest.testDBCP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.DAO.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
-      <option name="METHOD_NAME" value="testGetImage" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
+      <option name="METHOD_NAME" value="testDBCP" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TravelImageDao.testGetMine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JDBCTest.testDBCPWithDataSourceFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.DAO.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
-      <option name="METHOD_NAME" value="testGetMine" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
+      <option name="METHOD_NAME" value="testDBCPWithDataSourceFactory" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TravelImageDao.testHottest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JDBCTest.testDBUtils" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.wyj.DAO.*" />
+          <option name="PATTERN" value="com.wyj.Test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.wyj.DAO" />
-      <option name="MAIN_CLASS_NAME" value="com.wyj.DAO.TravelImageDao" />
-      <option name="METHOD_NAME" value="testHottest" />
+      <option name="PACKAGE_NAME" value="com.wyj.Test" />
+      <option name="MAIN_CLASS_NAME" value="com.wyj.Test.JDBCTest" />
+      <option name="METHOD_NAME" value="testDBUtils" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -354,21 +379,21 @@
     </configuration>
     <list>
       <item itemvalue="JAR Application.commons-beanutils-1.9.4.jar" />
-      <item itemvalue="JUnit.DAOTest.testGetForList" />
-      <item itemvalue="JUnit.DAOTest.testGetForValue" />
-      <item itemvalue="JUnit.TravelImageDao.testHottest" />
-      <item itemvalue="JUnit.TravelImageDao.testGetImage" />
-      <item itemvalue="JUnit.TravelImageDao.testGetMine" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
+      <item itemvalue="JUnit.DAOTest.testGetMyBookmarkedImageIds" />
+      <item itemvalue="JUnit.JDBCTest.testDBCP" />
+      <item itemvalue="JUnit.JDBCTest.testDBCPWithDataSourceFactory" />
+      <item itemvalue="JUnit.JDBCTest.testC3P0WithConfigFile" />
+      <item itemvalue="JUnit.JDBCTest.testDBUtils" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TravelImageDao.testGetMine" />
-        <item itemvalue="JUnit.TravelImageDao.testGetImage" />
-        <item itemvalue="JUnit.TravelImageDao.testHottest" />
-        <item itemvalue="JUnit.DAOTest.testGetForValue" />
-        <item itemvalue="JUnit.DAOTest.testGetForList" />
+        <item itemvalue="JUnit.JDBCTest.testDBUtils" />
+        <item itemvalue="JUnit.JDBCTest.testC3P0WithConfigFile" />
+        <item itemvalue="JUnit.JDBCTest.testDBCPWithDataSourceFactory" />
+        <item itemvalue="JUnit.JDBCTest.testDBCP" />
+        <item itemvalue="JUnit.DAOTest.testGetMyBookmarkedImageIds" />
       </list>
     </recent_temporary>
   </component>
@@ -386,7 +411,9 @@
       <workItem from="1594109354655" duration="75549000" />
       <workItem from="1594433111630" duration="25028000" />
       <workItem from="1594486610228" duration="36185000" />
-      <workItem from="1594687979474" duration="12945000" />
+      <workItem from="1594687979474" duration="25289000" />
+      <workItem from="1595136868741" duration="1363000" />
+      <workItem from="1595215029998" duration="12660000" />
     </task>
     <servers />
   </component>

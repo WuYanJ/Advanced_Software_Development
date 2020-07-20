@@ -2,7 +2,8 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.wyj.DAO.TravelImageDao" %>
-<%@ page import="com.wyj.Model.TravelImage" %><%--
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="com.wyj.DAO.TravelUserDao" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -120,6 +121,13 @@
             </div><!-- ./left colunm --><!-- Center colunm-->
 
             <%
+                // 这一行最后需要删掉，username应该在login或register的时候就存在session中
+                session.setAttribute("username", "SpongeBob");
+                session.setAttribute("uid", 12);
+                ///
+                String username = (String) session.getAttribute("username");
+                int uid = (int) session.getAttribute("uid");
+
                 String imageURL = request.getParameter("imageURL");
                 String photographer = "Sponge";
                 String title = null;
@@ -130,8 +138,8 @@
                 String city = null;
                 Date releaseDate = new Date();
 
-
-                List<String> bookmarkList = (List<String>) session.getAttribute("bookmarkList");
+                TravelUserDao travelUserDao = new TravelUserDao();
+                List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
                 if (bookmarkList == null) {
                     bookmarkList = new ArrayList<>();
                 }
@@ -194,13 +202,14 @@
                         <%
                             TravelImageDao travelImageDao = new TravelImageDao();
                             TravelImage currentImage = travelImageDao.getImage(imageURL);
+                            int currentImageID = currentImage.getImageID();
                             description = currentImage.getDescription();
                             country = currentImage.getCountry_regionCode();
                             city = currentImage.getCityCode();
                         %>
                         <div class="pb-right-column col-xs-12 col-sm-6">
-                            <form action="<%= request.getContextPath() %>/processBookmark?imageURL=<%= imageURL %>&bookmarked=<%= alreadyBookmarked %>"
-                                  method="post">
+<%--                            post-> get --%>
+                            <form>
                                 <h1 class="product-name"><%= title %>
                                 </h1>
                                 <div class="product-comments">
@@ -239,10 +248,10 @@
                                         <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>
                                             Send to a friend</a>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-success">
+                                    <a href="<%= request.getContextPath() %>/processBookmark?imageID=<%= currentImageID %>&bookmarked=<%= alreadyBookmarked %>" class="btn btn-lg btn-success">
                                         <i class="<%= alreadyBookmarked? "fa fa-heart":"fa fa-heart-o" %>"></i>
                                         <%= bookmarkButton %>
-                                    </button>
+                                    </a>
                                 </div>
                             </form>
                         </div>
@@ -259,12 +268,23 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel-284036">
-                                <p>
-                                    City Information. Beautiful City.City Information. Beautiful City.City Information.
-                                    Beautiful City.
-                                    City Information. Beautiful City.City Information. Beautiful City.City Information.
-                                    Beautiful City.
-                                </p>
+                                    <%--@declare id="name"--%>
+                                    <div class="row" style="padding: 20px 0">
+                                    </div>
+                                    <div class="row form-group">
+                                        <label class="control-label col-lg-1" for="commentText">Comment</label>
+                                        <div class="col-lg-5 col-md-12">
+                                            <textarea class="form-control" name="comment" id="commentText" rows="5"></textarea>
+                                        </div>
+                                        <button class="btn btn-sm btn-success" id="sendButton"><i class="fa fa-paper-plane-o"></i>&nbsp;Send</button>
+                                    </div>
+                            </div>
+<%--                                <p>--%>
+<%--                                    City Information. Beautiful City.City Information. Beautiful City.City Information.--%>
+<%--                                    Beautiful City.--%>
+<%--                                    City Information. Beautiful City.City Information. Beautiful City.City Information.--%>
+<%--                                    Beautiful City.--%>
+<%--                                </p>--%>
                             </div>
                             <div class="tab-pane" id="panel-704287">
                                 <p>
@@ -317,6 +337,15 @@
 </style>
 <script>
     function processBookmark(imageURL) {
-
     }
+    $("#sendButton").eq(0).on('click',function(){
+        var txt = $('#commentText').val();
+        <%--$.post("${basePath}/JavaWeb/message.jsp?txt=0",{txt : txt},function(data){--%>
+        $.post("http://localhost:8089/JavaWeb/message.jsp",{txt : txt},function(data){
+            data = data.trim();
+            if(data == '-1'){
+                alert('请先登录！');
+            }
+        });
+    });
 </script>

@@ -1,11 +1,16 @@
 package com.wyj.Test;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.wyj.Model.TravelImage;
 import com.wyj.Model.User;
 import com.wyj.Utils.DataBaseUtils;
 import com.wyj.Utils.ReflectionUtils;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.junit.Test;
 
+import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +21,52 @@ import java.util.Properties;
 import java.util.Scanner;
 
 public class JDBCTest {
+
+
+    @Test
+    public void testDBUtils() throws SQLException, IOException, ClassNotFoundException {
+        Connection connection = DataBaseUtils.getConn();
+        System.out.println(connection);
+    }
+    @Test
+    public void testC3P0WithConfigFile() throws SQLException {
+        DataSource dataSource = new ComboPooledDataSource("helloc3p0");
+        System.out.println(dataSource.getConnection());
+        ComboPooledDataSource comboPooledDataSource =
+                (ComboPooledDataSource)dataSource;
+        System.out.println(comboPooledDataSource.getMaxStatements());
+    }
+
+    // 创建数据库连接池
+    @Test
+    public void testDBCP() throws SQLException {
+        BasicDataSource dataSource = new BasicDataSource();
+        // 创建DBCP数据源实例
+        // 为数据源实例指定必须的属性
+        dataSource.setUsername("root");
+        dataSource.setPassword("wuyanjie!20000813");
+        dataSource.setUrl("jdbc:mysql:///travels");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        // 指定数据源的可选属性
+        // 指定初始化连接个数
+        dataSource.setInitialSize(50);
+        // 从数据源中获取数据库连接
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection.getClass());
+    }
+
+    @Test
+    public void testDBCPWithDataSourceFactory() throws Exception {
+        Properties properties = new Properties();
+        InputStream inputStream = JDBCTest.class.getClassLoader()
+                .getResourceAsStream("dbcp.properties");
+        properties.load(inputStream);
+        DataSource dataSource =
+                BasicDataSourceFactory.createDataSource(properties);
+        System.out.println(dataSource.getConnection().getClass());
+        BasicDataSource basicDataSource = (BasicDataSource)dataSource;
+        System.out.println(basicDataSource.getMaxWaitMillis());
+    }
 
     @Test
     public void testGetConnection() throws ClassNotFoundException, SQLException {
@@ -197,7 +248,7 @@ public class JDBCTest {
                 travelImage = new TravelImage(resultSet.getInt(1),resultSet.getString(2),
                         resultSet.getString(3), resultSet.getDouble(4), resultSet.getDouble(5),
                         resultSet.getString(6), resultSet.getString(7),
-                        resultSet.getInt(8), resultSet.getString(9), resultSet.getString(10));
+                        resultSet.getInt(8), resultSet.getString(9), resultSet.getString(10), null);
             }
         } catch (Exception e) {
             e.printStackTrace();

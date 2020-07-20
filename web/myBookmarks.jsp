@@ -2,8 +2,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.wyj.Utils.DataBaseUtils" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %><%--
+<%@ page import="com.wyj.DAO.TravelImageDao" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.wyj.DAO.TravelUserDao" %>
+<%@ page import="com.wyj.Model.TravelImage" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/12
@@ -44,7 +46,18 @@
     <script src="static/js/holder.min.js"></script>
 </head>
 <body>
+<%
+    // 这一行最后需要删掉，username应该在login或register的时候就存在session中
+    session.setAttribute("username", "SpongeBob");
+    session.setAttribute("uid", 12);
+    ///
+    String username = (String) session.getAttribute("username");
+    int uid = (int) session.getAttribute("uid");
 
+    TravelImageDao travelImageDao = new TravelImageDao();
+    TravelUserDao travelUserDao = new TravelUserDao();
+    List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -65,10 +78,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="personalInfo.jsp">Peronal Info</a>
+                    <a href="personalInfo.jsp">Personal Info</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -107,23 +120,7 @@
             <p class="pull-right visible-xs">
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
             </p>
-            <%
-                // 这一行最后需要删掉，username应该在login或register的时候就存在session中
-                session.setAttribute("username", "SpongeBob");
-                String username = (String) session.getAttribute("username");
-                //////
-                List<String> temp = new ArrayList<>();
-                temp.add("222222.jpg");
-                temp.add("222223.jpg");
-                temp.add("5856697109.jpg");
-                temp.add("5857298322.jpg");
-                temp.add("5855735700.jpg");
-                temp.add("5855729828.jpg");
-                temp.add("9502741759.jpg");
-                session.setAttribute("bookmarkList", temp);
-                //////
-                List<String> bookmarkList = (List<String>) session.getAttribute("bookmarkList");
-            %>
+
             <div class="jumbotron">
                 <h1 style="color: #006633">WELCOME to </h1>
                 <h1 style="color: #99CC00"><%= username %>'s Bookmark</h1>
@@ -140,8 +137,14 @@
 
             <h1>Bookmarks</h1>
             <%
-                if (bookmarkList != null && !bookmarkList.isEmpty()) {
+                int currentImageID = 0;
+                if (!bookmarkList.isEmpty()) {
                     for (String bookmark : bookmarkList) {
+                        try {
+                            currentImageID = travelImageDao.path2imageID(bookmark);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
             %>
             <div class="col-md-4" style="height: 34em">
                 <div class="thumbnail">
@@ -156,7 +159,8 @@
                                 gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                             </p>
                             <p>
-                                <a class="btn btn-success" href="#">Learn More</a>
+                                <a class="btn btn-success" href="details.jsp?imageURL=<%= bookmark %>">Learn More</a>
+                                <a class="btn btn-warning" href="<%= request.getContextPath() %>/processBookmark?imageID=<%= currentImageID %>&bookmarked=true">Cancel</a>
                             </p>
                     </div>
                 </div>
@@ -178,7 +182,6 @@
             if(cookies.length > 0){
                 for(Cookie c : cookies){
                     String cName = c.getName();
-                    System.out.println("1");
                     // 符合条件的
                     if(cName.startsWith("LEO_IMAGE_")){
                         String cValue = c.getValue();

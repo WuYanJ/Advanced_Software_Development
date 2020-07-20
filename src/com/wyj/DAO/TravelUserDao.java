@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TravelUserDao {
 //    查询数据库，判断用户名是否已经被注册
@@ -56,6 +58,22 @@ public class TravelUserDao {
         }
     }
 
+    public List<String> getMyBookmarkedImagePaths(int uid) throws SQLException, IOException, ClassNotFoundException {
+        TravelImageDao travelImageDao = new TravelImageDao();
+        List<Integer> myBookmarkedImageIds = travelImageDao.getMyBookmarkedImageIds(uid);
+
+        List<String> bookmarkList = new ArrayList<String>();
+        for (Integer myBookmarkedImageId : myBookmarkedImageIds) {
+            try {
+                bookmarkList.add(travelImageDao.imageID2path(myBookmarkedImageId));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return bookmarkList;
+    }
+
+
     public TravelUser login(String username, String password) throws ClassNotFoundException, SQLException, InstantiationException, IOException, IllegalAccessException {
         //实例化一个用户对象
         TravelUser travelUser = null;
@@ -90,5 +108,9 @@ public class TravelUserDao {
             DataBaseUtils.releaseDB(resultSet, preparedStatement, connection);
         }
         return travelUser;
+    }
+
+    public TravelUser get(int uid) {
+        return null;
     }
 }

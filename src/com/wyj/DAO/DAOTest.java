@@ -1,5 +1,6 @@
 package com.wyj.DAO;
 
+import com.wyj.Model.TravelImage;
 import com.wyj.Model.User;
 import org.junit.Test;
 
@@ -31,5 +32,12 @@ public class DAOTest {
         sql = "SELECT min(age) FROM pj_test.user";
         int age = dao.getForValue(sql);
         System.out.println(age);
+    }
+
+    @Test
+    public void testGetMyBookmarkedImageIds() throws SQLException {
+        String sql = "SELECT imageID FROM travels.travelimagefavor WHERE uid=12";
+        List<TravelImage> images = dao.getForList(TravelImage.class, sql);
+        System.out.println(images);
     }
 }

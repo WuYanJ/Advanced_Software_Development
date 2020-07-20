@@ -1,40 +1,49 @@
 package com.wyj.Servlet;
 
+import com.wyj.DAO.DAO;
+import com.wyj.DAO.TravelImageDao;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 @WebServlet("/processBookmark")
 public class ProcessBookmarkServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String imageURL = request.getParameter("imageURL");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        DAO dao = new DAO();
+        TravelImageDao travelImageDao = new TravelImageDao();
+        int imageID = Integer.parseInt(request.getParameter("imageID"));
+        String imageURL = null;
+        try {
+            imageURL = travelImageDao.imageID2path(imageID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String alreadyBookmarked = request.getParameter("bookmarked");
         HttpSession session = request.getSession();
+        int uid = (int) session.getAttribute("uid");
+        String sql = "INSERT INTO travels.travelimagefavor(uid, imageID) VALUES(?, ?)";
+        String sqlDelete = "DELETE FROM travels.travelimagefavor WHERE (uid=" + uid + " AND imageID=" + imageID + ")";
 
-        List<String> bookmarkList = (List<String>)session.getAttribute("bookmarkList");
-
-        // 如果是第一次收藏，创建一个新的bookmarkList
-        if(bookmarkList == null) {
-            bookmarkList = new ArrayList<>();
-        }
         // 若果此前已经收藏过这张照片，将这条收藏记录移除
         if(alreadyBookmarked.equals("true")) {
-            bookmarkList.remove(imageURL);
-            System.out.println("remove: "+imageURL);
+            try {
+                dao.update(sqlDelete);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
-            // 将新收藏的imageURL存入bookmarkList
-            bookmarkList.add(imageURL);
-            System.out.println("add: "+imageURL);
+            try {
+                dao.update(sql, uid, imageID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-        // 将更新后的bookmarkList存入session
-        session.setAttribute("bookmarkList", bookmarkList);
         response.sendRedirect(request.getContextPath() + "/details.jsp?imageURL=" + imageURL);
     }
 }

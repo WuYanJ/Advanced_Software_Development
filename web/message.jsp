@@ -13,11 +13,14 @@
 <body>
 <%
     //获取提示信息
-    String info = (String) request.getAttribute("info");
-    if (info != null) {
-        out.print(info);
-    }
+    String txt = request.getParameter("txt").toString();
+//    String info = (String) request.getAttribute("info");
+//    if (info != null) {
+//        out.print("info:"+info);
+//    }
 
+    out.print("txt:"+txt);
+    response.sendRedirect("details.jsp?"+txt);
     /*获取用户的登录信息*/
     User user = (User) session.getAttribute("user");
     if (user != null) {

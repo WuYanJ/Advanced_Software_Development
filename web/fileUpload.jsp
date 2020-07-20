@@ -123,58 +123,72 @@
                     Better Late Than Never.
                 </p> <small>Someone famous <cite>Source Title</cite></small>
             </blockquote>
-            <form class="form-horizontal">
+            <div class="col-xs-12 col-sm-9">
                 <div class="container">
-                    <%--@declare id="name"--%>
-                    <div class="row" style="padding: 20px 0">
-                        <h3>Upload Form</h3>
-                    </div>
-                    <div class="row form-group">
-                        <label class="control-label col-lg-1" for="title">Title</label>
-                        <div class="col-lg-5 col-md-6">
-                            <input class="form-control" name="title" id="title" type="text">
+                    <form class="form-horizontal" action="uploadServlet" method="post" enctype="multipart/form-data">
+
+                        <%--@declare id="name"--%>
+                        <div class="row" style="padding: 20px 0">
+                            <h3>Upload Form</h3>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="control-label col-lg-1">Photographer</label>
-                        <div class="col-lg-5 col-md-6">
-                            <input class="form-control" name="photographer" rows="5"/>
+                        <div class="row form-group">
+                            <label class="control-label col-lg-1" for="title">Title</label>
+                            <div class="col-lg-5 col-md-6">
+                                <input class="form-control" name="title" id="title" type="text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="control-label col-lg-1">Topic</label>
-                        <div class="col-lg-5 col-md-6">
-                            <input class="form-control" name="topic" rows="5"/>
+                        <div class="row form-group">
+                            <label class="control-label col-lg-1">Photographer</label>
+                            <div class="col-lg-5 col-md-6">
+                                <input class="form-control" name="photographer" rows="5"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="control-label col-lg-1">Description</label>
-                        <div class="col-lg-5 col-md-6">
-                            <textarea class="form-control" name="description" rows="5"></textarea>
+                        <div class="row form-group">
+                            <label class="control-label col-lg-1">Topic</label>
+                            <div class="col-lg-5 col-md-6">
+                                <input class="form-control" name="topic" rows="5"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group col-lg-4">
-                        <%--@declare id="country"--%><label for="country">Country</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                    <div class="row form-group col-lg-4">
-                        <%--@declare id="city"--%><label for="city">City</label>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
+                        <div class="row form-group">
+                            <label class="control-label col-lg-1">Description</label>
+                            <div class="col-lg-5 col-md-6">
+                                <textarea class="form-control" name="description" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-lg-1">File </label>
+                            <div class="col-lg-5 col-md-6">
+                                <input type="file" name="file">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <%--@declare id="country"--%><label for="country">Country</label>
+                            <select class="form-control col-lg-4">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="row form-group">
+                            <%--@declare id="city"--%><label for="city">City</label>
+                            <select class="form-control col-lg-4">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit">Upload</button>
+                        </div>
+
+                    </form>
                 </div>
-            </form>
+            </div>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">

@@ -12,6 +12,16 @@ public class TravelImage {
     private String path;
     private String content;
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    private String topic;
+
     public TravelImage() {
 
     }
@@ -29,13 +39,14 @@ public class TravelImage {
                 ", UID=" + UID +
                 ", path='" + path + '\'' +
                 ", scenery='" + content + '\'' +
+                ", topic='" + topic + '\'' +
                 '}';
     }
 
     public TravelImage(int imageID, String title, String description,
                        double latitude, double longitude, String cityCode,
                        String country_regionCode, int UID, String path,
-                       String content) {
+                       String content, String topic) {
         this.imageID = imageID;
         this.title = title;
         this.description = description;
@@ -46,6 +57,7 @@ public class TravelImage {
         this.UID = UID;
         this.path = path;
         this.content = content;
+        this.topic = topic;
     }
 
     public int getImageID() {

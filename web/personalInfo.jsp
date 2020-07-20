@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.wyj.Model.TravelImage" %><%--
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="com.wyj.DAO.TravelImageDao" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -112,17 +114,21 @@
           <%
             // 这一行最后需要删掉，username应该在login或register的时候就存在session中
             session.setAttribute("username", "SpongeBob");
+            session.setAttribute("uid", 12);
+            ///
             String username = (String) session.getAttribute("username");
+            int uid = (int) session.getAttribute("uid");
+            List<TravelImage> uploadedImages = new ArrayList<>();
 
             // 用UID查询数据库,获取"我上传的图片"的imageURL的集合
             List<String> uploadedImageURLs = new ArrayList<>();
-            // 接下来几行后面都要删掉的，现在调试用
-            uploadedImageURLs.add("222222.jpg");
-            uploadedImageURLs.add("9496787858.jpg");
-            uploadedImageURLs.add("8710247776.jpg");
-            uploadedImageURLs.add("9504606628.jpg");
-            // 用来遍历，给一个个照片信息赋值的照片对象
-            List<TravelImage> uploadedImages = new ArrayList<>();
+            TravelImageDao travelImageDao = new TravelImageDao();
+            try {
+              uploadedImages = travelImageDao.getMyImages("luisg");
+//              uploadedImages = travelImageDao.getMyImages(username);
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
           %>
           <div class="jumbotron">
             <h1 style="color:#006633;">Hello, <span style="color:#99CC00;"><%= username %>!</span></h1>
@@ -150,11 +156,10 @@
             </blockquote>
 
           <%
-            // for(TravelImage uploadedImage : uploadedImages) {
-            for(String imageURL : uploadedImageURLs) {
-              System.out.println(uploadedImageURLs.indexOf(imageURL)%2);
-              String class1 = uploadedImageURLs.indexOf(imageURL)%2==0?"col-md-7":"col-md-7 col-md-push-5";
-              String class2 = uploadedImageURLs.indexOf(imageURL)%2==0?"col-md-5":"col-md-5 col-md-pull-7";
+            for(TravelImage travelImage : uploadedImages) {
+              System.out.println(uploadedImages.indexOf(travelImage)%2);
+              String class1 = uploadedImages.indexOf(travelImage)%2==0?"col-md-7":"col-md-7 col-md-push-5";
+              String class2 = uploadedImages.indexOf(travelImage)%2==0?"col-md-5":"col-md-5 col-md-pull-7";
               %>
           <div class="row featurette">
             <div class=<%= class1 %>>
@@ -162,7 +167,7 @@
               <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
             </div>
             <div class=<%= class2 %>>
-              <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+              <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%= travelImage.getPath() %>" alt="<%= travelImage.getTitle() %>>">
             </div>
           </div>
           <hr class="featurette-divider">
