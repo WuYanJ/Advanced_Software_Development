@@ -12,6 +12,27 @@ public class TravelImage {
     private String path;
     private String content;
 
+    private long favorAmount;
+    private String photographer;
+
+    public long getFavorAmount() {
+        return favorAmount;
+    }
+
+    public void setFavorAmount(long favorAmount) {
+        this.favorAmount = favorAmount;
+    }
+
+    public String getPhotographer() {
+        return photographer;
+    }
+
+    public void setPhotographer(String photographer) {
+        this.photographer = photographer;
+    }
+
+    private String topic;
+
     public String getTopic() {
         return topic;
     }
@@ -20,7 +41,7 @@ public class TravelImage {
         this.topic = topic;
     }
 
-    private String topic;
+
 
     public TravelImage() {
 
@@ -39,6 +60,8 @@ public class TravelImage {
                 ", UID=" + UID +
                 ", path='" + path + '\'' +
                 ", scenery='" + content + '\'' +
+                ", favorAmount='" + favorAmount + '\'' +
+                ", photographer='" + photographer + '\'' +
                 ", topic='" + topic + '\'' +
                 '}';
     }

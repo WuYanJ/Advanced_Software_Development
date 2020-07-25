@@ -50,7 +50,14 @@ public class TravelImageDao extends DAO{
         String sql = "SELECT ImageID imageID, Title title, Description description," +
                 "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
                 "UID, PATH path, Content content FROM travels.travelimage WHERE path='" + path + "'";
-        return get(TravelImage.class, sql);
+        TravelImage image = get(TravelImage.class, sql);
+        sql = "SELECT count(favorID) FROM travels.travelimagefavor WHERE imageID=?";
+        long favorAmount = getForValue(sql, image.getImageID());
+        sql = "SELECT username FROM travels.traveluser WHERE uid=?";
+        String photographer = getForValue(sql, image.getUID());
+        image.setFavorAmount(favorAmount);
+        image.setPhotographer(photographer);
+        return image;
     }
 
     public String imageID2path(int imageID) throws SQLException, IOException, ClassNotFoundException {
@@ -91,7 +98,6 @@ public class TravelImageDao extends DAO{
         sql = "SELECT ImageID imageID, Title title, Description description," +
                 "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
                 "UID, PATH path, Content content FROM travels.travelimage WHERE UID=" + myself.getUID();
-        System.out.println(getForList(TravelImage.class, sql).get(0));
         return getForList(TravelImage.class, sql);
     }
 

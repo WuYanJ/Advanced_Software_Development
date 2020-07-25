@@ -51,6 +51,7 @@ public class RegisterServlet extends HttpServlet {
                 // 在数据库中存储newUser对象
                 travelUserDao.saveTravelUser(newTravelUser);
 
+                request.getSession().setAttribute("travelUser", newTravelUser);
                 response.sendRedirect("personalInfo.jsp?username=" + username);
             } else {
                 request.setAttribute("info", "错误操作，请重新注册! <br>");

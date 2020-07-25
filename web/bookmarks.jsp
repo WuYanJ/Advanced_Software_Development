@@ -51,8 +51,8 @@
     session.setAttribute("username", "SpongeBob");
     session.setAttribute("uid", 12);
     ///
-    String username = (String) session.getAttribute("username");
-    int uid = (int) session.getAttribute("uid");
+    String username = request.getParameter("username");
+    int uid = Integer.parseInt(request.getParameter("uid"));
 
     TravelImageDao travelImageDao = new TravelImageDao();
     TravelUserDao travelUserDao = new TravelUserDao();

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.wyj.Model.TravelUser" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -45,6 +45,11 @@
 </head>
 
 <body>
+<%
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    String username = myself.getUsername();
+    int uid = myself.getUID();
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -68,7 +73,7 @@
                     <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                 </li>
                 <li>
-                    <a href="myBookmarks.jsp"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong

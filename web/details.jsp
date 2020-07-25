@@ -3,7 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.wyj.DAO.TravelImageDao" %>
 <%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="com.wyj.DAO.TravelUserDao" %><%--
+<%@ page import="com.wyj.DAO.TravelUserDao" %>
+<%@ page import="com.wyj.Model.TravelUser" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -53,6 +54,16 @@
 </head>
 
 <body>
+<%
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    String username = null;
+    int uid = 0;
+    if(myself != null){
+        username = myself.getUsername();
+        uid = myself.getUID();
+    }
+
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -72,11 +83,13 @@
                 <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <% if(myself != null){
+                %>
                 <li>
-                    <a href="myBookmarks.jsp"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;My Bookmarks</a>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -92,6 +105,18 @@
                         </li>
                     </ul>
                 </li>
+                <%
+                } else {
+                %>
+                <li>
+                    <a href="login.jsp">Sign In</a>
+                </li>
+                <li>
+                    <a href="register.jsp">Sign Up</a>
+                </li>
+                <%
+                    }
+                %>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -121,22 +146,9 @@
             </div><!-- ./left colunm --><!-- Center colunm-->
 
             <%
-                // 这一行最后需要删掉，username应该在login或register的时候就存在session中
-                session.setAttribute("username", "SpongeBob");
-                session.setAttribute("uid", 12);
-                ///
-                String username = (String) session.getAttribute("username");
-                int uid = (int) session.getAttribute("uid");
 
                 String imageURL = request.getParameter("imageURL");
-                String photographer = "Sponge";
-                String title = null;
-                String topic = null;
-                String description = null;
-                int favorAmount = 0;
-                String country = null;
-                String city = null;
-                Date releaseDate = new Date();
+
 
                 TravelUserDao travelUserDao = new TravelUserDao();
                 List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
@@ -201,11 +213,16 @@
 
                         <%
                             TravelImageDao travelImageDao = new TravelImageDao();
-                            TravelImage currentImage = travelImageDao.getImage(imageURL);
-                            int currentImageID = currentImage.getImageID();
-                            description = currentImage.getDescription();
-                            country = currentImage.getCountry_regionCode();
-                            city = currentImage.getCityCode();
+                            TravelImage image = travelImageDao.getImage(imageURL);
+                            String photographer = image.getPhotographer();
+                            String topic = image.getTopic();
+                            String title = image.getTitle();
+                            String description = image.getDescription();
+                            int imageID = image.getImageID();
+                            long favorAmount = image.getFavorAmount();
+                            String country = image.getCountry_regionCode();
+                            String city = image.getCityCode();
+                            Date releaseDate = new Date();
                         %>
                         <div class="pb-right-column col-xs-12 col-sm-6">
 <%--                            post-> get --%>
@@ -248,10 +265,17 @@
                                         <a class="a-block" href="#"><i class="fa fa-envelope-o fa-fw"></i>
                                             Send to a friend</a>
                                     </div>
-                                    <a href="<%= request.getContextPath() %>/processBookmark?imageID=<%= currentImageID %>&bookmarked=<%= alreadyBookmarked %>" class="btn btn-lg btn-success">
+                                    <%
+                                        if(myself != null){
+                                    %>
+                                    <a href="<%= request.getContextPath() %>/processBookmark?imageID=<%= imageID %>&bookmarked=<%= alreadyBookmarked %>" class="btn btn-lg btn-success">
                                         <i class="<%= alreadyBookmarked? "fa fa-heart":"fa fa-heart-o" %>"></i>
                                         <%= bookmarkButton %>
                                     </a>
+                                    <%
+                                        }
+                                    %>
+
                                 </div>
                             </form>
                         </div>

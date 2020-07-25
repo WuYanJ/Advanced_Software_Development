@@ -10,36 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/c3p0-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dbcp.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/c3p0-0.9.5.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-dbcp2-2.7.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/commons-pool2-2.8.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mchange-commons-java-0.2.19.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/friends.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/DAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/DAOTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/TravelUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelUserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wyj/Model/TravelImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Model/TravelImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/ProcessBookmarkServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/ProcessBookmarkServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/Test/JDBCTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Test/JDBCTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/Utils/DataBaseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Utils/DataBaseUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAOTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/DAOTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/RegisterServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelUserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelUserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Test/JDBCTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Test/JDBCTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/TravelImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/TravelImage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/ProcessBookmarkServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/ProcessBookmarkServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Utils/DataBaseUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Utils/DataBaseUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/fileUpload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/fileUpload.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/message.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/message.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/myBookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/myBookmarks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/myBookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/bookmarks.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,8 +52,8 @@
       <list>
         <option value="HTML File" />
         <option value="jsf" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -143,7 +124,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.JDBCTest.testDBUtils">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.37">
     <configuration name="DAOTest.testGetMyBookmarkedImageIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JavaWeb2020Summer" />
       <extension name="coverage">
@@ -413,7 +394,7 @@
       <workItem from="1594486610228" duration="36185000" />
       <workItem from="1594687979474" duration="25289000" />
       <workItem from="1595136868741" duration="1363000" />
-      <workItem from="1595215029998" duration="12660000" />
+      <workItem from="1595215029998" duration="25977000" />
     </task>
     <servers />
   </component>
