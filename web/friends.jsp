@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.wyj.Model.TravelUser" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.wyj.DAO.InvitationDAO" %>
+<%@ page import="com.wyj.DAO.TravelUserDao" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/22
@@ -42,6 +45,15 @@
 </head>
 
 <body>
+<%
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    String username = "";
+    int uid = 0;
+    if(myself != null){
+        username = myself.getUsername();
+        uid = myself.getUID();
+    }
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -59,6 +71,43 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <% if (myself != null) {
+                %>
+                <li>
+                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;My
+                        Bookmarks</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
+                            class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </li>
+                <%
+                } else {
+                %>
+                <li>
+                    <a href="login.jsp">Sign In</a>
+                </li>
+                <li>
+                    <a href="register.jsp">Sign Up</a>
+                </li>
+                <%
+                    }
+                %>
+            </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -67,56 +116,76 @@
 
     <div class="row row-offcanvas row-offcanvas-right">
 
+
         <div class="col-xs-12 col-sm-9">
             <p class="pull-right visible-xs">
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
             </p>
             <div class="jumbotron">
-                <h1>Friends on Route</h1>
+                <h1>Friends</h1>
                 <p></p>
             </div>
+
+            <div class="row">
+                <%
+                    TravelUserDao travelUserDao = new TravelUserDao();
+                    List<TravelUser> friends = travelUserDao.getFriends(username);
+                    if(friends != null && friends.size() > 0){
+                        for (TravelUser friend: friends){
+                %>
+                <div class="col-xs-6 col-lg-4">
+                    <h2><%=friend.getUsername()%></h2>
+                    <p><%=friend.getEmail()%>></p>
+                    <p><%=friend.getDateJoined()%>></p>
+                    <p><a class="addFriend btn btn-default" href="bookmarks.jsp?username=<%=friend.getUsername()%>" role="button">Bookmark &raquo;</a></p>
+                </div><!--/.col-xs-6.col-lg-4-->
+                <%
+                        }
+                    }
+                %>
+            </div><!--/row-->
+
+            <hr>
             <div class="row">
                 <div class="col-xs-8 col-sm-8" style="margin-top: 10px">
-                    <form class="form-inline" style="border: none" role="search">
-                        <input type="search" class="form-control" placeholder="Search For Users..." style="width: 60%">
+                    <form action="fuzzyQueryUsers.do" method="post"
+                          class="form-inline" style="border: none" role="search">
+                        <input type="search" name="friendUsername" class="form-control" placeholder="Search For Users..." style="width: 60%">
                         <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
             </div>
             <div class="row">
+            <%
+                List<TravelUser> userResultSet = (List<TravelUser>) request.getAttribute("userResultSet");
+                if(userResultSet != null && userResultSet.size() > 0){
+                    for (TravelUser friendCandidate: userResultSet){
+            %>
                 <div class="col-xs-6 col-lg-4">
-                    <h2>Wuyanjie</h2>
-                    <p>E-mail: 1136038812@qq.com</p>
-                    <p>Join in: 2020/7/22</p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                    <h2><%=friendCandidate.getUsername()%></h2>
+                    <p><%=friendCandidate.getEmail()%>></p>
+                    <p><%=friendCandidate.getDateJoined()%>></p>
+                    <p><a class="addFriend btn btn-default" href="addFriend.do?friend=<%=friendCandidate.getUsername()%>" role="button">Reach out &raquo;</a></p>
                 </div><!--/.col-xs-6.col-lg-4-->
-                <div class="col-xs-6 col-lg-4">
-                    <h2>Wuyanjie</h2>
-                    <p>E-mail: 1136038812@qq.com</p>
-                    <p>Join in: 2020/7/22</p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                </div><!--/.col-xs-6.col-lg-4-->
-                <div class="col-xs-6 col-lg-4">
-                    <h2>Wuyanjie</h2>
-                    <p>E-mail: 1136038812@qq.com</p>
-                    <p>Join in: 2020/7/22</p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                </div><!--/.col-xs-6.col-lg-4-->
+            <%
+                    }
+                }
+            %>
             </div><!--/row-->
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <div class="list-group">
-                <a href="#" class="list-group-item active">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
-                <a href="#" class="list-group-item">Link</a>
+                <h3>Invitation Received</h3>
+        <%
+            InvitationDAO invitationDAO = new InvitationDAO();
+            List<TravelUser> invitationSenders = invitationDAO.getInvitationSenders(username);
+            for (TravelUser sender : invitationSenders){
+        %>
+                <a href="agree.do?friend=<%=sender.getUsername()%>" class="agree list-group-item"><b><%=sender.getUsername()%></b>&nbsp;(&nbsp;<%=sender.getEmail()%>&nbsp;)</a>
+        <%
+            }
+        %>
             </div>
         </div><!--/.sidebar-offcanvas-->
     </div><!--/row-->
@@ -141,4 +210,18 @@
 <script src="static/js/personalInfo.js"></script>
 </body>
 </html>
-
+<script type="text/javascript">
+    $(function () {
+        $(".addFriend").click(function () {
+            var content = $(this).parent().find("h2");
+            var flag = confirm("Confirm?");
+            return flag;
+        })
+    })
+    $(function () {
+        $(".agree").click(function () {
+            var flag = confirm("Confirm Add?");
+            return flag;
+        })
+    })
+</script>

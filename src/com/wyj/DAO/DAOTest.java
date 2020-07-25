@@ -1,6 +1,7 @@
 package com.wyj.DAO;
 
 import com.wyj.Model.TravelImage;
+import com.wyj.Model.TravelUser;
 import com.wyj.Model.User;
 import org.junit.Test;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class DAOTest {
     DAO dao = new DAO();
+    TravelUserDao travelUserDao = new TravelUserDao();
 
     @Test
     public void testUpdate() throws SQLException {
@@ -39,5 +41,23 @@ public class DAOTest {
         String sql = "SELECT imageID FROM travels.travelimagefavor WHERE uid=12";
         List<TravelImage> images = dao.getForList(TravelImage.class, sql);
         System.out.println(images);
+    }
+
+    @Test
+    public void testGetUser() throws SQLException {
+        TravelUser user = travelUserDao.getUser("luisg");
+        System.out.println(user.getEmail());
+    }
+
+    @Test
+    public void testFuzzyGetUsers() throws SQLException {
+        List<TravelUser> users = travelUserDao.fuzzyGetUsers("s");
+        System.out.println(users.size());
+    }
+    @Test
+    public void testGetForValueList() throws SQLException {
+        String sql = "SELECT fromUser FROM travels.invitation WHERE toUser=?";
+        List<String> list = dao.getForValueList(sql, "jacksmith");
+        System.out.println(list.size());
     }
 }

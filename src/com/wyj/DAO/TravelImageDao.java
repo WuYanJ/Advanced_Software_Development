@@ -110,4 +110,11 @@ public class TravelImageDao extends DAO{
         }
         return myBookmarkedImageIds;
     }
+
+    public List<TravelImage> fuzzyGetImagesByTitle(String titleCrackle) throws SQLException {
+        String sql = "SELECT ImageID imageID, Title title, Description description," +
+                "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
+                "UID, PATH path, Content content FROM travels.travelimage WHERE title LIKE '%" + titleCrackle + "%'";
+        return getForList(TravelImage.class, sql);
+    }
 }

@@ -201,4 +201,32 @@ public class DAO {
         // SELECT email FROM USERS WHERE id = 5;
         return null;
     }
+
+
+    public <E> List<E> getForValueList(String sql, Object... args) throws SQLException {
+        List<E> list = new ArrayList();
+        // 1 得到结果集：应该只有一行一列
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DataBaseUtils.getConn();
+            preparedStatement = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++) {
+                preparedStatement.setObject(i + 1, args[i]);
+            }
+            resultSet = preparedStatement.executeQuery();
+
+            int i = 1;
+            while(resultSet.next()) {
+                list.add((E) resultSet.getObject(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DataBaseUtils.releaseDB(resultSet, preparedStatement, connection);
+        }
+        return list;
+    }
 }

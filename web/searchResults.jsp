@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -23,7 +24,7 @@
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <%--    <link href="static/css/bootstrap.min.css" rel="stylesheet">--%>
+        <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -44,8 +45,8 @@
     <![endif]-->
 
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%--    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>--%>
+<%--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 </head>
 
 <body>
@@ -87,28 +88,28 @@
                 <img alt="Kute Shop" src="logo.png" style="width: 100%"></a>
             </div>
             <div class="col-xs-8 col-sm-8" style="margin-top: 10px">
-                <form class="form-inline" style="border: none" role="search">
-                    <div class="input-group">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#" onclick="alert('选中标题')">标题</a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="alert('选中主题')">主题</a>
-                                </li>
-
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="#">不选择</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="search" class="form-control" style="width: 60%">
+                <form action="fuzzyQueryImages.do" method="post"
+                        class="form-inline" style="border: none" role="search">
+                            <select name="select" style="border-radius: 10px;height: 30px">
+                                <option value="topic">Topic</option>
+                                <option value="title" selected>Title</option>
+                            </select>
+<%--                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选--%>
+<%--                                <span class="caret"></span>--%>
+<%--                            </button>--%>
+<%--                            <ul class="dropdown-menu">--%>
+<%--                                <li>--%>
+<%--                                    <a href="#" onclick="alert('选中标题')">标题</a>--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <a href="#" onclick="alert('选中主题')">主题</a>--%>
+<%--                                </li>--%>
+<%--                                <li class="divider"></li>--%>
+<%--                                <li>--%>
+<%--                                    <a href="#">不选择</a>--%>
+<%--                                </li>--%>
+<%--                            </ul>--%>
+                    <input type="search" name="searchWith" class="form-control" placeholder="Search by Topic/Title..." style="width: 60%">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -130,60 +131,33 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
-
-
         <div class="row"><!-- Left colunm -->
+
+        <%
+            List<TravelImage> imageResultSet = (List<TravelImage>) request.getAttribute("imageResultSet");
+            if(imageResultSet != null && imageResultSet.size() > 0){
+                for (TravelImage image: imageResultSet){
+        %>
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img alt="300x200" src="static/image/travel-images/large/222222.jpg"/>
+                <img alt="300x200" src="static/image/travel-images/large/<%=image.getPath()%>"/>
                     <div class="caption">
                         <h3>
-                            Thumbnail label
+                            <%=image.getTitle()%>
                         </h3>
                         <p>
-                            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            <%=image.getDescription()%>
                         </p>
                         <p>
-                            <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
+                            <a class="btn btn-primary" href="details.jsp?imageURL=<%=image.getPath()%>">Learn More</a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <img alt="300x200" src="static/image/travel-images/large/222222.jpg"/>
-                    <div class="caption">
-                        <h3>
-                            Thumbnail label
-                        </h3>
-                        <p>
-                            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        </p>
-                        <p>
-                            <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                    <img alt="300x200" src="static/image/travel-images/large/222222.jpg"/>
-                    <div class="caption">
-                        <h3>
-                            Thumbnail label
-                        </h3>
-                        <p>
-                            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                            gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                        </p>
-                        <p>
-                            <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <%
+                }
+            }
+        %>
         </div>
         <footer>
             <p>&copy; 2020 Company, Inc.</p>
@@ -204,7 +178,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="static/js/jquery.min.js"><\/script>')</script>
 <script src="static/js/bootstrap.min.js"></script>
-<script>window.jQuery || document.write('<script src="static/js/jquery.min.js"><\/script>')</script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="static/js/ie10-viewport-bug-workaround.js"></script>
 <script src="static/js/personalInfo.js"></script>

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravelUserDao {
+public class TravelUserDao extends DAO{
 //    查询数据库，判断用户名是否已经被注册
     public boolean travelUserExist(String username) throws ClassNotFoundException, SQLException, IOException {
         Connection connection = null;
@@ -112,5 +112,30 @@ public class TravelUserDao {
 
     public TravelUser get(int uid) {
         return null;
+    }
+
+    public TravelUser getUser(String username) throws SQLException {
+        String sql = "SELECT uid, email, username, pass password, state, dateJoined, dateLastModified FROM travels.traveluser WHERE username='" + username + "'";
+        return get(TravelUser.class, sql);
+    }
+
+    public List<TravelUser> fuzzyGetUsers(String usernameCrackle) throws SQLException {
+        String sql = "SELECT uid, email, username, pass password, state, dateJoined, dateLastModified FROM travels.traveluser WHERE username LIKE '%" + usernameCrackle + "%'";
+        return getForList(TravelUser.class, sql);
+    }
+
+    public List<TravelUser> getFriends(String username) throws SQLException {
+        List<TravelUser> friends = new ArrayList<>();
+        String sql = "SELECT fromUser FROM travels.invitation WHERE (toUser=? OR fromUser=?) AND status=2 ";
+        List<String> friendNames = getForValueList(sql, username, username);
+        sql = "SELECT uid, email, username, pass password, state, dateJoined, dateLastModified FROM travels.traveluser WHERE username=?";
+        for (String name: friendNames){
+            TravelUser user = get(TravelUser.class, sql, name);
+            friends.add(user);
+            if(user.getUsername().equals(username)){
+                friends.remove(user);
+            }
+        }
+        return friends;
     }
 }

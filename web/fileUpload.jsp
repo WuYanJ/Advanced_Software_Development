@@ -1,4 +1,7 @@
-<%@ page import="com.wyj.Model.TravelUser" %><%--
+<%@ page import="com.wyj.Model.TravelUser" %>
+<%@ page import="java.io.File" %>
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="com.wyj.DAO.TravelImageDao" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -46,9 +49,27 @@
 
 <body>
 <%
+    TravelImageDao travelImageDao = new TravelImageDao();
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = myself.getUsername();
     int uid = myself.getUID();
+    TravelImage image = new TravelImage();
+    String imageURL = "";
+    String title = "";
+    String photographer = "";
+    String topic = "";
+    String description = "";
+    File file = null;
+    boolean modify = false;
+    if(request.getParameter("imageURL") != null){
+        modify = true;
+        imageURL = request.getParameter("imageURL");
+        image = travelImageDao.getImage(imageURL);
+        title = image.getTitle();
+        photographer = image.getPhotographer();
+        topic = image.getTopic();
+        description = image.getDescription();
+    }
 %>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
@@ -139,25 +160,25 @@
                         <div class="row form-group">
                             <label class="control-label col-lg-1" for="title">Title</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="title" id="title" type="text">
+                                <input class="form-control" name="title" id="title" type="text" value="<%=title%>">
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Photographer</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="photographer" rows="5"/>
+                                <input class="form-control" name="photographer" rows="5" value="<%=photographer%>"/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Topic</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="topic" rows="5"/>
+                                <input class="form-control" name="topic" rows="5" value="<%=topic%>"/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Description</label>
                             <div class="col-lg-5 col-md-6">
-                                <textarea class="form-control" name="description" rows="5"></textarea>
+                                <textarea class="form-control" name="description" rows="5" value="<%=description%>"></textarea>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -188,7 +209,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit">Upload</button>
+                            <button type="submit"><%=modify?"Confirm":"Upload"%></button>
                         </div>
 
                     </form>

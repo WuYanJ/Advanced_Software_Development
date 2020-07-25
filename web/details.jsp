@@ -1,10 +1,12 @@
+<%@ page import="com.wyj.DAO.TravelImageDao" %>
+<%@ page import="com.wyj.DAO.TravelUserDao" %>
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="com.wyj.Model.TravelUser" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.wyj.DAO.TravelImageDao" %>
-<%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="com.wyj.DAO.TravelUserDao" %>
-<%@ page import="com.wyj.Model.TravelUser" %><%--
+<%@ page import="com.wyj.Model.Comment" %>
+<%@ page import="com.wyj.DAO.CommentDAO" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -58,7 +60,7 @@
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = null;
     int uid = 0;
-    if(myself != null){
+    if (myself != null) {
         username = myself.getUsername();
         uid = myself.getUID();
     }
@@ -83,10 +85,11 @@
                 <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <% if(myself != null){
+                <% if (myself != null) {
                 %>
                 <li>
-                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;My Bookmarks</a>
+                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;My
+                        Bookmarks</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
@@ -148,8 +151,6 @@
             <%
 
                 String imageURL = request.getParameter("imageURL");
-
-
                 TravelUserDao travelUserDao = new TravelUserDao();
                 List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
                 if (bookmarkList == null) {
@@ -168,7 +169,8 @@
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
-                                <img src="static/image/travel-images/large/<%= imageURL %>" style="width: 100%;height: auto">
+                                <img src="static/image/travel-images/large/<%= imageURL %>"
+                                     style="width: 100%;height: auto">
                             </div><!-- product-imge-->
                         </div>
                         <%
@@ -225,7 +227,7 @@
                             Date releaseDate = new Date();
                         %>
                         <div class="pb-right-column col-xs-12 col-sm-6">
-<%--                            post-> get --%>
+                            <%--                            post-> get --%>
                             <form>
                                 <h1 class="product-name"><%= title %>
                                 </h1>
@@ -266,9 +268,10 @@
                                             Send to a friend</a>
                                     </div>
                                     <%
-                                        if(myself != null){
+                                        if (myself != null) {
                                     %>
-                                    <a href="<%= request.getContextPath() %>/processBookmark?imageID=<%= imageID %>&bookmarked=<%= alreadyBookmarked %>" class="btn btn-lg btn-success">
+                                    <a href="<%= request.getContextPath() %>/processBookmark?imageID=<%= imageID %>&bookmarked=<%= alreadyBookmarked %>"
+                                       class="btn btn-lg btn-success">
                                         <i class="<%= alreadyBookmarked? "fa fa-heart":"fa fa-heart-o" %>"></i>
                                         <%= bookmarkButton %>
                                     </a>
@@ -292,41 +295,47 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel-284036">
-                                    <%--@declare id="name"--%>
-                                    <div class="row" style="padding: 20px 0">
-                                    </div>
+                                <div class="row" style="padding: 20px 0"></div>
+                                <form action="comment.do?imageURL=<%=imageURL%>&username=<%=username%>" method="post">
                                     <div class="row form-group">
                                         <label class="control-label col-lg-1" for="commentText">Comment</label>
                                         <div class="col-lg-5 col-md-12">
-                                            <textarea class="form-control" name="comment" id="commentText" rows="5"></textarea>
+                                        <textarea class="form-control" name="comment" id="commentText"
+                                                  rows="5"></textarea>
                                         </div>
-                                        <button class="btn btn-sm btn-success" id="sendButton"><i class="fa fa-paper-plane-o"></i>&nbsp;Send</button>
+                                        <button type="submit" class="btn btn-sm btn-success" id="sendButton"><i
+                                                class="fa fa-paper-plane-o"></i>&nbsp;Send</button>
                                     </div>
+                                </form>
                             </div>
-<%--                                <p>--%>
-<%--                                    City Information. Beautiful City.City Information. Beautiful City.City Information.--%>
-<%--                                    Beautiful City.--%>
-<%--                                    City Information. Beautiful City.City Information. Beautiful City.City Information.--%>
-<%--                                    Beautiful City.--%>
-<%--                                </p>--%>
-                            </div>
-                            <div class="tab-pane" id="panel-704287">
-                                <p>
-                                    Continent Information. Big Continent.Continent Information. Big Continent.Continent
-                                    Information. Big Continent.
-                                    Continent Information. Big Continent.Continent Information. Big Continent.Continent
-                                    Information. Big Continent.
-                                </p>
-                            </div>
+                        </div>
+                        <div class="tab-pane" id="panel-704287">
+                            <%
+                                CommentDAO commentDAO = new CommentDAO();
+                                List<Comment> comments = commentDAO.getComments(imageURL);
+                                for(Comment comment:comments){
+                            %>
+                            <h3>
+                                <%=comment.getUsername()%>
+                            </h3>
+                            <p>
+                                <%=comment.getComment()%>
+                            </p>
+                            <hr>
+                            <%
+                                }
+                            %>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <footer>
-                <p>&copy; 2020 Company, Inc.</p>
-            </footer>
         </div>
+        <footer>
+            <p>&copy; 2020 Company, Inc.</p>
+        </footer>
     </div>
+</div>
 </div>
 
 
@@ -362,12 +371,13 @@
 <script>
     function processBookmark(imageURL) {
     }
-    $("#sendButton").eq(0).on('click',function(){
+
+    $("#sendButton").eq(0).on('click', function () {
         var txt = $('#commentText').val();
         <%--$.post("${basePath}/JavaWeb/message.jsp?txt=0",{txt : txt},function(data){--%>
-        $.post("http://localhost:8089/JavaWeb/message.jsp",{txt : txt},function(data){
+        $.post("http://localhost:8089/JavaWeb/message.jsp", {txt: txt}, function (data) {
             data = data.trim();
-            if(data == '-1'){
+            if (data == '-1') {
                 alert('请先登录！');
             }
         });

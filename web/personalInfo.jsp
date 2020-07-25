@@ -124,8 +124,7 @@
             List<String> uploadedImageURLs = new ArrayList<>();
             TravelImageDao travelImageDao = new TravelImageDao();
             try {
-              uploadedImages = travelImageDao.getMyImages("luisg");
-//              uploadedImages = travelImageDao.getMyImages(username);
+              uploadedImages = travelImageDao.getMyImages(username);
             } catch (SQLException e) {
               e.printStackTrace();
             }
@@ -161,75 +160,22 @@
               String class1 = uploadedImages.indexOf(travelImage)%2==0?"col-md-7":"col-md-7 col-md-push-5";
               String class2 = uploadedImages.indexOf(travelImage)%2==0?"col-md-5":"col-md-5 col-md-pull-7";
               %>
-          <div class="row featurette">
+          <div class="row featurette">]
             <div class=<%= class1 %>>
-              <h2 class="featurette-heading" style="color: #3c763d">First featurette heading. <span style="color: #99CC00">It'll blow your mind.</span></h2>
-              <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+              <h2 class="featurette-heading" style="color: #3c763d"><%=travelImage.getTitle()%>.<span style="color: #99CC00">It'll blow your mind.</span></h2>
+              <p class="lead"><%=travelImage.getDescription()%></p>
+              <a href="fileUpload.jsp?imageURL=<%=travelImage.getPath()%>" class="btn btn-default">Modify</a>
+              <a href="" class="btn btn-default">Delete</a>
             </div>
             <div class=<%= class2 %>>
               <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%= travelImage.getPath() %>" alt="<%= travelImage.getTitle() %>>">
-            </div>
+            </div>]
           </div>
           <hr class="featurette-divider">
           <%
             }
           %>
 <%--          <hr class="featurette-divider">--%>
-<%--          <br>--%>
-
-          <!-- /END THE FEATURETTES -->
-
-<%--          <h1>My Collection</h1>--%>
-<%--          <div class="row">--%>
-<%--            <div class="col-md-4">--%>
-<%--              <div class="thumbnail">--%>
-<%--                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />--%>
-<%--                <div class="caption">--%>
-<%--                  <h3>--%>
-<%--                    Thumbnail label--%>
-<%--                  </h3>--%>
-<%--                  <p>--%>
-<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
-<%--                  </p>--%>
-<%--                  <p>--%>
-<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
-<%--                  </p>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-<%--              <div class="thumbnail">--%>
-<%--                <img alt="300x200" src="static/image/travel-images/large/222223.jpg" />--%>
-<%--                <div class="caption">--%>
-<%--                  <h3>--%>
-<%--                    Thumbnail label--%>
-<%--                  </h3>--%>
-<%--                  <p>--%>
-<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
-<%--                  </p>--%>
-<%--                  <p>--%>
-<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
-<%--                  </p>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-md-4">--%>
-<%--              <div class="thumbnail">--%>
-<%--                <img alt="300x200" src="static/image/travel-images/large/222222.jpg" />--%>
-<%--                <div class="caption">--%>
-<%--                  <h3>--%>
-<%--                    Thumbnail label--%>
-<%--                  </h3>--%>
-<%--                  <p>--%>
-<%--                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.--%>
-<%--                  </p>--%>
-<%--                  <p>--%>
-<%--                    <a class="btn btn-primary" href="#">Action</a> <a class="btn" href="#">Action</a>--%>
-<%--                  </p>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--          </div>--%>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
