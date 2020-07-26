@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,18 +31,20 @@ public class UploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Cookie[] cookies = request.getCookies();
         // 应该是null
-        String username = "luisg";
-        for(Cookie cookie : cookies) {
-            if(cookie.getName().equals("username")){
-                username = cookie.getValue();
-            }
-        }
+        String username = null;
+        TravelUser myself = (TravelUser) request.getSession().getAttribute("travelUser");
+        username = myself.getUsername();
+//        for(Cookie cookie : cookies) {
+//            if(cookie.getName().equals("username")){
+//                username = cookie.getValue();
+//            }
+//        }
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         DAO dao = new DAO();
         TravelImage imageToBeStored = new TravelImage();
         String sql = "INSERT INTO travels.travelimage (title, description, cityCode, country_regionCodeISO, " +
-                "UID, path, content)VALUES (?, ?, ?, ?, ?, ?, ?)";
+                "UID, path, content, updatedDate)VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         // 1 得到FileItem对象的集合
         // 创建FileItem对象的工厂
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -116,16 +119,13 @@ public class UploadServlet extends HttpServlet {
 //            preparedStatement.setObject(5, myself.getUID());
             preparedStatement.setObject(6, imageToBeStored.getPath());
             preparedStatement.setObject(7, imageToBeStored.getContent());
+            preparedStatement.setObject(8, new Date());
             preparedStatement.executeUpdate();
             response.sendRedirect("personalInfo.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                DataBaseUtils.releaseDB(null, preparedStatement, connection);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            DataBaseUtils.releaseDB(null, preparedStatement, connection);
         }
 
         // 1 获取请求信息，获取不到，因为编码方式变成二进制的方式提交，因此文本信息获取不到
@@ -133,7 +133,6 @@ public class UploadServlet extends HttpServlet {
 //        String desc = request.getParameter("desc");
 
         InputStream inputStream = request.getInputStream();
-
         Reader reader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(reader);
 

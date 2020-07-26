@@ -51,8 +51,12 @@
   <body>
   <%
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
-    String username = myself.getUsername();
-    int uid = myself.getUID();
+    String username = "";
+    int uid = 0;
+    if(myself != null){
+      username = myself.getUsername();
+      uid = myself.getUID();
+    }
   %>
   <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
@@ -63,34 +67,31 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Daddy Travel Agency</a>
+        <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="about.jsp">About</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="searchResults.jsp">Search</a></li>
           <li><a href="contact.jsp">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
-          </li>
-          <li>
-            <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
-          </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong class="caret"></strong></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong class="caret"></strong></a>
             <ul class="dropdown-menu">
               <li>
-                <a href="#">Action</a>
+                <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
               </li>
               <li>
-                <a href="#">Another action</a>
+                <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+              </li>
+              <li>
+                <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
               </li>
               <li class="divider">
               </li>
               <li>
-                <a href="#">Separated link</a>
+                <a href="logout.do">Logout</a>
               </li>
             </ul>
           </li>
@@ -160,16 +161,16 @@
               String class1 = uploadedImages.indexOf(travelImage)%2==0?"col-md-7":"col-md-7 col-md-push-5";
               String class2 = uploadedImages.indexOf(travelImage)%2==0?"col-md-5":"col-md-5 col-md-pull-7";
               %>
-          <div class="row featurette">]
+          <div class="row featurette">
             <div class=<%= class1 %>>
               <h2 class="featurette-heading" style="color: #3c763d"><%=travelImage.getTitle()%>.<span style="color: #99CC00">It'll blow your mind.</span></h2>
               <p class="lead"><%=travelImage.getDescription()%></p>
               <a href="fileUpload.jsp?imageURL=<%=travelImage.getPath()%>" class="btn btn-default">Modify</a>
-              <a href="" class="btn btn-default">Delete</a>
+              <a href="deleteMyUpload.do?imageURL=<%=travelImage.getPath()%>" class="delete btn btn-default">Delete</a>
             </div>
             <div class=<%= class2 %>>
               <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%= travelImage.getPath() %>" alt="<%= travelImage.getTitle() %>>">
-            </div>]
+            </div>
           </div>
           <hr class="featurette-divider">
           <%
@@ -211,10 +212,15 @@
       alert("此处回车触发搜索事件");
     }
   }
+  $(function () {
+    $(".delete").click(function () {
+      var flag = confirm("Delete this photo？");
+      return flag;
+    })
+  })
 
 </script>
 <style>
-
   .breadcrumb {
     background: none;
     padding: 0;
@@ -223,3 +229,4 @@
     line-height: normal;
   }
 </style>
+

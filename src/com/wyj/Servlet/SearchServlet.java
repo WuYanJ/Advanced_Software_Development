@@ -87,4 +87,32 @@ public class SearchServlet extends HttpServlet {
         dao.update(sql, imageURL, username, comment, new Date(), 0);
         response.sendRedirect("/JavaWeb/details.jsp?imageURL="+imageURL);
     }
+    public void deleteMyUpload(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String imageURL = request.getParameter("imageURL");
+        String sql = "DELETE FROM travels.travelimage WHERE path=?";
+        dao.update(sql, imageURL);
+        response.sendRedirect("/JavaWeb/personalInfo.jsp");
+    }
+
+    public void ifVisible(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        TravelUser myself = (TravelUser) request.getSession().getAttribute("travelUser");
+        String username = myself.getUsername();
+        // 1 visible
+        // 0 invisible
+        String sql = "SELECT ifVisibleToFriend FROM travels.traveluser WHERE username=?";
+        long ifVisibleToFriend = dao.getForValue(sql, username);
+        if(ifVisibleToFriend != 1){
+            sql = "UPDATE travels.traveluser SET ifVisibleToFriend=1 WHERE username=?";
+            dao.update(sql, username);
+        } else {
+            sql = "UPDATE travels.traveluser SET ifVisibleToFriend=0 WHERE username=?";
+            dao.update(sql, username);
+        }
+        response.sendRedirect("/JavaWeb/friends.jsp");
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        request.getSession().invalidate();
+        response.sendRedirect("/homepage.jsp");
+    }
 }

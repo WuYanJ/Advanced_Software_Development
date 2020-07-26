@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="java.util.Map" %><%--
+<%@ page import="java.util.Map" %>
+<%@ page import="com.wyj.Model.TravelUser" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -35,6 +36,15 @@
 <!-- NAVBAR
 ================================================== -->
 <body>
+<%
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    String username = "";
+    int uid = 0;
+    if(myself != null){
+        username = myself.getUsername();
+        uid = myself.getUID();
+    }
+%>
 <div class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -51,34 +61,50 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="about.jsp">About</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="searchResults.jsp">Search</a></li>
                         <li><a href="contact.jsp">Contact</a></li>
-                        <li><a href="searchResults.jsp">Search</a> </li>
                         <li><a href="login.jsp">登陆</a></li>
                         <li><a href="register.jsp">注册</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="personalInfo.jsp">Personal Info</a>
-                        </li>
+                        <% if (myself != null) {
+                        %>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
                                     class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Action</a>
+                                    <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                                 </li>
                                 <li>
-                                    <a href="#">Another action</a>
+                                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                                </li>
+                                <li>
+                                    <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                                </li>
+                                <li>
+                                    <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="#">Separated link</a>
+                                    <a href="#">Logout</a>
                                 </li>
                             </ul>
                         </li>
+                        <%
+                            } else {
+                        %>
+                        <li>
+                            <a href="login.jsp">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="register.jsp">Sign Up</a>
+                        </li>
+                        <%
+                            }
+                        %>
                     </ul>
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
@@ -163,39 +189,22 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
+        <%
+            int latestImageAmount = 3;
+            List<TravelImage> latestImages = travelImageDao.getLatestImage(latestImageAmount);
+            for(TravelImage image : latestImages){
+        %>
         <div class="col-lg-4">
             <img class="img-circle"
-                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 src="static/image/travel-images/medium/<%=image.getPath()%>"
                  alt="Generic placeholder image" width="140" height="140">
-            <h2 style="color: #666633">Heading</h2>
-            <p style="color: #99CC33">Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id
-                dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at
-                eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <h2 style="color: #666633"><%=image.getTitle()%></h2>
+            <p style="color: #99CC33"><%=image.getDescription()%></p>
+            <p><a class="btn btn-default" href="details.jsp?imageURL=<%=image.getPath()%>" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle"
-                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                 alt="Generic placeholder image" width="140" height="140">
-            <h2 style="color: #666633">Heading</h2>
-            <p style="color: #99CC33">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio
-                sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
-                tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle"
-                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-                 alt="Generic placeholder image" width="140" height="140">
-            <h2 style="color: #666633">Heading</h2>
-            <p style="color: #99CC33">Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-
+        <%
+            }
+        %>
     <!-- START THE FEATURETTES -->
 
     <hr class="featurette-divider">

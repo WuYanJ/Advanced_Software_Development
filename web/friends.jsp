@@ -1,7 +1,8 @@
 <%@ page import="com.wyj.Model.TravelUser" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.wyj.DAO.InvitationDAO" %>
-<%@ page import="com.wyj.DAO.TravelUserDao" %><%--
+<%@ page import="com.wyj.DAO.TravelUserDao" %>
+<%@ page import="com.wyj.DAO.DAO" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/22
@@ -63,35 +64,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">Daddy Trvel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="searchResults.jsp">Search</a></li>
+                <li><a href="">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <% if (myself != null) {
                 %>
-                <li>
-                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;My
-                        Bookmarks</a>
-                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Action</a>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="#">Another action</a>
+                            <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                        </li>
+                        <li>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li class="divider">
                         </li>
                         <li>
-                            <a href="#">Separated link</a>
+                            <a href="logout.do">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -116,14 +116,22 @@
 
     <div class="row row-offcanvas row-offcanvas-right">
 
-
+<%
+    DAO dao = new DAO();
+    String sql = "SELECT ifVisibleToFriend FROM travels.traveluser WHERE username=?";
+    long ifVisibleToFriend = dao.getForValue(sql, username);
+    System.out.println(ifVisibleToFriend);
+    String ifVisibleMessage = ifVisibleToFriend == 1 ? "VISIBLE":"NOT VISIBLE";
+%>
         <div class="col-xs-12 col-sm-9">
             <p class="pull-right visible-xs">
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
             </p>
             <div class="jumbotron">
                 <h1>Friends</h1>
-                <p></p>
+                <form action="ifVisible.do" method="post">
+                <button type="submit" class="visible"><b><%=ifVisibleMessage%></b> to friends</button>
+                </form>
             </div>
 
             <div class="row">

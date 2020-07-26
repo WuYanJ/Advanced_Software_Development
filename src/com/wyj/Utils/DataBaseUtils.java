@@ -60,7 +60,7 @@ public class DataBaseUtils {
 
     // 关闭数据库资源
     public static void releaseDB(ResultSet resultSet, Statement statement,
-                                 Connection connection) throws SQLException {
+                                 Connection connection)  {
         if(resultSet != null) {
             try {
                 resultSet.close();
@@ -89,7 +89,7 @@ public class DataBaseUtils {
     // 执行sql的方法
     // sql：insert, update, delete，而不包含select
     // 这个方法是有问题的。现在每次执行一个sql语句都要创建一个connection
-    public static void update(String sql) throws SQLException {
+    public static void update(String sql) {
         Connection connection = null;
         Statement statement = null;
 
@@ -110,7 +110,7 @@ public class DataBaseUtils {
         }
     }
 
-    public static void update(String sql, Object...args) throws SQLException {
+    public static void update(String sql, Object...args) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {

@@ -44,6 +44,19 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
+
+
+        <servlet>
+            <servlet-name>KaptchaServlet</servlet-name>
+            <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+            <load-on-startup>2</load-on-startup>
+        </servlet>
+
+        <servlet-mapping>
+            <servlet-name>KaptchaServlet</servlet-name>
+            <url-pattern>/kaptcha.jpg</url-pattern>
+        </servlet-mapping>
+
 <!--    <servlet>-->
 <!--        <servlet-name>loginServlet</servlet-name>-->
 <!--        <servlet-class>com.wyj.Servlet.LoginServlet</servlet-class>-->

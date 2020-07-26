@@ -1,5 +1,6 @@
 <%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.wyj.Model.TravelUser" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -50,6 +51,15 @@
 </head>
 
 <body>
+<%
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    String username = "";
+    int uid = 0;
+    if(myself != null){
+        username = myself.getUsername();
+        uid = myself.getUID();
+    }
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -64,9 +74,48 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="homepage.jsp">Home</a></li>
-                <li><a href="about.jsp">About</a></li>
+                <li><a href="homepage.jsp">Home</a></li>
+                <li><a href="searchResults.jsp">Search</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <% if (myself != null) {
+                %>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
+                            class="caret"></strong></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
+                        </li>
+                        <li>
+                            <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                        </li>
+                        <li>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                        </li>
+                        <li>
+                            <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
+                        </li>
+                        <li class="divider">
+                        </li>
+                        <li>
+                            <a href="logout.do">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                <%
+                } else {
+                %>
+                <li>
+                    <a href="login.jsp">Sign In</a>
+                </li>
+                <li>
+                    <a href="register.jsp">Sign Up</a>
+                </li>
+                <%
+                    }
+                %>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

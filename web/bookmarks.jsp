@@ -5,7 +5,8 @@
 <%@ page import="com.wyj.DAO.TravelImageDao" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.wyj.DAO.TravelUserDao" %>
-<%@ page import="com.wyj.Model.TravelImage" %><%--
+<%@ page import="com.wyj.Model.TravelImage" %>
+<%@ page import="com.wyj.DAO.DAO" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/12
@@ -32,6 +33,8 @@
     <!-- Custom styles for this template -->
     <link href="static/css/personalInfo.css" rel="stylesheet">
 
+    <%--  Font Awesome  --%>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -51,8 +54,10 @@
     session.setAttribute("username", "SpongeBob");
     session.setAttribute("uid", 12);
     ///
+    DAO dao = new DAO();
     String username = request.getParameter("username");
-    int uid = Integer.parseInt(request.getParameter("uid"));
+    String sql = "SELECT uid FROM travels.traveluser WHERE username=?";
+    int uid = dao.getForValue(sql, username);
 
     TravelImageDao travelImageDao = new TravelImageDao();
     TravelUserDao travelUserDao = new TravelUserDao();
@@ -72,28 +77,28 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="about.jsp">About</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="searchResults.jsp">Search</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="personalInfo.jsp">Personal Info</a>
-                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%><strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Action</a>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="#">Another action</a>
+                            <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                        </li>
+                        <li>
+                            <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
                         </li>
                         <li class="divider">
                         </li>
                         <li>
-                            <a href="#">Separated link</a>
+                            <a href="logout.do">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -187,7 +192,7 @@
                         String cValue = c.getValue();
                         String cookieImageTitle = null;
                         String cookieImageContent = null;
-                        String sql = "SELECT title, content FROM travels.travelimage WHERE path='" + cValue + "'";
+                        sql = "SELECT title, content FROM travels.travelimage WHERE path='" + cValue + "'";
                         ResultSet resultSet = DataBaseUtils.getConn().createStatement().executeQuery(sql);
                         if(resultSet.next()) {
                             cookieImageTitle = resultSet.getString(1);
@@ -205,18 +210,6 @@
             </div>
         </div>
     </div>
-<%--        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">--%>
-<%--            <div class="list-group">--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item active"--%>
-<%--                   style="background-color: #CCCCcc;border-color: #CCCCcc">Link</a>--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item" style="background-color: #CCCCcc">Link</a>--%>
-<%--                <a href="personalInfo.jsp" class="list-group-item">Link</a>--%>
-<%--            </div>--%>
-<%--        </div><!--/.sidebar-offcanvas-->--%>
-    <!--/row-->
     <hr>
     <footer>
         <p>&copy; 2020 Company, Inc.</p>

@@ -44,22 +44,33 @@
 <div class="container">
     <form action="LoginServlet" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" id="username" name="usernameORemail" class="form-control" placeholder="Username/Email" required autofocus>
+        <p style="color: red"><%=request.getAttribute("message") == null ? "" : request.getAttribute("message")%></p>
+        <input type="text" id="username" name="usernameORemail" class="form-control"
+               placeholder="Username/Email" value="<%=request.getParameter("usernameORemail") == null ? "":request.getParameter("usernameORemail")%>" required autofocus>
         <br>
-        <input type="password" id="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="password" name="password" id="inputPassword" class="form-control"
+               placeholder="Password" value="<%=request.getParameter("password") == null ? "":request.getParameter("password")%>" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
+        <br>
+        <input type="text"  style="width: 120px" name="captcha">&nbsp;
+        <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">
+        <br><br>
 <%--        <button class="btn btn-lg btn-primary btn-block" onclick="sendRequest()">Sign in</button>--%>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <br>
         <p class="pull-right"><a href="homepage.jsp">Back to HOMEPAGE</a></p>
     </form>
-
 </div> <!-- /container -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="static/js/jquery.min.js"><\/script>')</script>
+<script src="static/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="static/js/ie10-viewport-bug-workaround.js"></script>
+<script src="static/js/personalInfo.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="static/js/ie10-viewport-bug-workaround.js"></script>
 </body>
@@ -84,4 +95,10 @@
             }
         });
     }
+    $(function () {
+        $("#captcha_img").click(function () {
+            this.src = "${basePath}kaptcha.jpg?randomParam="+new Math.random();
+        })
+    })
+
 </script>

@@ -2,6 +2,7 @@ package com.wyj.Servlet;
 
 import com.wyj.DAO.DAO;
 import com.wyj.DAO.TravelImageDao;
+import com.wyj.Model.TravelUser;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,8 @@ public class ProcessBookmarkServlet extends HttpServlet {
         }
         String alreadyBookmarked = request.getParameter("bookmarked");
         HttpSession session = request.getSession();
-        int uid = (int) session.getAttribute("uid");
+        TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+        int uid = myself.getUID();
         String sql = "INSERT INTO travels.travelimagefavor(uid, imageID) VALUES(?, ?)";
         String sqlDelete = "DELETE FROM travels.travelimagefavor WHERE (uid=" + uid + " AND imageID=" + imageID + ")";
 

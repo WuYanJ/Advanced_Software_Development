@@ -85,31 +85,31 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="about.jsp">About</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="searchResults.jsp">Search</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
-                </li>
-                <li>
-                    <a href="bookmarks.jsp?username=<%=username%>&uid=<%=uid%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
-                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Action</a>
+                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="#">Another action</a>
+                            <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                        </li>
+                        <li>
+                            <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                        </li>
+                        <li>
+                            <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
                         </li>
                         <li class="divider">
                         </li>
                         <li>
-                            <a href="#">Separated link</a>
+                            <a href="logout.do">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -207,7 +207,6 @@
                                 <option>5</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <button type="submit"><%=modify?"Confirm":"Upload"%></button>
                         </div>

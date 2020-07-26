@@ -36,6 +36,8 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="static/js/holder.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -43,19 +45,28 @@
 <div class="container">
 <form action="RegisterServlet" method="post" class="form-signin">
     <h2 class="form-signin-heading">Please sign up</h2>
-    <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+    <p style="color: red"><%=request.getAttribute("message") == null ? "" : request.getAttribute("message")%></p>
+    <input type="text" name="username" class="form-control"
+           placeholder="Username" value="<%=request.getParameter("username") == null ? "":request.getParameter("username")%>" required autofocus>
     <br>
-    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" name="email" id="inputEmail" class="form-control"
+           placeholder="Email address" value="<%=request.getParameter("email") == null ? "":request.getParameter("email")%>" required autofocus>
     <br>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
+    <input type="password" name="password" id="inputPassword" class="form-control"
+           placeholder="Password" value="<%=request.getParameter("password") == null ? "":request.getParameter("password")%>" required autofocus>
     <br>
-    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+           placeholder="Confirm Password" value="<%=request.getParameter("confirmPassword") == null ? "":request.getParameter("confirmPassword")%>" required>
     <br>
     <div class="checkbox">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
+    <br>
+    <input type="text" style="width: 120px" name="captcha">&nbsp;
+    <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">
+    <br><br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button><br>
     <p class="pull-right"><a href="homepage.jsp">Back to HOMEPAGE</a></p>
 </form>
@@ -64,6 +75,20 @@
 //    request.getParameter("");
 %>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="static/js/jquery.min.js"><\/script>')</script>
+<script src="static/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="static/js/ie10-viewport-bug-workaround.js"></script>
+<script src="static/js/personalInfo.js"></script>
 <script src="static/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        $("#captcha_img").click(function () {
+            this.src = "${basePath}kaptcha.jpg?randomParam="+new Math.random();
+
+        })
+    })
+</script>
