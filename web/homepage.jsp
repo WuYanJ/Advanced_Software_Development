@@ -37,6 +37,25 @@
 ================================================== -->
 <body>
 <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "homepage.jsp");
+    if(request.getAttribute("message") != null){
+    if((request.getAttribute("message")).equals("register")){
+%>
+<script>
+    alert("Successfully Registered")
+</script>
+<%
+    } else if((request.getAttribute("message")).equals("login")){
+%>
+<script>
+    alert("Successfully Logged in")
+</script>
+<%
+    }
+    }
+%>
+<%
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = "";
     int uid = 0;
@@ -81,7 +100,7 @@
                                     <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                                 </li>
                                 <li>
-                                    <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                                    <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                                 </li>
                                 <li>
                                     <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
@@ -89,7 +108,7 @@
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="#">Logout</a>
+                                    <a href="logout.do">Logout</a>
                                 </li>
                             </ul>
                         </li>
@@ -200,6 +219,7 @@
                  alt="Generic placeholder image" width="140" height="140">
             <h2 style="color: #666633"><%=image.getTitle()%></h2>
             <p style="color: #99CC33"><%=image.getDescription()%></p>
+            <p style="color: #99CC99"><%=image.getUpdatedDate()%></p>
             <p><a class="btn btn-default" href="details.jsp?imageURL=<%=image.getPath()%>" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <%

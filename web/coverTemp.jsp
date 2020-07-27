@@ -12,5 +12,8 @@
   </head>
   <body>
   <h1>Tomcat测试1</h1>
+  <%
+    System.out.println(request.getServletContext().getRealPath("/"));
+  %>
   </body>
 </html>

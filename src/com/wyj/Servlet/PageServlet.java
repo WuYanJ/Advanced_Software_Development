@@ -18,8 +18,6 @@ import java.sql.SQLException;
 
 public class PageServlet extends HttpServlet {
     PageService pageService = new PageService();
-    TravelUserDao travelUserDao = new TravelUserDao();
-    TravelImageDao travelImageDao = new TravelImageDao();
     DAO dao = new DAO();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -32,8 +30,10 @@ public class PageServlet extends HttpServlet {
         // 得到edit这样的字符串
         String methodName = servletPath.substring(1);
 
-        methodName = methodName.substring(0, methodName.length()-5);
+        int pageIndex = methodName.indexOf(".page");
+        methodName = methodName.substring(0, pageIndex);
         System.out.println(methodName);
+//        methodName = methodName.substring(0, methodName.length()-5);
         // 利用反射获取方法
         try {
             Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
@@ -50,10 +50,18 @@ public class PageServlet extends HttpServlet {
         if(request.getParameter("pageNo") != null){
             pageNo = Integer.parseInt(request.getParameter("pageNo"));
         }
-
-        System.out.println("pageNo:>"+pageNo);
         TravelUser myself = (TravelUser)request.getSession().getAttribute("travelUser");
-        int uid = myself.getUID();
+        String sql = null;
+        String username = "";
+        int uid = 0;
+        if(request.getParameter("username") != null){
+            username = request.getParameter("username");
+            sql = "SELECT uid FROM travels.traveluser WHERE username=?";
+            uid = dao.getForValue(sql, username);
+        } else {
+            uid = myself.getUID();
+        }
+
         int pageSize = Page.PAGE_SIZE;
 
         // 2 调用service.page(pageNo, pageSize):Page对象
@@ -61,7 +69,7 @@ public class PageServlet extends HttpServlet {
         // 3 保存Page对象到request中
         request.setAttribute("page", pageMyBookmarks);
         //4 请求转发给jsp
-        request.getRequestDispatcher("/bookmarks.jsp?username="+myself.getUsername()).forward(request, response);
+        request.getRequestDispatcher("/bookmarks.jsp?username="+username).forward(request, response);
     }
 
     public void pageMyImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

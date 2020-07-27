@@ -106,23 +106,18 @@ public class UploadServlet extends HttpServlet {
                 }
             }
             connection = DataBaseUtils.getConn();
-            String sql4uid = "SELECT uid FROM travels.traveluser WHERE username='"+username+"'";
-            System.out.println(sql4uid);
-//            TravelUser myself = dao.get(TravelUser.class, sql4uid);
-//            System.out.println("-->"+myself.toString());
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setObject(1, imageToBeStored.getTitle());
             preparedStatement.setObject(2, imageToBeStored.getDescription());
             preparedStatement.setObject(3, imageToBeStored.getCityCode());
             preparedStatement.setObject(4, imageToBeStored.getCountry_regionCode());
-            preparedStatement.setObject(5, 1);
-//            preparedStatement.setObject(5, myself.getUID());
+            preparedStatement.setObject(5, myself.getUID());
             preparedStatement.setObject(6, imageToBeStored.getPath());
             preparedStatement.setObject(7, imageToBeStored.getContent());
             preparedStatement.setObject(8, new Date());
             preparedStatement.setObject(9, 0);
             preparedStatement.executeUpdate();
-            response.sendRedirect("personalInfo.jsp");
+            response.sendRedirect("pageMyImages.page");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

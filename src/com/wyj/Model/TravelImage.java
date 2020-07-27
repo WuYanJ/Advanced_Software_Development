@@ -1,5 +1,7 @@
 package com.wyj.Model;
 
+import java.util.Date;
+
 public class TravelImage {
     private int imageID;
     private String title;
@@ -12,6 +14,16 @@ public class TravelImage {
     private String path;
     private String content;
     private int favor;
+    private String photographer;
+    private Date updatedDate;
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 
     public int getFavor() {
         return favor;
@@ -19,8 +31,6 @@ public class TravelImage {
     public void setFavor(int favor){
         this.favor = favor;
     }
-
-    private String photographer;
 
 
 

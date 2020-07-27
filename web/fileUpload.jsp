@@ -1,14 +1,17 @@
-<%@ page import="com.wyj.Model.TravelUser" %>
-<%@ page import="java.io.File" %>
+<%@ page import="com.wyj.DAO.TravelImageDao" %>
 <%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="com.wyj.DAO.TravelImageDao" %><%--
+<%@ page import="com.wyj.Model.TravelUser" %>
+<%@ page import="java.io.File" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
   Time: 下午3:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -34,6 +37,7 @@
     <link href="static/css/personalInfo.css" rel="stylesheet">
 
 
+    <script src="static/js/jquery-3.5.1.js"></script>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
     <script src="static/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -49,6 +53,8 @@
 
 <body>
 <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "fileUpload.jsp");
     TravelImageDao travelImageDao = new TravelImageDao();
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = myself.getUsername();
@@ -61,7 +67,7 @@
     String description = "";
     File file = null;
     boolean modify = false;
-    if(request.getParameter("imageURL") != null){
+    if (request.getParameter("imageURL") != null) {
         modify = true;
         imageURL = request.getParameter("imageURL");
         image = travelImageDao.getImage(imageURL);
@@ -81,7 +87,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Daddy Travel Agency</a>
+            <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -91,7 +97,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="fa fa-user-circle-o"></i> <%=username%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -101,7 +108,7 @@
                             <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
-                            <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                            <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li>
                             <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
@@ -160,33 +167,37 @@
                         <div class="row form-group">
                             <label class="control-label col-lg-1" for="title">Title</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="title" id="title" type="text" value="<%=title%>">
+                                <input class="form-control" name="title" id="title" type="text" value="<%=title%>" required>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Photographer</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="photographer" rows="5" value="<%=photographer%>"/>
+                                <input class="form-control" name="photographer" rows="5" value="<%=photographer%>" required/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Topic</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="topic" rows="5" value="<%=topic%>"/>
+                                <input class="form-control" name="topic" rows="5" value="<%=topic%>" required/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Description</label>
                             <div class="col-lg-5 col-md-6">
-                                <textarea class="form-control" name="description" rows="5" value="<%=description%>"></textarea>
+                                <textarea class="form-control" name="description" rows="5"
+                                          value="<%=description%>" required></textarea>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">File </label>
                             <div class="col-lg-5 col-md-6">
-                                <input type="file" name="file">
+                                <input type="file" name="file" id="file0" accept=".jpg,.jpeg,.png" required>
+                                <br><br>
+                                <img src="" id="img0" style="width: 500px;height: auto"><br/>
                             </div>
                         </div>
+
                         <div class="row form-group">
                             <%--@declare id="country"--%><label for="country">Country</label>
                             <select class="form-control col-lg-4">
@@ -208,7 +219,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit"><%=modify?"Confirm":"Upload"%></button>
+                            <button type="submit"><%=modify ? "Confirm" : "Upload"%>
+                            </button>
                         </div>
 
                     </form>
@@ -250,6 +262,28 @@
         }
     }
 
+</script>
+<script>
+    $("#file0").change(function () {
+        var objUrl = getObjectURL(this.files[0]);
+        console.log("objUrl = " + objUrl);
+        if (objUrl) {
+            $("#img0").attr("src", objUrl);
+        }
+    });
+
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if (window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
 </script>
 <style>
     .breadcrumb {

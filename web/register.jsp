@@ -43,20 +43,23 @@
 <body>
 
 <div class="container">
-<form action="RegisterServlet" method="post" class="form-signin">
+<form action="RegisterServlet" method="post" class="form-signin" id="form_reg">
     <h2 class="form-signin-heading">Please sign up</h2>
     <p style="color: red"><%=request.getAttribute("message") == null ? "" : request.getAttribute("message")%></p>
-    <input type="text" name="username" class="form-control"
+    <input type="text" name="username" id="username" class="form-control" onblur="validateUsername()" onfocus="validateUsername()"
            placeholder="Username" value="<%=request.getParameter("username") == null ? "":request.getParameter("username")%>" required autofocus>
+    <div id="usernameDiv" style="color: red"></div>
     <br>
     <input type="email" name="email" id="inputEmail" class="form-control"
            placeholder="Email address" value="<%=request.getParameter("email") == null ? "":request.getParameter("email")%>" required autofocus>
     <br>
-    <input type="password" name="password" id="inputPassword" class="form-control"
+    <input type="password" name="password" id="inputPassword" class="form-control" onblur="validatePassword()" onfocus="validatePassword()"
            placeholder="Password" value="<%=request.getParameter("password") == null ? "":request.getParameter("password")%>" required autofocus>
+    <div id="passwordDiv" style="color: red"></div>
     <br>
-    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" onblur="validateConfirmPassword()" onfocus="validateConfirmPassword()"
            placeholder="Confirm Password" value="<%=request.getParameter("confirmPassword") == null ? "":request.getParameter("confirmPassword")%>" required>
+    <div id="confirmPasswordDiv" style="color: red"></div>
     <br>
     <div class="checkbox">
         <label>
@@ -64,10 +67,10 @@
         </label>
     </div>
     <br>
-    <input type="text" style="width: 120px" name="captcha">&nbsp;
+    <input type="text" style="width: 120px" name="captcha" id="captcha">&nbsp;
     <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">
     <br><br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="btnSubmit">Sign up</button><br>
     <p class="pull-right"><a href="homepage.jsp">Back to HOMEPAGE</a></p>
 </form>
 </div> <!-- /container -->
@@ -91,4 +94,50 @@
 
         })
     })
+    function validateUsername(){
+        // 获取用户名
+        var username = document.getElementById("username").value;
+        var usernameDiv = document.getElementById("usernameDiv");
+        if(username.length < 4){
+            usernameDiv.innerHTML="Username must be longer than 4 characters";
+            return false;
+        } else if (username.length > 15){
+            usernameDiv.innerHTML="Username must be shorter than 15 characters";
+            return false;
+        } else if (username.indexOf("@") != -1){
+            usernameDiv.innerHTML="Username cannot contain '@'";
+            return false;
+        } else{
+            usernameDiv.innerHTML="";
+            return true;
+        }
+    }
+    function validatePassword(){
+        var password = document.getElementById("inputPassword").value;
+        var passwordDiv = document.getElementById("passwordDiv");
+        if(password.length < 6){
+            passwordDiv.innerHTML="Password must be longer than 6 characters";
+            return false;
+        } else if (password.length > 12){
+            passwordDiv.innerHTML="Password must be shorter than 12 characters";
+            return false;
+        } else {
+            passwordDiv.innerHTML="";
+            return true;
+        }
+    }
+    function validateConfirmPassword(){
+        var password = document.getElementById("inputPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var confirmPasswordDiv = document.getElementById("confirmPasswordDiv");
+        if(password !== confirmPassword){
+            confirmPasswordDiv.innerHTML="Passwords are not identical";
+            return false;
+        } else {
+            confirmPasswordDiv.innerHTML="";
+            return true;
+        }
+    }
+
+
 </script>

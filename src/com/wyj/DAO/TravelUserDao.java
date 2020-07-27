@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TravelUserDao extends DAO{
 //    查询数据库，判断用户名是否已经被注册
-    public boolean travelUserExist(String username) throws ClassNotFoundException, SQLException, IOException {
+    public boolean travelUserExist(String username) throws ClassNotFoundException, IOException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -23,6 +23,27 @@ public class TravelUserDao extends DAO{
             connection = DataBaseUtils.getConn();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
+            //执行查询，获取结果集
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.next()) {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DataBaseUtils.releaseDB(resultSet, preparedStatement, connection);
+        }
+        return true;
+    }
+    public boolean travelUserExistByEmail(String email) throws ClassNotFoundException, IOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String sql = "SELECT * FROM travels.traveluser WHERE email = ?";
+        try {
+            connection = DataBaseUtils.getConn();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
             //执行查询，获取结果集
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()) {
@@ -80,8 +101,12 @@ public class TravelUserDao extends DAO{
         Connection connection = DataBaseUtils.getConn();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+        String sql = null;
+        if(username.contains("@")){
+            sql = "SELECT * FROM travels.traveluser WHERE email = ? and pass = ?";
+        }
 
-        String sql = "SELECT * FROM travels.traveluser WHERE username = ? and pass = ?";
+        sql = "SELECT * FROM travels.traveluser WHERE username = ? and pass = ?";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);

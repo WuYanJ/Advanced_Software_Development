@@ -47,6 +47,8 @@
 
 <body>
 <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "friends.jsp");
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = "";
     int uid = 0;
@@ -64,7 +66,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Daddy Trvel Agency</a>
+            <a class="navbar-brand" href="homepage.jsp">Daddy Trvel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -86,7 +88,7 @@
                             <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
-                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                            <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li class="divider">
                         </li>
@@ -120,7 +122,6 @@
     DAO dao = new DAO();
     String sql = "SELECT ifVisibleToFriend FROM travels.traveluser WHERE username=?";
     long ifVisibleToFriend = dao.getForValue(sql, username);
-    System.out.println(ifVisibleToFriend);
     String ifVisibleMessage = ifVisibleToFriend == 1 ? "VISIBLE":"NOT VISIBLE";
 %>
         <div class="col-xs-12 col-sm-9">
@@ -145,7 +146,7 @@
                     <h2><%=friend.getUsername()%></h2>
                     <p><%=friend.getEmail()%>></p>
                     <p><%=friend.getDateJoined()%>></p>
-                    <p><a class="addFriend btn btn-default" href="bookmarks.jsp?username=<%=friend.getUsername()%>" role="button">Bookmark &raquo;</a></p>
+                    <p><a class="btn btn-default" href="pageMyBookmarks.page?username=<%=friend.getUsername()%>" role="button">Bookmark &raquo;</a></p>
                 </div><!--/.col-xs-6.col-lg-4-->
                 <%
                         }

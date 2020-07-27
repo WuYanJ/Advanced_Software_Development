@@ -42,7 +42,7 @@ public class TravelImageDao extends DAO{
     }
     // 已测试
     public List<TravelImage> getLatestImage(int amount) throws SQLException {
-        String sql = "SELECT imageID, title, description, latitude, longitude, cityCode, country_regionCodeISO country_regionCode, UID, path, content, topic  FROM travels.travelimage order by updatedDate desc limit " + amount;
+        String sql = "SELECT imageID, title, description, latitude, longitude, cityCode, country_regionCodeISO country_regionCode, UID, path, content, updatedDate  FROM travels.travelimage order by updatedDate desc limit " + amount;
         List<TravelImage> travelImage = getForList(TravelImage.class, sql);
         return travelImage;
     }

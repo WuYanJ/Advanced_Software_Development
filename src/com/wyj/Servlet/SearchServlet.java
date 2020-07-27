@@ -92,7 +92,7 @@ public class SearchServlet extends HttpServlet {
         String imageURL = request.getParameter("imageURL");
         String username = request.getParameter("username");
         String comment = request.getParameter("comment");
-        String sql = "INSERT INTO travels.travelimageComment(imageURL, username, comment, dateCreated, favorAmount)VALUES(?, ?, ?)";
+        String sql = "INSERT INTO travels.travelimageComment(imageURL, username, comment, dateCreated, favorAmount)VALUES(?, ?, ?, ?, ?)";
         dao.update(sql, imageURL, username, comment, new Date(), 0);
         response.sendRedirect("/JavaWeb/details.jsp?imageURL="+imageURL);
     }

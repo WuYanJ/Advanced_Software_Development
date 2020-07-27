@@ -52,6 +52,8 @@
 
 <body>
 <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "searchResults.jsp");
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = "";
     int uid = 0;
@@ -92,7 +94,7 @@
                             <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
-                            <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                            <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li>
                             <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>

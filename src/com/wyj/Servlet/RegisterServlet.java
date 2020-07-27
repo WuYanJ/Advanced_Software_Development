@@ -51,6 +51,7 @@ public class RegisterServlet extends HttpServlet {
         try {
             // 检查用户名是否已经被占用
             if (!travelUserDao.travelUserExist(username)) {
+                if(!travelUserDao.travelUserExistByEmail(email)){
                 //实例化一个User对象
                 TravelUser newTravelUser = new TravelUser();
 
@@ -64,7 +65,14 @@ public class RegisterServlet extends HttpServlet {
                 travelUserDao.saveTravelUser(newTravelUser);
 
                 request.getSession().setAttribute("travelUser", newTravelUser);
-                response.sendRedirect("homepage.jsp");
+                request.setAttribute("message", "register");
+                String lastPage = (String) request.getSession().getAttribute("lastPage");
+                request.getRequestDispatcher("/"+lastPage).forward(request, response);
+//                response.sendRedirect("homepage.jsp");
+                } else {
+                    request.setAttribute("message", "Email has been registered. Please login in.");
+                    request.getRequestDispatcher("/register.jsp").forward(request, response);
+                }
             } else {
                 // 如果已经被占用，通过转发的方式返回register.jsp
                 // 在request中放入一个属性message：用户名已经被占用，请重新选择

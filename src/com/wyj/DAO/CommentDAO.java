@@ -7,7 +7,15 @@ import java.util.List;
 
 public class CommentDAO extends DAO{
     public List<Comment> getComments(String imageURL) throws SQLException {
-        String sql = "SELECT id, imageURL, username, comment FROM travels.travelimageComment WHERE imageURL='" + imageURL + "'";
+        String sql = "SELECT id, imageURL, username, comment, dateCreated, favorAmount FROM travels.travelimageComment WHERE imageURL='" + imageURL + "'";
+        return getForList(Comment.class, sql);
+    }
+    public List<Comment> getCommentsOrderByDate(String imageURL) throws SQLException {
+        String sql = "SELECT id, imageURL, username, comment, dateCreated, favorAmount FROM travels.travelimageComment WHERE imageURL='" + imageURL + "' ORDER BY dateCreated";
+        return getForList(Comment.class, sql);
+    }
+    public List<Comment> getCommentsOrderByFavor(String imageURL) throws SQLException {
+        String sql = "SELECT id, imageURL, username, comment, dateCreated, favorAmount FROM travels.travelimageComment WHERE imageURL='" + imageURL + "' ORDER BY favorAmount";
         return getForList(Comment.class, sql);
     }
 }

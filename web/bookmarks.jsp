@@ -7,7 +7,8 @@
 <%@ page import="com.wyj.DAO.TravelUserDao" %>
 <%@ page import="com.wyj.Model.TravelImage" %>
 <%@ page import="com.wyj.DAO.DAO" %>
-<%@ page import="com.wyj.Model.Page" %><%--
+<%@ page import="com.wyj.Model.Page" %>
+<%@ page import="com.wyj.Model.TravelUser" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/12
@@ -51,16 +52,24 @@
 </head>
 <body>
 <%
-    // 这一行最后需要删掉，username应该在login或register的时候就存在session中
-    session.setAttribute("username", "SpongeBob");
-    session.setAttribute("uid", 12);
-    ///
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "bookmarks.jsp");
     DAO dao = new DAO();
-    String username = request.getParameter("username");
-    String sql = "SELECT uid FROM travels.traveluser WHERE username=?";
+
+    String username;
+    long ifVisibleToFriend = 1;
+    String sql;
+    TravelUser myself = (TravelUser) session.getAttribute("travelUser");
+    if(request.getParameter("username") != null){
+        username = request.getParameter("username");
+        sql = "SELECT ifVisibleToFriend FROM travels.traveluser WHERE username=?";
+        ifVisibleToFriend = dao.getForValue(sql, username);
+    } else {
+        username = myself.getUsername();
+    }
+    sql = "SELECT uid FROM travels.traveluser WHERE username=?";
     int uid = dao.getForValue(sql, username);
 
-    TravelImageDao travelImageDao = new TravelImageDao();
     TravelUserDao travelUserDao = new TravelUserDao();
 
     Page<TravelImage> bookmarkPage = (Page<TravelImage>) request.getAttribute("page");
@@ -86,14 +95,17 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=username%><strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=myself.getUsername()%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                            <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                        </li>
+                        <li>
+                            <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li>
                             <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
@@ -122,6 +134,9 @@
             Data
         </li>
     </ul>
+    <%
+        if(ifVisibleToFriend == 1){
+    %>
     <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
@@ -243,6 +258,21 @@
             }
         %>
     </ul>
+    <%
+        } else {
+    %>
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <div class="jumbotron">
+                <h1 style="color: #006633">SORRY! </h1>
+                <h1 style="color: #99CC00"><%= username %>'s Bookmark is NOT VISIBLE</h1>
+            </div>
+        </div>
+    </div>
+    <%
+        }
+    %>
     <hr>
     <footer>
         <p>&copy; 2020 Company, Inc.</p>

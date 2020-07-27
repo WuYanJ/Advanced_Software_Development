@@ -32,6 +32,10 @@
   </head>
 
   <body>
+  <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "index.jsp");
+  %>
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">

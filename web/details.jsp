@@ -56,6 +56,8 @@
 
 <body>
 <%
+    session.removeAttribute("lastPage");
+    session.setAttribute("lastPage", "details.jsp");
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = null;
     int uid = 0;
@@ -244,7 +246,7 @@
                                         <i class="fa fa-star-half-o"></i>
                                     </div>
                                     <div class="comments-advices">
-                                        <a href="#" class="a-block"><i class="fa fa-pencil"></i>write a review</a>
+                                        <a href="#" class="a-block"><i class="fa fa-pencil"></i>&nbsp;Write a review</a>
                                     </div>
                                 </div>
                                 <div>
@@ -291,17 +293,24 @@
                     <div class="tabbable" id="tabs-80803">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#panel-284036" data-toggle="tab">City1</a>
+                                <a href="#panel-284036" data-toggle="tab">Send Comments</a>
                             </li>
                             <li>
-                                <a href="#panel-704287" data-toggle="tab">Continent2</a>
+                                <a href="#panel-704287" data-toggle="tab">View Comments</a>
+                            </li>
+                            <li>
+                                <a href="#panel-704288" data-toggle="tab">Order By Favor</a>
+                            </li>
+                            <li>
+                                <a href="#panel-704289" data-toggle="tab">Order By Date</a>
                             </li>
                         </ul>
+                        <div class="tab-content">
                         <%
                             if(myself != null){
                         %>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="panel-284036">
+
+                            <div class="tab-pane fade in active" id="panel-284036">
                                 <div class="row" style="padding: 20px 0"></div>
                                 <form action="comment.do?imageURL=<%=imageURL%>&username=<%=username%>" method="post">
                                     <div class="row form-group">
@@ -315,10 +324,14 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
+
                         <%
-                            }
+                            } else{
                         %>
+                            <p>Login in First.</p>
+                            <%
+                                }
+                            %>
                         <div class="tab-pane" id="panel-704287">
                             <%
                                 CommentDAO commentDAO = new CommentDAO();
@@ -328,14 +341,65 @@
                             <h3>
                                 <%=comment.getUsername()%>
                             </h3>
+                            <p style="float: right">
+                                <%=comment.getFavorAmount()%>
+                            </p>
                             <p>
                                 <%=comment.getComment()%>
+                            </p>
+                            <p>
+                                <%=comment.getDateCreated()%>
                             </p>
                             <hr>
                             <%
                                 }
                             %>
+                        </div>
+                        <div class="tab-pane" id="panel-704289">
+                            <%
+                                List<Comment> commentsOrderByDate = commentDAO.getCommentsOrderByDate(imageURL);
+                                for(Comment comment:commentsOrderByDate){
+                            %>
+                            <h3>
+                                <%=comment.getUsername()%>
+                            </h3>
+                            <p style="float: right">
+                                <%=comment.getFavorAmount()%>
+                            </p>
+                            <p>
+                                <%=comment.getComment()%>
+                            </p>
+                            <p>
+                                <%=comment.getDateCreated()%>
+                            </p>
+                            <hr>
+                            <%
+                                }
+                            %>
+                        </div>
+                        <div class="tab-pane" id="panel-704288">
+                            <%
+                                List<Comment> commentsOrderByFavor = commentDAO.getCommentsOrderByFavor(imageURL);
+                                for(Comment comment:commentsOrderByFavor){
+                            %>
+                            <h3>
+                                <%=comment.getUsername()%>
+                            </h3>
+                            <p style="float: right">
+                                <%=comment.getFavorAmount()%>
+                            </p>
+                            <p>
+                                <%=comment.getComment()%>
+                            </p>
+                            <p>
+                                <%=comment.getDateCreated()%>
+                            </p>
 
+                            <hr>
+                            <%
+                                }
+                            %>
+                        </div>
                         </div>
                     </div>
                 </div>

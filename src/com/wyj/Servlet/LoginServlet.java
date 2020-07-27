@@ -45,7 +45,9 @@ public class LoginServlet extends HttpServlet {
             TravelUser travelUser = travelUserDao.login(usernameORemail, password);
             if (travelUser != null) {
                 request.getSession().setAttribute("travelUser", travelUser);
-                response.sendRedirect("homepage.jsp");
+                request.setAttribute("message", "login");
+                String lastPage = (String) request.getSession().getAttribute("lastPage");
+                request.getRequestDispatcher("/"+lastPage).forward(request, response);
             } else {
                 request.setAttribute("message", "Username or Password is Wrong");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
