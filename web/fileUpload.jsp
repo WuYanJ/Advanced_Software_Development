@@ -73,7 +73,7 @@
         image = travelImageDao.getImage(imageURL);
         title = image.getTitle();
         photographer = image.getPhotographer();
-        topic = image.getTopic();
+        topic = image.getContent();
         description = image.getDescription();
     }
 %>
@@ -261,7 +261,6 @@
             alert("此处回车触发搜索事件");
         }
     }
-
 </script>
 <script>
     $("#file0").change(function () {
@@ -269,6 +268,13 @@
         console.log("objUrl = " + objUrl);
         if (objUrl) {
             $("#img0").attr("src", objUrl);
+        }
+    });
+    $("#file1").change(function () {
+        var objUrl = getObjectURL(this.files[0]);
+        console.log("objUrl = " + objUrl);
+        if (objUrl) {
+            $("#img1").attr("src", objUrl);
         }
     });
 
