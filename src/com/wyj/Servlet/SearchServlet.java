@@ -15,6 +15,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,9 +53,17 @@ public class SearchServlet extends HttpServlet {
     public void fuzzyQueryImages(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String fuzzySearchedContent = request.getParameter("searchWith");
         String restrict = request.getParameter("select");
+        String orderBy = request.getParameter("order");
+        List<TravelImage> imageResultSet = new ArrayList<>();
         switch (restrict) {
             case "title": {
-                List<TravelImage> imageResultSet = travelImageDao.fuzzyGetImagesByTitle(fuzzySearchedContent);
+                imageResultSet = travelImageDao.fuzzyGetImagesByTitle(fuzzySearchedContent, orderBy);
+                request.setAttribute("imageResultSet", imageResultSet);
+                request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
+                break;
+            }
+            case "topic": {
+                imageResultSet = travelImageDao.fuzzyGetImagesByTopic(fuzzySearchedContent, orderBy);
                 request.setAttribute("imageResultSet", imageResultSet);
                 request.getRequestDispatcher("/searchResults.jsp").forward(request, response);
                 break;

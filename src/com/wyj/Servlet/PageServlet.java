@@ -31,7 +31,9 @@ public class PageServlet extends HttpServlet {
         String servletPath = request.getServletPath();
         // 得到edit这样的字符串
         String methodName = servletPath.substring(1);
+
         methodName = methodName.substring(0, methodName.length()-5);
+        System.out.println(methodName);
         // 利用反射获取方法
         try {
             Method method = getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
@@ -60,5 +62,24 @@ public class PageServlet extends HttpServlet {
         request.setAttribute("page", pageMyBookmarks);
         //4 请求转发给jsp
         request.getRequestDispatcher("/bookmarks.jsp?username="+myself.getUsername()).forward(request, response);
+    }
+
+    public void pageMyImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        // 1 获取请求参数pageNo和pageSize
+        int pageNo = 1;
+        if(request.getParameter("pageNo") != null){
+            pageNo = Integer.parseInt(request.getParameter("pageNo"));
+        }
+
+        TravelUser myself = (TravelUser)request.getSession().getAttribute("travelUser");
+        int uid = myself.getUID();
+        int pageSize = Page.PAGE_SIZE;
+
+        // 2 调用service.page(pageNo, pageSize):Page对象
+        Page<TravelImage> pageMyImages = pageService.pageMyImages(pageNo, pageSize, uid);
+        // 3 保存Page对象到request中
+        request.setAttribute("page", pageMyImages);
+        //4 请求转发给jsp
+        request.getRequestDispatcher("/personalInfo.jsp").forward(request, response);
     }
 }

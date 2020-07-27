@@ -57,7 +57,7 @@ public class TravelImageDao extends DAO{
         long favorAmount = getForValue(sql, image.getImageID());
         sql = "SELECT username FROM travels.traveluser WHERE uid=?";
         String photographer = getForValue(sql, image.getUID());
-        image.setFavorAmount(favorAmount);
+        image.setFavor((int) favorAmount);
         image.setPhotographer(photographer);
         return image;
     }
@@ -113,10 +113,29 @@ public class TravelImageDao extends DAO{
         return myBookmarkedImageIds;
     }
 
-    public List<TravelImage> fuzzyGetImagesByTitle(String titleCrackle) throws SQLException {
+    public List<TravelImage> fuzzyGetImagesByTitle(String titleCrackle, String orderBy) throws SQLException {
+        String field = "";
+        if(orderBy.equals("favor")) {
+            field = "favor";
+        } else {
+            field = "updatedDate";
+        }
         String sql = "SELECT ImageID imageID, Title title, Description description," +
                 "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
-                "UID, PATH path, Content content FROM travels.travelimage WHERE title LIKE '%" + titleCrackle + "%'";
+                "UID, PATH path, Content content FROM travels.travelimage WHERE title LIKE '%" + titleCrackle + "%' ORDER BY " + field;
+        return getForList(TravelImage.class, sql);
+    }
+
+    public List<TravelImage> fuzzyGetImagesByTopic(String topicCrackle, String orderBy) throws SQLException {
+        String field = "";
+        if(orderBy.equals("favor")) {
+            field = "favor";
+        } else {
+            field = "updatedDate";
+        }
+        String sql = "SELECT ImageID imageID, Title title, Description description," +
+                "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
+                "UID, PATH path, Content content FROM travels.travelimage WHERE content LIKE '%" + topicCrackle + "%' ORDER BY " + field;
         return getForList(TravelImage.class, sql);
     }
 }

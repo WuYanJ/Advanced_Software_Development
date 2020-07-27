@@ -97,7 +97,7 @@
                             <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
-                            <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
+                            <a href="pageMyImages.page"><i class="fa fa-plus"></i>&nbsp;My Page</a>
                         </li>
                         <li>
                             <a href="friends.jsp"><i class="fa fa-heart"></i>&nbsp;Friends</a>
@@ -225,7 +225,7 @@
                             String title = image.getTitle();
                             String description = image.getDescription();
                             int imageID = image.getImageID();
-                            long favorAmount = image.getFavorAmount();
+                            long favorAmount = image.getFavor();
                             String country = image.getCountry_regionCode();
                             String city = image.getCityCode();
                             Date releaseDate = new Date();
@@ -297,6 +297,9 @@
                                 <a href="#panel-704287" data-toggle="tab">Continent2</a>
                             </li>
                         </ul>
+                        <%
+                            if(myself != null){
+                        %>
                         <div class="tab-content">
                             <div class="tab-pane active" id="panel-284036">
                                 <div class="row" style="padding: 20px 0"></div>
@@ -313,6 +316,9 @@
                                 </form>
                             </div>
                         </div>
+                        <%
+                            }
+                        %>
                         <div class="tab-pane" id="panel-704287">
                             <%
                                 CommentDAO commentDAO = new CommentDAO();
@@ -424,8 +430,8 @@
             var pagey = event.pageY || scroll().top + event.clientY;
 
             //x：mask的left值，y：mask的top值。
-            var x = pagex - 360.5 - mask.offsetWidth / 2; //除以2，可以保证鼠标mask的中间
-            var y = pagey - 50.5 - mask.offsetHeight / 2;
+            var x = pagex - 448 - mask.offsetWidth / 2; //除以2，可以保证鼠标mask的中间
+            var y = pagey - 138 - mask.offsetHeight / 2;
 
             console.log("x.before->"+x)
 

@@ -139,10 +139,14 @@
             <div class="col-xs-8 col-sm-8" style="margin-top: 10px">
                 <form action="fuzzyQueryImages.do" method="post"
                         class="form-inline" style="border: none" role="search">
-                            <select name="select" style="border-radius: 10px;height: 30px">
-                                <option value="topic">Topic</option>
-                                <option value="title" selected>Title</option>
-                            </select>
+                    <select name="select" style="border-radius: 10px;height: 30px">
+                        <option value="topic">Topic</option>
+                        <option value="title" selected>Title</option>
+                    </select>
+                    <select name="order" style="border-radius: 10px;height: 30px">
+                        <option value="favor">Favor</option>
+                        <option value="date" selected>Date</option>
+                    </select>
 <%--                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选--%>
 <%--                                <span class="caret"></span>--%>
 <%--                            </button>--%>

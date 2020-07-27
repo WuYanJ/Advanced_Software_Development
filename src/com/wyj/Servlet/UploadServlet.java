@@ -44,7 +44,7 @@ public class UploadServlet extends HttpServlet {
         DAO dao = new DAO();
         TravelImage imageToBeStored = new TravelImage();
         String sql = "INSERT INTO travels.travelimage (title, description, cityCode, country_regionCodeISO, " +
-                "UID, path, content, updatedDate)VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "UID, path, content, updatedDate, favor)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // 1 得到FileItem对象的集合
         // 创建FileItem对象的工厂
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -120,6 +120,7 @@ public class UploadServlet extends HttpServlet {
             preparedStatement.setObject(6, imageToBeStored.getPath());
             preparedStatement.setObject(7, imageToBeStored.getContent());
             preparedStatement.setObject(8, new Date());
+            preparedStatement.setObject(9, 0);
             preparedStatement.executeUpdate();
             response.sendRedirect("personalInfo.jsp");
         } catch (Exception e) {

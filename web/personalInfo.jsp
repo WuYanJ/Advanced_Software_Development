@@ -3,7 +3,8 @@
 <%@ page import="com.wyj.Model.TravelImage" %>
 <%@ page import="com.wyj.DAO.TravelImageDao" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="com.wyj.Model.TravelUser" %><%--
+<%@ page import="com.wyj.Model.TravelUser" %>
+<%@ page import="com.wyj.Model.Page" %><%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -119,16 +120,16 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <%
-            List<TravelImage> uploadedImages = new ArrayList<>();
+//            List<TravelImage> uploadedImages = new ArrayList<>();
 
-            // 用UID查询数据库,获取"我上传的图片"的imageURL的集合
-            List<String> uploadedImageURLs = new ArrayList<>();
-            TravelImageDao travelImageDao = new TravelImageDao();
-            try {
-              uploadedImages = travelImageDao.getMyImages(username);
-            } catch (SQLException e) {
-              e.printStackTrace();
-            }
+//            TravelImageDao travelImageDao = new TravelImageDao();
+//            try {
+//              uploadedImages = travelImageDao.getMyImages(username);
+//            } catch (SQLException e) {
+//              e.printStackTrace();
+//            }
+              Page<TravelImage> myImagePage = (Page<TravelImage>) request.getAttribute("page");
+              List<TravelImage> uploadedImages = myImagePage.getItems();
           %>
           <div class="jumbotron">
             <h1 style="color:#006633;">Hello, <span style="color:#99CC00;"><%= username %>!</span></h1>
@@ -189,6 +190,35 @@
           </div>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
+
+        <ul class="pagination">
+            <li><a href="#">First</a></li>
+            <%
+                if(myImagePage.getPageNo() != 1){
+            %>
+            <li><a href="pageMyImages.page?pageNo=<%=myImagePage.getPageNo()-1%>">&laquo;&nbsp;Previous</a></li>
+            <%
+                } else {
+            %>
+
+            <li class="disabled"><a>Previous</a></li>
+            <%
+                }
+            %>
+            <li class="active"><a href="#"><%=myImagePage.getPageNo()%></a></li>
+            <%
+                if(myImagePage.getPageNo() != myImagePage.getPageTotal()){
+            %>
+            <li><a href="pageMyImages.page?pageNo=<%=myImagePage.getPageNo()+1%>">Next</a></li>
+            <%
+                } else {
+            %>
+
+            <li class="disabled"><a>Next&nbsp;&raquo;</a></li>
+            <%
+                }
+            %>
+        </ul>
       <hr>
       <footer>
         <p>&copy; 2020 Company, Inc.</p>

@@ -64,7 +64,7 @@ public class RegisterServlet extends HttpServlet {
                 travelUserDao.saveTravelUser(newTravelUser);
 
                 request.getSession().setAttribute("travelUser", newTravelUser);
-                response.sendRedirect("personalInfo.jsp?username=" + username);
+                response.sendRedirect("homepage.jsp");
             } else {
                 // 如果已经被占用，通过转发的方式返回register.jsp
                 // 在request中放入一个属性message：用户名已经被占用，请重新选择

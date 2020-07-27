@@ -35,4 +35,27 @@ public class PageService {
         return pageMyBookmarks;
     }
 
+    public Page<TravelImage> pageMyImages(int pageNo, int pageSize, int uid) throws SQLException {
+        Page<TravelImage> pageMyImages = new Page<>();
+        // 赋值
+        pageMyImages.setPageNo(pageNo);
+        pageMyImages.setPageSize(pageSize);
+        // 总记录数
+        long recordCount = pageDAO.getMyImagesRecordCount(uid);
+        // 设置总记录数
+        pageMyImages.setRecordCount(recordCount);
+        // 总页数
+        long pageTotal = recordCount / pageSize;
+        if(recordCount % pageSize > 0) {
+            pageTotal += 1;
+        }
+        pageMyImages.setPageTotal(pageTotal);
+
+        // 求开始索引
+        int begin = (pageNo - 1) * pageSize;
+        List<TravelImage> items = pageDAO.getMyImagesPageItems(begin, pageSize, uid);
+        pageMyImages.setItems(items);
+
+        return pageMyImages;
+    }
 }

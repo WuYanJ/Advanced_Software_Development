@@ -215,6 +215,34 @@
             </div>
         </div>
     </div>
+
+    <ul class="pagination">
+        <li><a href="#">First</a></li>
+        <%
+            if(bookmarkPage.getPageNo() != 1){
+        %>
+        <li><a href="pageMyImages.page?pageNo=<%=bookmarkPage.getPageNo()-1%>">&laquo;&nbsp;Previous</a></li>
+        <%
+        } else {
+        %>
+
+        <li class="disabled"><a>Previous</a></li>
+        <%
+            }
+        %>
+        <li class="active"><a href="#"><%=bookmarkPage.getPageNo()%></a></li>
+        <%
+            if(bookmarkPage.getPageNo() != bookmarkPage.getPageTotal()){
+        %>
+        <li><a href="pageMyImages.page?pageNo=<%=bookmarkPage.getPageNo()+1%>">Next</a></li>
+        <%
+        } else {
+        %>
+        <li class="disabled"><a>Next&nbsp;&raquo;</a></li>
+        <%
+            }
+        %>
+    </ul>
     <hr>
     <footer>
         <p>&copy; 2020 Company, Inc.</p>

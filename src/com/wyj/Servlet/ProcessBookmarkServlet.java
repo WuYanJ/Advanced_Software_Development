@@ -30,18 +30,21 @@ public class ProcessBookmarkServlet extends HttpServlet {
         TravelUser myself = (TravelUser) session.getAttribute("travelUser");
         int uid = myself.getUID();
         String sql = "INSERT INTO travels.travelimagefavor(uid, imageID) VALUES(?, ?)";
+        String sql1 = "UPDATE travels.travelimage SET favor = favor+1  WHERE imageID=?";
         String sqlDelete = "DELETE FROM travels.travelimagefavor WHERE (uid=" + uid + " AND imageID=" + imageID + ")";
-
+        String sqlDelete1 = "UPDATE travels.travelimage SET favor = favor-1  WHERE imageID=?";
         // 若果此前已经收藏过这张照片，将这条收藏记录移除
         if(alreadyBookmarked.equals("true")) {
             try {
                 dao.update(sqlDelete);
+                dao.update(sqlDelete1, imageID);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
             try {
                 dao.update(sql, uid, imageID);
+                dao.update(sql1, imageID);
             } catch (Exception e) {
                 e.printStackTrace();
             }

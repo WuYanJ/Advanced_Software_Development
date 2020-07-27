@@ -11,17 +11,18 @@ public class TravelImage {
     private int UID;
     private String path;
     private String content;
+    private int favor;
 
-    private long favorAmount;
+    public int getFavor() {
+        return favor;
+    }
+    public void setFavor(int favor){
+        this.favor = favor;
+    }
+
     private String photographer;
 
-    public long getFavorAmount() {
-        return favorAmount;
-    }
 
-    public void setFavorAmount(long favorAmount) {
-        this.favorAmount = favorAmount;
-    }
 
     public String getPhotographer() {
         return photographer;
@@ -59,8 +60,8 @@ public class TravelImage {
                 ", country_regionCode='" + country_regionCode + '\'' +
                 ", UID=" + UID +
                 ", path='" + path + '\'' +
-                ", scenery='" + content + '\'' +
-                ", favorAmount='" + favorAmount + '\'' +
+                ", content='" + content + '\'' +
+                ", favor=" + favor +
                 ", photographer='" + photographer + '\'' +
                 ", topic='" + topic + '\'' +
                 '}';
