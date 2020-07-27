@@ -6,7 +6,8 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="com.wyj.DAO.TravelUserDao" %>
 <%@ page import="com.wyj.Model.TravelImage" %>
-<%@ page import="com.wyj.DAO.DAO" %><%--
+<%@ page import="com.wyj.DAO.DAO" %>
+<%@ page import="com.wyj.Model.Page" %><%--
   Created by IntelliJ IDEA.
   User: wuyanjie
   Date: 2020/7/12
@@ -61,6 +62,8 @@
 
     TravelImageDao travelImageDao = new TravelImageDao();
     TravelUserDao travelUserDao = new TravelUserDao();
+
+    Page<TravelImage> bookmarkPage = (Page<TravelImage>) request.getAttribute("page");
     List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
 %>
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -143,28 +146,30 @@
             <h1>Bookmarks</h1>
             <%
                 int currentImageID = 0;
-                if (!bookmarkList.isEmpty()) {
-                    for (String bookmark : bookmarkList) {
-                        try {
-                            currentImageID = travelImageDao.path2imageID(bookmark);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+//                if (!bookmarkList.isEmpty()) {
+//                    for (String bookmark : bookmarkList) {
+//                        try {
+//                            currentImageID = travelImageDao.path2imageID(bookmark);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+                if(bookmarkPage != null){
+                    for(TravelImage image: bookmarkPage.getItems()){
             %>
             <div class="col-md-4" style="height: 34em">
                 <div class="thumbnail">
-                    <img alt="300x200" src="static/image/travel-images/medium/<%= bookmark %>"
+                    <img alt="300x200" src="static/image/travel-images/medium/<%= image.getPath() %>"
                          style="height: 15em;width: 100%;overflow: hidden"/>
                     <div class="caption">
                         <%--                            <h3 style="color: #006633">--%>
                         <%--                                Thumbnail label</h3>--%>
-                            <h3 style="color: #006633">Pic Title <%=bookmarkList.indexOf(bookmark)+1%></h3>
+                            <h3 style="color: #006633">Pic Title</h3>
                             <p>
                                 Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
                                 gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                             </p>
                             <p>
-                                <a class="btn btn-success" href="details.jsp?imageURL=<%= bookmark %>">Learn More</a>
+                                <a class="btn btn-success" href="details.jsp?imageURL=<%= image.getPath() %>">Learn More</a>
                                 <a class="btn btn-warning" href="<%= request.getContextPath() %>/processBookmark?imageID=<%= currentImageID %>&bookmarked=true">Cancel</a>
                             </p>
                     </div>

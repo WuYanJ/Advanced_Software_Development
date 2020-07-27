@@ -98,7 +98,7 @@
                             <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                            <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
                             <a href="personalInfo.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>

@@ -45,6 +45,15 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>PageServlet</servlet-name>
+        <servlet-class>com.wyj.Servlet.PageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PageServlet</servlet-name>
+        <url-pattern>*.page</url-pattern>
+    </servlet-mapping>
+
 
         <servlet>
             <servlet-name>KaptchaServlet</servlet-name>
@@ -81,4 +90,21 @@
 <!--    <listener>-->
 <!--        <listener-class>com.wyj.Utils.ContextFinalizer</listener-class>-->
 <!--    </listener>-->
+<!--配置一个filter过滤器-->
+    <filter>
+<!--        给filter起一个别名-->
+        <filter-name>LoginFilter</filter-name>
+<!--        配置全类名-->
+        <filter-class>com.wyj.Filter.LoginFilter</filter-class>
+    </filter>
+<!--    配置过滤器的拦截路径-->
+    <filter-mapping>
+<!--        当前拦截路径给哪个filter使用-->
+        <filter-name>LoginFilter</filter-name>
+<!--        配置拦截路径-->
+<!--        /表示请求地址为http://ip:port/工程路径/  映射到IDEA的web目录-->
+        <url-pattern>/personalInfo.jsp</url-pattern>
+        <url-pattern>/friends.jsp</url-pattern>
+        <url-pattern>/fileUpload.jsp</url-pattern>
+    </filter-mapping>
 </web-app>

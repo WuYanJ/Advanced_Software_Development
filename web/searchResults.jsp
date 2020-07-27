@@ -89,7 +89,7 @@
                             <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
                         <li>
-                            <a href="bookmarks.jsp?username=<%=username%>"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
+                            <a href="pageMyBookmarks.page"><i class="fa fa-heart"></i>&nbsp;Bookmarks</a>
                         </li>
                         <li>
                             <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;My Page</a>
@@ -208,6 +208,17 @@
             }
         %>
         </div>
+
+        <ul class="pagination">
+            <li><a href="#" class="active">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
         <footer>
             <p>&copy; 2020 Company, Inc.</p>
         </footer>
