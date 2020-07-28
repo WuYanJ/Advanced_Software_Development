@@ -87,6 +87,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img src="siteLogo.png" style="height: 50px">
             <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -201,7 +202,7 @@
                             <div class="col-lg-5 col-md-6">
                                 <input type="file" name="file" id="file0" accept=".jpg,.jpeg,.png" required>
                                 <br>
-                                <p><%=imageURL == null? "" : imageURL%></p>
+                                <p id="previousURL"><%=imageURL == null? "" : imageURL%></p>
                                 <br>
                                 <img src="" id="img0" style="width: 500px;height: auto;"><br/>
                                 <img src="static/image/travel-images/large/<%=imageURL%>" style="width: 500px;height: auto;" id="imagePrevious">
@@ -277,8 +278,9 @@
         var objUrl = getObjectURL(this.files[0]);
         console.log("objUrl = " + objUrl);
         if (objUrl) {
-            $("#img0").attr("src", objUrl);
             $("#imagePrevious").attr("src", null);
+            $("#img0").attr("src", objUrl);
+            document.getElementById("previousURL").innerHTML="";
         }
 
     });

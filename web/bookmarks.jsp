@@ -53,7 +53,13 @@
 <body>
 <%
     session.removeAttribute("lastPage");
-    session.setAttribute("lastPage", "bookmarks.jsp");
+    if(request.getParameter("username") != null){
+        session.setAttribute("lastPage", "bookmarks.jsp?username="+request.getParameter("username")+"&uid="+request.getParameter("uid"));
+    } else {
+        session.setAttribute("lastPage", "bookmarks.jsp");
+    }
+
+
     DAO dao = new DAO();
 
     String username;
@@ -85,6 +91,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img src="siteLogo.png" style="height: 50px">
             <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -94,10 +101,13 @@
                 <li><a href="contact.jsp">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <% if (myself != null) {
+                %>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> <%=myself.getUsername()%><strong
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i><%=myself.getUsername()%><strong
                             class="caret"></strong></a>
                     <ul class="dropdown-menu">
+
                         <li>
                             <a href="fileUpload.jsp"><i class="fa fa-plus"></i>&nbsp;Share</a>
                         </li>
@@ -115,8 +125,12 @@
                         <li>
                             <a href="logout.do">Logout</a>
                         </li>
+
                     </ul>
                 </li>
+                <%
+                    }
+                %>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

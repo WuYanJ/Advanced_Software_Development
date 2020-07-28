@@ -1,8 +1,10 @@
 package com.wyj.Servlet;
 
+import com.google.gson.Gson;
 import com.wyj.DAO.DAO;
 import com.wyj.DAO.TravelImageDao;
 import com.wyj.DAO.TravelUserDao;
+import com.wyj.Model.Page;
 import com.wyj.Model.TravelImage;
 import com.wyj.Model.TravelUser;
 import org.junit.Test;
@@ -51,14 +53,9 @@ public class SearchServlet extends HttpServlet {
     }
 
     public void fuzzyQueryImages(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-
-        System.out.println("------>ajax success");
-
         String fuzzySearchedContent = request.getParameter("searchWith");
         String restrict = request.getParameter("select");
         String orderBy = request.getParameter("order");
-        System.out.println("restrict>>"+restrict);
-        System.out.println("orderBy>>"+orderBy);
         List<TravelImage> imageResultSet = new ArrayList<>();
         switch (restrict) {
             case "title": {
@@ -74,6 +71,45 @@ public class SearchServlet extends HttpServlet {
                 break;
             }
         }
+    }
+
+    public void fuzzyQueryImagesWithPage(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        Page<TravelImage> pageSearchResults = new Page<>();
+        String fuzzySearchedContent = request.getParameter("searchWith");
+        String restrict = request.getParameter("select");
+        String orderBy = request.getParameter("order");
+        int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+        long recordCount = 0;
+
+        List<TravelImage> imageResultSet = new ArrayList<>();
+        switch (restrict) {
+            case "title": {
+                imageResultSet = travelImageDao.fuzzyGetImagesByTitleWithPage(fuzzySearchedContent, orderBy, pageNo);
+                recordCount = travelImageDao.fuzzyGetImagesByTitle(fuzzySearchedContent, orderBy).size();
+                break;
+            }
+            case "topic": {
+                imageResultSet = travelImageDao.fuzzyGetImagesByTopicWithPage(fuzzySearchedContent, orderBy, pageNo);
+                recordCount = travelImageDao.fuzzyGetImagesByTopic(fuzzySearchedContent, orderBy).size();
+                break;
+            }
+        }
+
+        pageSearchResults.setPageNo(pageNo);
+        pageSearchResults.setPageSize(Page.PAGE_LARGE_SIZE);
+        pageSearchResults.setRecordCount(recordCount);
+        long pageTotal = recordCount / Page.PAGE_LARGE_SIZE;
+        if(recordCount % Page.PAGE_LARGE_SIZE > 0) {
+            pageTotal += 1;
+        }
+        pageSearchResults.setPageTotal(pageTotal);
+
+        // 求开始索引
+        int begin = (pageNo - 1) * Page.PAGE_LARGE_SIZE;
+        List<TravelImage> items = imageResultSet;
+        pageSearchResults.setItems(items);
+
+        response.getWriter().write(new Gson().toJson(pageSearchResults));
     }
 
     public void addFriend(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -125,8 +161,17 @@ public class SearchServlet extends HttpServlet {
         response.sendRedirect("/JavaWeb/friends.jsp");
     }
 
-    public void logout(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
-        response.sendRedirect("/homepage.jsp");
+        response.sendRedirect(request.getContextPath()+"/homepage.jsp");
+    }
+
+    public void commentLike(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        int commentId = Integer.parseInt(request.getParameter("id"));
+        String imageURL = request.getParameter("imageURL");
+        String sql = "UPDATE travels.travelimageComment SET favorAmount=favorAmount+1 WHERE id=?";
+        dao.update(sql, commentId);
+        System.out.println(request.getContextPath()+"/details.jsp?imageURL="+imageURL);
+        response.sendRedirect(request.getContextPath()+"/details.jsp?imageURL="+imageURL);
     }
 }

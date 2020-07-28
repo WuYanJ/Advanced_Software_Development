@@ -10,20 +10,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/gson-2.8.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/siteLogo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/CommentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/PageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/PageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/DAO/TravelImageDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Model/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Model/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Service/PageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Service/PageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/PageServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/PageServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/UploadServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/UploadServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/CommentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/CommentDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/PageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/PageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/DAO/TravelImageDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Service/PageService.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/Service/PageService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/model/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/LoginServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/LoginServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/PageServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/PageServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/SearchServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/SearchServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/bookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/bookmarks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/contact.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/fileUpload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/fileUpload.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/friends.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/friends.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/web.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +70,8 @@
         <option value="JavaScript File" />
         <option value="Class" />
         <option value="HTML File" />
-        <option value="Jsp File" />
         <option value="package.json" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -86,7 +99,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/WEB-INF" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -95,25 +108,25 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.16366613" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/static/js" />
+      <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/web/WEB-INF/lib" />
       <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/web/static/js" />
       <recent name="$PROJECT_DIR$/src/com/wyj/utils" />
-      <recent name="$PROJECT_DIR$/web/static/image" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.wyj.Servlet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/static/css" />
       <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/web/static/css" />
       <recent name="$PROJECT_DIR$/web/WEB-INF" />
       <recent name="$PROJECT_DIR$/src/com/wyj/Utils" />
       <recent name="$PROJECT_DIR$/web/static/js" />
@@ -401,7 +414,7 @@
       <workItem from="1594486610228" duration="36185000" />
       <workItem from="1594687979474" duration="25289000" />
       <workItem from="1595136868741" duration="1363000" />
-      <workItem from="1595215029998" duration="116746000" />
+      <workItem from="1595215029998" duration="127987000" />
     </task>
     <servers />
   </component>

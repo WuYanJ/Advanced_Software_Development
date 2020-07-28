@@ -104,6 +104,7 @@
 <!--        配置拦截路径-->
 <!--        /表示请求地址为http://ip:port/工程路径/  映射到IDEA的web目录-->
         <url-pattern>/personalInfo.jsp</url-pattern>
+        <url-pattern>/bookmarks.jsp</url-pattern>
         <url-pattern>/friends.jsp</url-pattern>
         <url-pattern>/fileUpload.jsp</url-pattern>
     </filter-mapping>

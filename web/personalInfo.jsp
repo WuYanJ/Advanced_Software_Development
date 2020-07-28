@@ -72,6 +72,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img src="siteLogo.png" style="height: 50px">
             <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">

@@ -69,7 +69,11 @@ public class PageServlet extends HttpServlet {
         // 3 保存Page对象到request中
         request.setAttribute("page", pageMyBookmarks);
         //4 请求转发给jsp
-        request.getRequestDispatcher("/bookmarks.jsp?username="+username).forward(request, response);
+        if(request.getParameter("username") != null){
+            request.getRequestDispatcher("/bookmarks.jsp?username="+username+"&uid="+uid).forward(request, response);
+        } else {
+            request.getRequestDispatcher("/bookmarks.jsp").forward(request, response);
+        }
     }
 
     public void pageMyImages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {

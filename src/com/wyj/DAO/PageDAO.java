@@ -24,7 +24,7 @@ public class PageDAO extends DAO {
         List<String> bookmarkList = travelUserDao.getMyBookmarkedImagePaths(uid);
         String sql = "SELECT ImageID imageID, Title title, Description description," +
                 "     Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
-                "     UID, PATH path, Content content FROM travels.travelimage WHERE path=? limit ?, ?;";
+                "     UID, PATH path, Content content FROM travels.travelimage WHERE path=? limit ?, ?";
         for (String path : bookmarkList){
             TravelImage image = get(TravelImage.class, sql, path, begin, pageSize);
             myBookmarksPageItems.add(image);

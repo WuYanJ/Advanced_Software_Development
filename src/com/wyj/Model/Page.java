@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Page<T> {
     public static final Integer PAGE_SIZE = 4;
+    public static final Integer PAGE_LARGE_SIZE = 8;
     // 当前页码
     private long pageNo;
     // 总页码

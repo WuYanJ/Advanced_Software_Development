@@ -135,8 +135,9 @@
         </ul><!-- ./breadcrumb --><!-- row -->
 
         <div class="row">
-            <div class="col-xs-12 col-sm-3 logo"><a href="#">
-                <img alt="Kute Shop" src="logo.png" style="width: 100%"></a>
+            <div class="col-xs-12 col-sm-3 logo">
+                <img src="siteLogo.png" style="width: 100%">
+<%--                <img src="logo.png" style="width: 100%">--%>
             </div>
             <div class="col-xs-8 col-sm-8" style="margin-top: 10px">
 <%--                <form action="fuzzyQueryImages.do" method="post"--%>
@@ -151,8 +152,8 @@
                         <option value="date" selected>Date</option>
                     </select>
                     <input type="search" id="searchWith" name="searchWith" class="form-control" placeholder="Search by Topic/Title..." style="width: 60%">
-                    <button type="submit" onclick="searchForImages()" class="btn btn-success"><i class="fa fa-search"></i></button>
-                <input type="button" onclick="searchForImages()" value="search">
+                    <button type="submit" onclick="searchForImages(1)" class="btn btn-success"><i class="fa fa-search"></i></button>
+                <input type="button" onclick="searchForImages(1)" value="search">
     </form>
             </div>
         </div>
@@ -164,9 +165,6 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Most Favorable &nbsp;<i class="fa fa-sort"></i> </a>
-                            </li>
-                            <li class="active"><a href="#">Latest Uploaded &nbsp;<i class="fa fa-sort"></i> </a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -199,18 +197,31 @@
                 }
             }
         %>
+            <div id="showResultsDiv"></div>
         </div>
 
-        <ul class="pagination">
-            <li><a href="#" class="active">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
 
+<%--        <ul class="pagination">--%>
+<%--            <li><a href="#" class="active">&laquo;</a></li>--%>
+<%--            <li><a href="#">1</a></li>--%>
+<%--            <li><a href="#">2</a></li>--%>
+<%--            <li><a href="#">3</a></li>--%>
+<%--            <li><a href="#">4</a></li>--%>
+<%--            <li><a href="#">5</a></li>--%>
+<%--            <li><a href="#">&raquo;</a></li>--%>
+<%--        </ul>--%>
+
+
+        <ul class="pagination">
+            <li><a href="#">First</a></li>
+            <li id="previous"><a id="previousPageNo">&laquo;&nbsp;Previous</a></li>
+
+            <li class="active" id="current"><a href="#" id="currentPageNo">1</a></li>
+
+            <li id="next"><a id="nextPageNo">Next&nbsp;&raquo;</a></li>
+
+            <li><a id="totalNo">Last Page</a></li>
+        </ul>
         <footer>
             <p>&copy; 2020 Company, Inc.</p>
         </footer>
@@ -236,7 +247,9 @@
 </body>
 </html>
 <script type="text/javascript">
-    function searchForImages() {
+    var searchResults;
+    function searchForImages(pageNo) {
+        console.log(">>"+pageNo)
         var select = document.getElementById("select");　　//获取select对象
         var index1 = select.selectedIndex;　　　　　　　　　//获取被选中的索引
         var selectBy = select.options[index1].value;　　　　　　//获取被选中的值
@@ -245,21 +258,40 @@
         var index2 = order.selectedIndex;　　　　　　　　　//获取被选中的索引
         var orderBy = order.options[index2].value;　　　　　　//获取被选中的值
 
-        console.log("search with>>>>"+document.getElementById("searchWith").value)
-        console.log(selectBy)
-        console.log(orderBy)
         $.ajax({
-            url : "fuzzyQueryImages.do",  //显示数据的处理页面
-            // url : "LoginServlet",
+            url : "fuzzyQueryImagesWithPage.do",  //显示数据的处理页面
             data: {
                 searchWith : document.getElementById("searchWith").value,
                 select : selectBy,
-                order : orderBy
+                order : orderBy,
+                pageNo : pageNo
             }, //页数和查询都要传值
             type : "POST",
             dataType : "JSON", //这里我们用JSON的数据格式
-            success: function(data){
-                //执行完处理页面后写代码
+            success: function(pageResult){
+                console.log(pageResult.items);
+                var imageResultSet = pageResult.items;
+                var htmlString = "";
+                var image;
+                for(image in imageResultSet){
+                    htmlString += "<div class=\"col-md-4\"><div class=\"thumbnail\"><img alt=\"300x200\" src=\"static/image/travel-images/large/"+imageResultSet[image].path+"\"/><div class=\"caption\"><h3>"+imageResultSet[image].title+"</h3><p>"+imageResultSet[image].description+"</p><p><a class=\"btn btn-primary\" href=\"details.jsp?imageURL="+imageResultSet[image].path+"\">Learn More</a></p></div></div></div>"
+                }
+                console.log(htmlString)
+                $("#showResultsDiv").html(htmlString)
+
+                document.getElementById("totalNo").innerHTML = "Last Page --> " + pageResult.pageTotal;
+                document.getElementById("totalNo").setAttribute("onclick", "searchForImages("+pageResult.pageTotal+")")
+                document.getElementById("currentPageNo").innerHTML = pageNo;
+                var nextPageNo = pageNo+1;
+                var previousPageNo = pageNo-1;
+                if(pageNo===1){
+                    document.getElementById('previous').className="disabled"
+                }
+                if(pageNo===pageResult.pageTotal){
+                    document.getElementById('next').className="disabled"
+                }
+                document.getElementById('nextPageNo').setAttribute("onclick","searchForImages("+nextPageNo+")");
+                document.getElementById('previousPageNo').setAttribute("onclick","searchForImages("+previousPageNo+")");
             }
         });
     }

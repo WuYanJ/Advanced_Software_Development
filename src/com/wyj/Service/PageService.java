@@ -58,4 +58,28 @@ public class PageService {
 
         return pageMyImages;
     }
+
+    public Page<TravelImage> pageSearchResults(int pageNo, int pageSize, int uid) throws SQLException {
+        Page<TravelImage> pageSearchResults = new Page<>();
+        // 赋值
+        pageSearchResults.setPageNo(pageNo);
+        pageSearchResults.setPageSize(pageSize);
+        // 总记录数
+        long recordCount = pageDAO.getMyImagesRecordCount(uid);
+        // 设置总记录数
+        pageSearchResults.setRecordCount(recordCount);
+        // 总页数
+        long pageTotal = recordCount / pageSize;
+        if(recordCount % pageSize > 0) {
+            pageTotal += 1;
+        }
+        pageSearchResults.setPageTotal(pageTotal);
+
+        // 求开始索引
+        int begin = (pageNo - 1) * pageSize;
+        List<TravelImage> items = pageDAO.getMyImagesPageItems(begin, pageSize, uid);
+        pageSearchResults.setItems(items);
+
+        return pageSearchResults;
+    }
 }

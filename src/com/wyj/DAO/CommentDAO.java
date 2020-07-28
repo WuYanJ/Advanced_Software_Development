@@ -15,7 +15,7 @@ public class CommentDAO extends DAO{
         return getForList(Comment.class, sql);
     }
     public List<Comment> getCommentsOrderByFavor(String imageURL) throws SQLException {
-        String sql = "SELECT id, imageURL, username, comment, dateCreated, favorAmount FROM travels.travelimageComment WHERE imageURL='" + imageURL + "' ORDER BY favorAmount";
+        String sql = "SELECT id, imageURL, username, comment, dateCreated, favorAmount FROM travels.travelimageComment WHERE imageURL='" + imageURL + "' ORDER BY favorAmount DESC";
         return getForList(Comment.class, sql);
     }
 }

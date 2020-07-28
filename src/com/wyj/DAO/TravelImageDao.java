@@ -1,5 +1,6 @@
 package com.wyj.DAO;
 
+import com.wyj.Model.Page;
 import com.wyj.Model.TravelImage;
 import com.wyj.Model.TravelImageNFavor;
 import com.wyj.Model.TravelUser;
@@ -125,6 +126,20 @@ public class TravelImageDao extends DAO{
                 "UID, PATH path, Content content FROM travels.travelimage WHERE title LIKE '%" + titleCrackle + "%' ORDER BY " + field;
         return getForList(TravelImage.class, sql);
     }
+    public List<TravelImage> fuzzyGetImagesByTitleWithPage(String titleCrackle, String orderBy, int pageNo) throws SQLException {
+        String field = "";
+        int begin = (pageNo - 1) * Page.PAGE_LARGE_SIZE;
+        if(orderBy.equals("favor")) {
+            field = "favor";
+        } else {
+            field = "updatedDate";
+        }
+        String sql = "SELECT ImageID imageID, Title title, Description description," +
+                "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
+                "UID, PATH path, Content content FROM travels.travelimage WHERE title LIKE '%" + titleCrackle + "%' ORDER BY " + field + " limit ?, ?";
+        return getForList(TravelImage.class, sql, begin, Page.PAGE_LARGE_SIZE);
+    }
+
 
     public List<TravelImage> fuzzyGetImagesByTopic(String topicCrackle, String orderBy) throws SQLException {
         String field = "";
@@ -138,4 +153,18 @@ public class TravelImageDao extends DAO{
                 "UID, PATH path, Content content FROM travels.travelimage WHERE content LIKE '%" + topicCrackle + "%' ORDER BY " + field;
         return getForList(TravelImage.class, sql);
     }
+    public List<TravelImage> fuzzyGetImagesByTopicWithPage(String topicCrackle, String orderBy, int pageNo) throws SQLException {
+        String field = "";
+        int begin = (pageNo - 1) * Page.PAGE_LARGE_SIZE;
+        if(orderBy.equals("favor")) {
+            field = "favor";
+        } else {
+            field = "updatedDate";
+        }
+        String sql = "SELECT ImageID imageID, Title title, Description description," +
+                "Latitude latitude, Longitude longitude, CityCode cityCode, Country_RegionCodeISO country_regionCode," +
+                "UID, PATH path, Content content FROM travels.travelimage WHERE content LIKE '%" + topicCrackle + "%' ORDER BY " + field + " limit ?, ?";
+        return getForList(TravelImage.class, sql, begin, Page.PAGE_LARGE_SIZE);
+    }
+
 }

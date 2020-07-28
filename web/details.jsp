@@ -57,7 +57,7 @@
 <body>
 <%
     session.removeAttribute("lastPage");
-    session.setAttribute("lastPage", "details.jsp");
+    session.setAttribute("lastPage", "details.jsp?imageURL="+request.getParameter("imageURL"));
     TravelUser myself = (TravelUser) session.getAttribute("travelUser");
     String username = null;
     int uid = 0;
@@ -77,6 +77,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img src="siteLogo.png" style="height: 50px">
             <a class="navbar-brand" href="homepage.jsp">Daddy Travel Agency</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -168,7 +169,7 @@
                     <div class="primary-box row">
                         <div class="box pb-left-column col-xs-12 col-sm-6"><!-- product-imge-->
                             <div class="product-image">
-                                <img src="static/image/travel-images/medium/<%= imageURL %>" style="width: 100%;height: auto">
+                                <img src="static/image/travel-images/large/<%= imageURL %>" style="width: 100%;height: auto">
                                 <div class="mask"></div>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
@@ -254,8 +255,7 @@
                                     </p>
                                     <p>Topic: <%= topic %>
                                     </p>
-                                    <p>Description:</p>
-                                    <p><%= description %>
+                                    <p>Description: <%= description %>
                                     </p>
                                     <p>Favor: <%= favorAmount %>
                                     </p>
@@ -306,12 +306,12 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                        <%
-                            if(myself != null){
-                        %>
 
                             <div class="tab-pane fade in active" id="panel-284036">
                                 <div class="row" style="padding: 20px 0"></div>
+                                <%
+                                    if(myself != null){
+                                %>
                                 <form action="comment.do?imageURL=<%=imageURL%>&username=<%=username%>" method="post">
                                     <div class="row form-group">
                                         <label class="control-label col-lg-1" for="commentText">Comment</label>
@@ -323,15 +323,16 @@
                                                 class="fa fa-paper-plane-o"></i>&nbsp;Send</button>
                                     </div>
                                 </form>
+                                <%
+                                } else {
+                                %>
+                                <p>Login in First.</p>
+                                <%
+                                    }
+                                %>
                             </div>
 
-                        <%
-                            } else{
-                        %>
-                            <p>Login in First.</p>
-                            <%
-                                }
-                            %>
+
                         <div class="tab-pane" id="panel-704287">
                             <%
                                 CommentDAO commentDAO = new CommentDAO();
@@ -344,6 +345,9 @@
                             <p style="float: right">
                                 <%=comment.getFavorAmount()%>
                             </p>
+                            <a href="commentLike.do?id=<%=comment.getId()%>&imageURL=<%=comment.getImageURL()%>" style="float: right">
+                                <i class="fa fa-heart"></i>
+                            </a>
                             <p>
                                 <%=comment.getComment()%>
                             </p>

@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("travelUser", travelUser);
                 request.setAttribute("message", "login");
                 String lastPage = (String) request.getSession().getAttribute("lastPage");
+                System.out.println(">>"+lastPage);
                 request.getRequestDispatcher("/"+lastPage).forward(request, response);
             } else {
                 request.setAttribute("message", "Username or Password is Wrong");
