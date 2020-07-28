@@ -215,7 +215,7 @@
         %>
         <div class="col-lg-4">
             <img class="img-circle"
-                 src="static/image/travel-images/medium/<%=image.getPath()%>"
+                 src="static/image/travel-images/large/<%=image.getPath()%>"
                  alt="Generic placeholder image" width="140" height="140">
             <h2 style="color: #666633"><%=image.getTitle()%></h2>
             <p style="color: #99CC33"><%=image.getDescription()%></p>

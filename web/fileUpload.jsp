@@ -179,22 +179,25 @@
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Topic</label>
                             <div class="col-lg-5 col-md-6">
-                                <input class="form-control" name="topic" rows="5" value="<%=topic%>" required/>
+                                <input class="form-control" name="content" rows="5" value="<%=topic%>" required/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">Description</label>
                             <div class="col-lg-5 col-md-6">
                                 <textarea class="form-control" name="description" rows="5"
-                                          value="<%=description%>" required></textarea>
+                                          required><%=description%></textarea>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="control-label col-lg-1">File </label>
                             <div class="col-lg-5 col-md-6">
                                 <input type="file" name="file" id="file0" accept=".jpg,.jpeg,.png" required>
-                                <br><br>
-                                <img src="" id="img0" style="width: 500px;height: auto"><br/>
+                                <br>
+                                <p><%=imageURL == null? "" : imageURL%></p>
+                                <br>
+                                <img src="" id="img0" style="width: 500px;height: auto;"><br/>
+                                <img src="static/image/travel-images/large/<%=imageURL%>" style="width: 500px;height: auto;" id="imagePrevious">
                             </div>
                         </div>
 
@@ -219,8 +222,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit"><%=modify ? "Confirm" : "Upload"%>
-                            </button>
+                            <button type="submit"><%=modify ? "Confirm" : "Upload"%></button>
+                            <input id ="ifModify" type="hidden" name="ifModify" value="aaa"></input>
                         </div>
 
                     </form>
@@ -268,7 +271,9 @@
         console.log("objUrl = " + objUrl);
         if (objUrl) {
             $("#img0").attr("src", objUrl);
+            $("#imagePrevious").attr("src", null);
         }
+
     });
     $("#file1").change(function () {
         var objUrl = getObjectURL(this.files[0]);

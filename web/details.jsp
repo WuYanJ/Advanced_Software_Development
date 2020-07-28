@@ -223,7 +223,7 @@
                             TravelImageDao travelImageDao = new TravelImageDao();
                             TravelImage image = travelImageDao.getImage(imageURL);
                             String photographer = image.getPhotographer();
-                            String topic = image.getTopic();
+                            String topic = image.getContent();
                             String title = image.getTitle();
                             String description = image.getDescription();
                             int imageID = image.getImageID();

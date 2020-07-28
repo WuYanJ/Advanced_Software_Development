@@ -34,11 +34,6 @@ public class UploadServlet extends HttpServlet {
         String username = null;
         TravelUser myself = (TravelUser) request.getSession().getAttribute("travelUser");
         username = myself.getUsername();
-//        for(Cookie cookie : cookies) {
-//            if(cookie.getName().equals("username")){
-//                username = cookie.getValue();
-//            }
-//        }
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         DAO dao = new DAO();
@@ -93,14 +88,41 @@ public class UploadServlet extends HttpServlet {
                     InputStream inputStream = item.getInputStream();
                     byte[] buffer = new byte[1024];
                     int len = 0;
-                    fileName = "/Users/wuyanjie/storeDir/"+fileName;
-                    System.out.println(fileName);
-                    File file = new File(fileName);
-                    OutputStream outputStream = new FileOutputStream(file);
+//                    fileName = "/Users/wuyanjie/storeDir/"+fileName;
+                    String fileLargePath;
+                    String fileMediumPath;
+                    String fileSmallPath;
+                    String fileSquare_mediumPath;
+                    String fileSquare_smallPath;
+                    String fileSquare_tinyPath;
+                    String fileThumbPath;
+
+                    fileLargePath = getServletContext().getRealPath("/static/image/travel-images/large") + "/" + fileName;
+                    fileMediumPath = getServletContext().getRealPath("/static/image/travel-images/medium") + "/" + fileName;
+                    fileSmallPath = getServletContext().getRealPath("/static/image/travel-images/small") + "/" + fileName;
+
+                    System.out.println(">"+getServletContext().getRealPath("/static/image/travel-images"));
+                    File fileLarge = new File(fileLargePath);
+                    OutputStream outputStream = new FileOutputStream(fileLarge);
 
                     while((len = inputStream.read(buffer)) != -1) {
                         outputStream.write(buffer, 0, len);
                     }
+                    File fileMedium = new File(fileMediumPath);
+                    outputStream = new FileOutputStream(fileMedium);
+
+                    while((len = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, len);
+                    }
+
+                    File fileSmall = new File(fileSmallPath);
+                    outputStream = new FileOutputStream(fileSmall);
+
+                    while((len = inputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, len);
+                    }
+
+                    System.out.println("----------");
                     outputStream.close();
                     inputStream.close();
                 }
