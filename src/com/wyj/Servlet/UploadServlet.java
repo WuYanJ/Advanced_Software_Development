@@ -59,6 +59,7 @@ public class UploadServlet extends HttpServlet {
         try {
             List<FileItem> items = upload.parseRequest(request);
             // 2 遍历items，若是一个一般的表单域，打印信息
+            String previousPath = "";
             for(FileItem item: items) {
                 if(item.isFormField()) {
                     // 一个个set，封装成一个image对象，存入数据库
@@ -67,8 +68,19 @@ public class UploadServlet extends HttpServlet {
                     String value = item.getString();
                     if(name.equals("photographer")){
 //                        username = value;
-                    continue;
-                }
+                        continue;
+                    }
+                    if(name.equals("previousPath")){
+                        previousPath = value;
+                        continue;
+                    }
+                    if(name.equals("ifModify")){
+                        if(value.equals("true")){
+                            updateImage(imageToBeStored, previousPath, myself, response);
+                            break;
+                        }
+                        continue;
+                    }
                     BeanUtils.setProperty(imageToBeStored, name, value);
                 }
                 // 若是文件，把文件保存到本机目录下
@@ -158,5 +170,24 @@ public class UploadServlet extends HttpServlet {
         while((string = bufferedReader.readLine()) != null) {
             System.out.println(string);
         }
+    }
+
+    private void updateImage(TravelImage imageToBeStored, String previousPath, TravelUser myself, HttpServletResponse response) throws SQLException, IOException, ClassNotFoundException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        String sql = "UPDATE travels.travelimage SET title=?, description=?, cityCode=?, country_regionCodeISO=?, UID=?, path=?, content=?, updatedDate=?, favor=? WHERE path='" + previousPath + "'";
+        connection = DataBaseUtils.getConn();
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setObject(1, imageToBeStored.getTitle());
+        preparedStatement.setObject(2, imageToBeStored.getDescription());
+        preparedStatement.setObject(3, imageToBeStored.getCityCode());
+        preparedStatement.setObject(4, imageToBeStored.getCountry_regionCode());
+        preparedStatement.setObject(5, myself.getUID());
+        preparedStatement.setObject(6, imageToBeStored.getPath());
+        preparedStatement.setObject(7, imageToBeStored.getContent());
+        preparedStatement.setObject(8, new Date());
+        preparedStatement.setObject(9, 0);
+        preparedStatement.executeUpdate();
+        response.sendRedirect("pageMyImages.page");
     }
 }

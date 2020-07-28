@@ -1,4 +1,4 @@
-<%@ page import="com.wyj.Model.User" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: pc
   Date: 17-5-11
@@ -12,5 +12,18 @@
 </head>
 <body>
 <h1>Contact</h1>
+<form action="RegisterServlet" method="post">
+    <input type="text" name="password" id="password"/>
+    <button type="submit" id="btnSubmit">Submit</button>
+</form>
+<script type="text/javascript">
+    window.onload = function () {
+        var submitButton = document.getElementById("btnSubmit");
+        submitButton.onclick = function (event) {
+            alert("alert")
+            return false;
+        }
+    };
+</script>
 </body>
 </html>

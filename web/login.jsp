@@ -97,7 +97,7 @@
     }
     $(function () {
         $("#captcha_img").click(function () {
-            this.src = "${basePath}kaptcha.jpg?randomParam="+new Math.random();
+            this.src = "${basePath}kaptcha.jpg";
         })
     })
 

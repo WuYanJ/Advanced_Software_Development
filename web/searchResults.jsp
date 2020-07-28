@@ -139,37 +139,23 @@
                 <img alt="Kute Shop" src="logo.png" style="width: 100%"></a>
             </div>
             <div class="col-xs-8 col-sm-8" style="margin-top: 10px">
-                <form action="fuzzyQueryImages.do" method="post"
-                        class="form-inline" style="border: none" role="search">
-                    <select name="select" style="border-radius: 10px;height: 30px">
+<%--                <form action="fuzzyQueryImages.do" method="post"--%>
+<%--                        class="form-inline" style="border: none" role="search">--%>
+    <form method="post" class="form-inline" style="border: none" role="search">
+                    <select name="select" id="select" style="border-radius: 10px;height: 30px">
                         <option value="topic">Topic</option>
                         <option value="title" selected>Title</option>
                     </select>
-                    <select name="order" style="border-radius: 10px;height: 30px">
+                    <select name="order" id="order" style="border-radius: 10px;height: 30px">
                         <option value="favor">Favor</option>
                         <option value="date" selected>Date</option>
                     </select>
-<%--                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">筛选--%>
-<%--                                <span class="caret"></span>--%>
-<%--                            </button>--%>
-<%--                            <ul class="dropdown-menu">--%>
-<%--                                <li>--%>
-<%--                                    <a href="#" onclick="alert('选中标题')">标题</a>--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <a href="#" onclick="alert('选中主题')">主题</a>--%>
-<%--                                </li>--%>
-<%--                                <li class="divider"></li>--%>
-<%--                                <li>--%>
-<%--                                    <a href="#">不选择</a>--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-                    <input type="search" name="searchWith" class="form-control" placeholder="Search by Topic/Title..." style="width: 60%">
-                    <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                </form>
+                    <input type="search" id="searchWith" name="searchWith" class="form-control" placeholder="Search by Topic/Title..." style="width: 60%">
+                    <button type="submit" onclick="searchForImages()" class="btn btn-success"><i class="fa fa-search"></i></button>
+                <input type="button" onclick="searchForImages()" value="search">
+    </form>
             </div>
         </div>
-
 
         <hr class="container">
         <div class="category-featured">
@@ -249,3 +235,32 @@
 <script src="static/js/personalInfo.js"></script>
 </body>
 </html>
+<script type="text/javascript">
+    function searchForImages() {
+        var select = document.getElementById("select");　　//获取select对象
+        var index1 = select.selectedIndex;　　　　　　　　　//获取被选中的索引
+        var selectBy = select.options[index1].value;　　　　　　//获取被选中的值
+
+        var order = document.getElementById("order");　　//获取select对象
+        var index2 = order.selectedIndex;　　　　　　　　　//获取被选中的索引
+        var orderBy = order.options[index2].value;　　　　　　//获取被选中的值
+
+        console.log("search with>>>>"+document.getElementById("searchWith").value)
+        console.log(selectBy)
+        console.log(orderBy)
+        $.ajax({
+            url : "fuzzyQueryImages.do",  //显示数据的处理页面
+            // url : "LoginServlet",
+            data: {
+                searchWith : document.getElementById("searchWith").value,
+                select : selectBy,
+                order : orderBy
+            }, //页数和查询都要传值
+            type : "POST",
+            dataType : "JSON", //这里我们用JSON的数据格式
+            success: function(data){
+                //执行完处理页面后写代码
+            }
+        });
+    }
+</script>

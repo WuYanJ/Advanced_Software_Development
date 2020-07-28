@@ -51,9 +51,14 @@ public class SearchServlet extends HttpServlet {
     }
 
     public void fuzzyQueryImages(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+
+        System.out.println("------>ajax success");
+
         String fuzzySearchedContent = request.getParameter("searchWith");
         String restrict = request.getParameter("select");
         String orderBy = request.getParameter("order");
+        System.out.println("restrict>>"+restrict);
+        System.out.println("orderBy>>"+orderBy);
         List<TravelImage> imageResultSet = new ArrayList<>();
         switch (restrict) {
             case "title": {

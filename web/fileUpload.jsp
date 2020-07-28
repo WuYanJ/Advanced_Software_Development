@@ -164,6 +164,13 @@
                         <div class="row" style="padding: 20px 0">
                             <h3>Upload Form</h3>
                         </div>
+                            <%
+                                if(imageURL != ""){
+                            %>
+                            <input type="hidden" name="previousPath" value="<%=imageURL%>"/>
+                            <%
+                                }
+                            %>
                         <div class="row form-group">
                             <label class="control-label col-lg-1" for="title">Title</label>
                             <div class="col-lg-5 col-md-6">
@@ -223,7 +230,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit"><%=modify ? "Confirm" : "Upload"%></button>
-                            <input id ="ifModify" type="hidden" name="ifModify" value="aaa"></input>
+                            <input type="hidden" name="ifModify" value="<%=modify%>"/>
                         </div>
 
                     </form>

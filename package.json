@@ -1,0 +1,7 @@
+{
+  "name": "JavaWeb2020Summer",
+  "version": "1.0.0",
+  "dependencies": {
+    "node-rsa": "latest"
+  }
+}

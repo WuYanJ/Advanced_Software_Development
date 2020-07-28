@@ -185,7 +185,13 @@
                             </p>
                             <p>
                                 <a class="btn btn-success" href="details.jsp?imageURL=<%= image.getPath() %>">Learn More</a>
+                                <%
+                                    if(request.getParameter("username") == null){
+                                %>
                                 <a class="btn btn-warning" href="<%= request.getContextPath() %>/processBookmark?imageID=<%= currentImageID %>&bookmarked=true">Cancel</a>
+                                <%
+                                    }
+                                %>
                             </p>
                     </div>
                 </div>

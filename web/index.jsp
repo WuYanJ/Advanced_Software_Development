@@ -45,7 +45,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="homepage.jsp">Home</a></li>
-                  <li><a href="#">Features</a></li>
+                  <li><a href="searchResults.jsp">Search</a></li>
                   <li><a href="contact.jsp">Contact</a></li>
                 </ul>
               </nav>

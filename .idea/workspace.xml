@@ -10,11 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/UploadServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/UploadServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/UploadServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/bookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/bookmarks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/contact.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/fileUpload.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/fileUpload.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +53,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="jsf" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
         <option value="Class" />
+        <option value="HTML File" />
+        <option value="Jsp File" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -65,6 +75,7 @@
   <component name="ProjectId" id="1eLT4VO2yx0uuPIzhi3MkMuxDkf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -390,7 +401,7 @@
       <workItem from="1594486610228" duration="36185000" />
       <workItem from="1594687979474" duration="25289000" />
       <workItem from="1595136868741" duration="1363000" />
-      <workItem from="1595215029998" duration="102924000" />
+      <workItem from="1595215029998" duration="116746000" />
     </task>
     <servers />
   </component>
