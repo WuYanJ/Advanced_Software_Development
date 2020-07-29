@@ -180,7 +180,7 @@
                 </div>
                 <div class=<%= class2 %>>
                     <img class="featurette-image img-responsive center-block"
-                         src="static/image/travel-images/large/<%= travelImage.getPath() %>"
+                         src="<%=getServletConfig().getServletContext().getRealPath("/travel-images")%>/large/<%= travelImage.getPath() %>"
                          alt="<%= travelImage.getTitle() %>>">
                 </div>
             </div>

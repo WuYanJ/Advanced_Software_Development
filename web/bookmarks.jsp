@@ -187,7 +187,7 @@
             %>
             <div class="col-md-4" style="height: 34em">
                 <div class="thumbnail">
-                    <img alt="300x200" src="static/image/travel-images/medium/<%= image.getPath() %>"
+                    <img alt="300x200" src="<%=getServletConfig().getServletContext().getRealPath("/travel-images")%>/large/<%= image.getPath() %>"
                          style="height: 15em;width: 100%;overflow: hidden"/>
                     <div class="caption">
                         <%--                            <h3 style="color: #006633">--%>

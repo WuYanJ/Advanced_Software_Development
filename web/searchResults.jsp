@@ -152,7 +152,7 @@
                         <option value="date" selected>Date</option>
                     </select>
                     <input type="search" id="searchWith" name="searchWith" class="form-control" placeholder="Search by Topic/Title..." style="width: 60%">
-                    <button type="submit" onclick="searchForImages(1)" class="btn btn-success"><i class="fa fa-search"></i></button>
+<%--                    <button type="submit" onclick="searchForImages(1)" class="btn btn-success"><i class="fa fa-search"></i></button>--%>
                 <input type="button" onclick="searchForImages(1)" value="search">
     </form>
             </div>
@@ -172,32 +172,33 @@
         </div>
         <div class="row"><!-- Left colunm -->
 
-        <%
-            List<TravelImage> imageResultSet = (List<TravelImage>) request.getAttribute("imageResultSet");
-            if(imageResultSet != null && imageResultSet.size() > 0){
-                for (TravelImage image: imageResultSet){
-        %>
-            <div class="col-md-4">
-                <div class="thumbnail">
-                <img alt="300x200" src="static/image/travel-images/large/<%=image.getPath()%>"/>
-                    <div class="caption">
-                        <h3>
-                            <%=image.getTitle()%>
-                        </h3>
-                        <p>
-                            <%=image.getDescription()%>
-                        </p>
-                        <p>
-                            <a class="btn btn-primary" href="details.jsp?imageURL=<%=image.getPath()%>">Learn More</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        <%
-                }
-            }
-        %>
+<%--        <%--%>
+<%--            List<TravelImage> imageResultSet = (List<TravelImage>) request.getAttribute("imageResultSet");--%>
+<%--            if(imageResultSet != null && imageResultSet.size() > 0){--%>
+<%--                for (TravelImage image: imageResultSet){--%>
+<%--        %>--%>
+<%--            <div class="col-md-4">--%>
+<%--                <div class="thumbnail">--%>
+<%--                <img alt="300x200" src="<%=getServletConfig().getServletContext().getRealPath("/travel-images")%>>/large/<%=image.getPath()%>"/>--%>
+<%--                    <div class="caption">--%>
+<%--                        <h3>--%>
+<%--                            <%=image.getTitle()%>--%>
+<%--                        </h3>--%>
+<%--                        <p>--%>
+<%--                            <%=image.getDescription()%>--%>
+<%--                        </p>--%>
+<%--                        <p>--%>
+<%--                            <a class="btn btn-primary" href="details.jsp?imageURL=<%=image.getPath()%>">Learn More</a>--%>
+<%--                        </p>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        <%--%>
+<%--                }--%>
+<%--            }--%>
+<%--        %>--%>
             <div id="showResultsDiv"></div>
+            <div id="hidden"><%=getServletConfig().getServletContext().getRealPath("/")%></div>
         </div>
 
 
@@ -249,7 +250,7 @@
 <script type="text/javascript">
     var searchResults;
     function searchForImages(pageNo) {
-        console.log(">>"+pageNo)
+        console.log(">>"+pageNo);
         var select = document.getElementById("select");　　//获取select对象
         var index1 = select.selectedIndex;　　　　　　　　　//获取被选中的索引
         var selectBy = select.options[index1].value;　　　　　　//获取被选中的值
@@ -269,6 +270,8 @@
             type : "POST",
             dataType : "JSON", //这里我们用JSON的数据格式
             success: function(pageResult){
+                var contextPath = document.getElementById("hidden").innerHTML;
+                console.log(">>>>"+contextPath);
                 console.log(pageResult.items);
                 var imageResultSet = pageResult.items;
                 var htmlString = "";

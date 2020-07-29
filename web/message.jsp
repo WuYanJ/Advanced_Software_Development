@@ -11,35 +11,5 @@
     <title>提示信息页面</title>
 </head>
 <body>
-<%
-    //获取提示信息
-    String txt = request.getParameter("txt").toString();
-//    String info = (String) request.getAttribute("info");
-//    if (info != null) {
-//        out.print("info:"+info);
-//    }
-
-    out.print("txt:"+txt);
-    response.sendRedirect("details.jsp?"+txt);
-    /*获取用户的登录信息*/
-    User user = (User) session.getAttribute("user");
-    if (user != null) {
-%>
-<table align="center" width="600" border="1" height="550" bordercolor="#E8F4CC">
-    <tr>
-        <td align="center" colspan="2">
-            <span style="font-weight: bold;font-size: 18px;"><%=user.getUsername()%></span>登录成功！
-        </td>
-    </tr>
-    <tr>
-        <td align="center" colspan="2">邮箱</td>
-        <td align="center" colspan="2"><%=user.getEmail()%></td>
-    </tr>
-</table>
-<%
-    }else {
-        out.print("<br>对不起您没有登录！");
-    }
-%>
-</body>
+<div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/222222.jpg"/><div class="caption"><h3>Florence</h3><p>undefined</p><p><a class="btn btn-primary" href="details.jsp?imageURL=222222.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9498358806.jpg"/><div class="caption"><h3>Florence Duomo</h3><p>Photo taken from the Campanile</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9498358806.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504606628.jpg"/><div class="caption"><h3>Orpheus Fountain, Florence</h3><p>In the garden of Palazzo Vivarelli Colonna</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504606628.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504613978.jpg"/><div class="caption"><h3>Palazzo Strozzi, Florence</h3><p>undefined</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504613978.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504451722.jpg"/><div class="caption"><h3>Interior Santo Spirito, Florence</h3><p>Filippo Brunelleschi designed church has been called by Bernini the most beautiful church in the world. I have to concur with the master, it is beyond stunning ?</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504451722.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504449928.jpg"/><div class="caption"><h3>Santo Spirito, Florence</h3><p>undefined</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504449928.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504448540.jpg"/><div class="caption"><h3>Garden of Boboli, Pitti Palace, Florence</h3><p>undefined</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504448540.jpg">Learn More</a></p></div></div></div><div class="col-md-4"><div class="thumbnail"><img alt="300x200" src="/Users/wuyanjie/DevTools/apache-tomcat-9.0.37/work/Catalina/localhost/JavaWeb/org/apache/jsp/static/image/travel-images/large/9504445110.jpg"/><div class="caption"><h3>Santa Maria Novella, Florence</h3><p>undefined</p><p><a class="btn btn-primary" href="details.jsp?imageURL=9504445110.jpg">Learn More</a></p></div></div></div></body>
 </html>

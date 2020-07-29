@@ -177,7 +177,10 @@
                                 <%--这里放的就是详情的大图片--%><%--这里放的就是详情的大图片--%>
                             </div><!-- product-imge-->
                             <div class="big-image">
-                                <img src="static/image/travel-images/large/<%= imageURL %>" alt=""/>
+                                <%
+                                    System.out.println(getServletConfig().getServletContext().getRealPath("/travel-images")+"/large/"+imageURL);
+                                %>
+                                <img src="<%=getServletConfig().getServletContext().getRealPath("/travel-images")%>/large/<%= imageURL %>" alt=""/>
                             </div>
                         </div>
                         <%
