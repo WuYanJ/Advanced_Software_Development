@@ -198,7 +198,7 @@
 <%--            }--%>
 <%--        %>--%>
             <div id="showResultsDiv"></div>
-            <div id="hidden"><%=getServletConfig().getServletContext().getRealPath("/")%></div>
+            <div id="hidden" hidden><%=getServletConfig().getServletContext().getRealPath("/")%></div>
         </div>
 
 
@@ -271,7 +271,6 @@
             dataType : "JSON", //这里我们用JSON的数据格式
             success: function(pageResult){
                 var contextPath = document.getElementById("hidden").innerHTML;
-                console.log(">>>>"+contextPath);
                 console.log(pageResult.items);
                 var imageResultSet = pageResult.items;
                 var htmlString = "";

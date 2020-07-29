@@ -57,7 +57,11 @@
         </div>
         <br>
         <input type="text"  style="width: 120px" name="captcha">&nbsp;
-        <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">
+        <%
+            System.out.println(request.getContextPath());
+        %>
+<%--        <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">--%>
+        <img id="captcha_img" src="http://139.224.72.202/unnamed/kaptcha.jpg" style="width: 100px;height:30px">
         <br><br>
 <%--        <button class="btn btn-lg btn-primary btn-block" onclick="sendRequest()">Sign in</button>--%>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

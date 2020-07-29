@@ -504,8 +504,6 @@
             var x = pagex - 448 - mask.offsetWidth / 2; //除以2，可以保证鼠标mask的中间
             var y = pagey - 138 - mask.offsetHeight / 2;
 
-            console.log("x.before->"+x)
-
             //限制换盒子的范围
             //left取值为大于0，小盒子的宽-mask的宽。
             if (x < 0) {

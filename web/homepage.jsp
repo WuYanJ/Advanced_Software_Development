@@ -164,6 +164,9 @@
                     %>
         <div class="item">
             <img src="static/image/travel-images/large/<%= entry.getKey() %>" style="width: 100%;height: auto">
+
+<%--            <img src="static/image/travel-images/large/<%= entry.getKey() %>" style="width: 100%;height: auto">--%>
+
             <div class="container">
                 <div class="carousel-caption">
                     <h1><%= image.getTitle() %></h1>
@@ -216,9 +219,8 @@
             for(TravelImage image : latestImages){
         %>
         <div class="col-lg-4">
-            <img class="img-circle"
-                 src="static/image/travel-images/large/<%=image.getPath()%>"
-                 alt="Generic placeholder image" width="140" height="140">
+<%--            <img class="img-circle" src="static/image/travel-images/large/<%=image.getPath()%>" alt="Generic placeholder image" width="140" height="140">--%>
+            <img class="img-circle" src="static/image/travel-images/large/<%=image.getPath()%>" alt="<%=image.getTitle()%>" width="140" height="140">
             <h2 style="color: #666633"><%=image.getTitle()%></h2>
             <p style="color: #99CC33"><%=image.getDescription()%></p>
             <p style="color: #99CC99"><%=image.getUpdatedDate()%></p>
@@ -241,8 +243,11 @@
             <p class="lead"><%=image.getDescription()%></p>
         </div>
         <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%=image.getPath()%>"
-                 alt="Generic placeholder image">
+            <%
+                System.out.println(application.getRealPath("/")+"static/image/travel-images/large/"+image.getPath());
+            %>
+<%--            <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%=image.getPath()%>" alt="Generic placeholder image">--%>
+            <img class="featurette-image img-responsive center-block" src="static/image/travel-images/large/<%=image.getPath()%>" alt="Generic placeholder image">
         </div>
     </div>
 
