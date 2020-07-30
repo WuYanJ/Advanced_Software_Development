@@ -2,10 +2,18 @@
     <named-config name="helloc3p0">
 
 <!--        指定连接数据源的基本属性-->
-        <property name="user">root</property>
-        <property name="password">wuyanjie!20000813</property>
-        <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql:///travels</property>
+<!--            开发者模式-->
+<!--        <property name="user">root</property>-->
+<!--        <property name="password">wuyanjie!20000813</property>-->
+<!--        <property name="driverClass">com.mysql.jdbc.Driver</property>-->
+<!--        <property name="jdbcUrl">jdbc:mysql:///travels</property>-->
+
+
+<!--            生产者模式-->
+            <property name="user">root</property>
+            <property name="password">Wuyanjie!20000813</property>
+            <property name="driverClass">com.mysql.jdbc.Driver</property>
+            <property name="jdbcUrl">jdbc:mysql://139.224.72.202:3306/travels</property>
 
 <!--        若数据库中连接数不足时，一次向数据库服务器申请多少个连接-->
         <property name="acquireIncrement">5</property>

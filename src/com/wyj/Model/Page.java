@@ -17,7 +17,7 @@ public class Page<T> {
     private long pageSize = PAGE_SIZE;
     // 总记录数
     private long recordCount;
-    // long
+    // 这一页的所有item
     private List<T> items;
 
     public Page() {

@@ -127,7 +127,7 @@ public class SearchServlet extends HttpServlet {
         String fromUser = request.getParameter("friend");
         String sql = "UPDATE travels.invitation SET status=2 WHERE toUser=? AND fromUser=?";
         travelUserDao.update(sql, toUser, fromUser);
-        response.sendRedirect("/JavaWeb/friends.jsp");
+        response.sendRedirect("/friends.jsp");
     }
     public void comment(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         String imageURL = request.getParameter("imageURL");
@@ -135,13 +135,13 @@ public class SearchServlet extends HttpServlet {
         String comment = request.getParameter("comment");
         String sql = "INSERT INTO travels.travelimageComment(imageURL, username, comment, dateCreated, favorAmount)VALUES(?, ?, ?, ?, ?)";
         dao.update(sql, imageURL, username, comment, new Date(), 0);
-        response.sendRedirect("/JavaWeb/details.jsp?imageURL="+imageURL);
+        response.sendRedirect("/details.jsp?imageURL="+imageURL);
     }
     public void deleteMyUpload(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         String imageURL = request.getParameter("imageURL");
         String sql = "DELETE FROM travels.travelimage WHERE path=?";
         dao.update(sql, imageURL);
-        response.sendRedirect("/JavaWeb/personalInfo.jsp");
+        response.sendRedirect("/personalInfo.jsp");
     }
 
     public void ifVisible(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -158,7 +158,7 @@ public class SearchServlet extends HttpServlet {
             sql = "UPDATE travels.traveluser SET ifVisibleToFriend=0 WHERE username=?";
             dao.update(sql, username);
         }
-        response.sendRedirect("/JavaWeb/friends.jsp");
+        response.sendRedirect("/friends.jsp");
     }
 
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

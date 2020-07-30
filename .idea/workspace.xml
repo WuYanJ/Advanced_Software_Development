@@ -10,13 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="237c60a3-3794-49ef-b2eb-757bdefecc80" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/JavaWeb2020Summer_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/JavaWeb2020Summer_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/unnamed.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/unnamed/unnamed.war" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/unnamed/unnamed.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bookmarks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/bookmarks.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaWeb2020Summer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaWeb2020Summer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/c3p0-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/c3p0-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Model/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Model/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/wyj/Servlet/SearchServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dbcp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/dbcp.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/c3p0-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/c3p0-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/SearchServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/com/wyj/servlet/SearchServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/dbcp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/dbcp.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/details.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/homepage.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/personalInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/personalInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/searchResults.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/searchResults.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,7 +98,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.16366613" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
@@ -287,8 +296,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9.0.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8089/JavaWeb" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
         <artifact name="JavaWeb2020Summer:war exploded">
           <settings>
@@ -361,13 +372,13 @@
     </configuration>
     <list>
       <item itemvalue="JAR Application.commons-beanutils-1.9.4.jar" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
-      <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
       <item itemvalue="JUnit.DAOTest.testFuzzyGetUsers" />
       <item itemvalue="JUnit.DAOTest.testGetForValueList" />
       <item itemvalue="JUnit.TravelImageDao.testGetLatestImage" />
       <item itemvalue="JUnit.PageDAO.test" />
       <item itemvalue="JUnit.PageDAO.test1" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.57" />
     </list>
     <recent_temporary>
       <list>
@@ -395,7 +406,9 @@
       <workItem from="1594486610228" duration="36185000" />
       <workItem from="1594687979474" duration="25289000" />
       <workItem from="1595136868741" duration="1363000" />
-      <workItem from="1595215029998" duration="134567000" />
+      <workItem from="1595215029998" duration="135504000" />
+      <workItem from="1596012079728" duration="5111000" />
+      <workItem from="1596043745225" duration="4075000" />
     </task>
     <servers />
   </component>
