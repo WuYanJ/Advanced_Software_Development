@@ -64,8 +64,8 @@
     <br>
     <br>
     <input type="text" style="width: 120px" name="captcha" id="captcha">&nbsp;
-    <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">
-<%--    <img id="captcha_img" src="http://139.224.72.202/JavaWeb2020Summer_war_exploded/kaptcha.jpg" style="width: 100px;height:30px">--%>
+<%--    <img id="captcha_img" src="http://localhost:8089/JavaWeb/kaptcha.jpg" style="width: 100px;height:30px">--%>
+    <img id="captcha_img" src="http://139.224.72.202/JavaWeb2020Summer_war_exploded/kaptcha.jpg" style="width: 100px;height:30px">
     <br><br>
     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return formCheck()" id="btnSubmit">Sign up</button><br>
     <p class="pull-right"><a href="homepage.jsp">Back to HOMEPAGE</a></p>
